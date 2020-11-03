@@ -3,6 +3,8 @@
 		this is login page
 		<button type="primary" @click="enterDocPage">进入医生页面</button>
 		<button type="warn" @click="enterPriPage">进入患者页面</button>
+		
+		我是测试提交
 	</view>
 </template>
 
