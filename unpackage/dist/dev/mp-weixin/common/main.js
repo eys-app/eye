@@ -91,6 +91,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 {
   onLaunch: function onLaunch() {
     console.log('App Launch');
+    console.log('this is test commit');
   },
   onShow: function onShow() {
     console.log('App Show');
