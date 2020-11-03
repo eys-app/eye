@@ -2,7 +2,7 @@
 export default {
 	onLaunch: function() {
 		console.log('App Launch');
-		console.log('this is test commit')
+		console.log('this is test commit ------whx develop')
 	},
 	onShow: function() {
 		console.log('App Show');
