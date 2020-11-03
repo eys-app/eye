@@ -182,7 +182,7 @@ var _default =
     },
     enterPriPage: function enterPriPage() {
       uni.switchTab({
-        url: "/pages/patient/mine" });
+        url: "/pages/patient/docclass" });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
