@@ -16,7 +16,7 @@
 			},
 			enterPriPage(){
 				uni.switchTab({
-					url:"/pages/patient/home"
+					url:"/pages/patient/docclass"
 				})
 			}
 		}
