@@ -1,0 +1,77 @@
+{
+	"pages": [
+
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/doctor/apply",
+			"style": {
+				"navigationBarTitleText": "医生认证页面"
+			}
+		},
+		{
+			"path": "pages/patient/add",
+			"style": {
+				"navigationBarTitleText": "患者申请页面"
+			}
+		},
+		{
+			"path": "pages/patient/home",
+			"style": {
+				"navigationBarTitleText": "患者home页面"
+			}
+		},
+		{
+			"path": "pages/patient/docclass",
+			"style": {
+				"navigationBarTitleText": "患者class页面"
+			}
+		}, {
+			"path": "pages/patient/mine",
+			"style": {
+				"navigationBarTitleText": "患者mine页面"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-ui基础项目"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#007AFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [{
+				"pagePath": "pages/patient/home",
+				"text": "首页",
+				"iconPath": "static/component.png",
+				"selectedIconPath": "static/componentHL.png"
+			},
+			{
+				"pagePath": "pages/patient/docclass",
+				"text": "医生小课堂",
+				"iconPath": "static/api.png",
+				"selectedIconPath": "static/apiHL.png"
+			},
+			{
+				"pagePath": "pages/patient/mine",
+				"text": "我的",
+				"iconPath": "static/extui.png",
+				"selectedIconPath": "static/extuiHL.png"
+			}
+		]
+	}
+}

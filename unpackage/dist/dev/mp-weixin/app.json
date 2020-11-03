@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/doctor/apply",
+    "pages/patient/add",
+    "pages/patient/home",
+    "pages/patient/docclass",
+    "pages/patient/mine",
+    "pages/index/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#007AFF",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#007AFF",
+    "borderStyle": "black",
+    "backgroundColor": "#F8F8F8",
+    "list": [
+      {
+        "pagePath": "pages/patient/home",
+        "text": "首页",
+        "iconPath": "static/component.png",
+        "selectedIconPath": "static/componentHL.png"
+      },
+      {
+        "pagePath": "pages/patient/docclass",
+        "text": "医生小课堂",
+        "iconPath": "static/api.png",
+        "selectedIconPath": "static/apiHL.png"
+      },
+      {
+        "pagePath": "pages/patient/mine",
+        "text": "我的",
+        "iconPath": "static/extui.png",
+        "selectedIconPath": "static/extuiHL.png"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}
