@@ -1419,7 +1419,91 @@ var render = function() {
             _vm._v(_vm._$g("2-" + $30, "t0-0"))
           ])
         ]
-      })
+      }),
+      _c(
+        "v-uni-button",
+        {
+          attrs: { _i: 3 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("问诊人1")]
+      ),
+      _c(
+        "v-uni-button",
+        {
+          attrs: { _i: 4 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("问诊人2")]
+      ),
+      _c(
+        "v-uni-button",
+        {
+          attrs: { _i: 5 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("问诊人3")]
+      ),
+      _c(
+        "v-uni-button",
+        {
+          attrs: { _i: 6 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("问诊人4")]
+      ),
+      _c(
+        "v-uni-button",
+        {
+          attrs: { _i: 7 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("问诊人5")]
+      ),
+      _c(
+        "v-uni-button",
+        {
+          attrs: { _i: 8 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("问诊人6")]
+      ),
+      _c(
+        "v-uni-button",
+        {
+          attrs: { _i: 9 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("问诊人7")]
+      )
     ],
     2
   )
@@ -1916,7 +2000,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { _i: 0 } }, [_vm._v("mine")])
+  return _c(
+    "div",
+    { attrs: { _i: 0 } },
+    [
+      _vm._v("mine " + _vm._$g(0, "t0-0")),
+      _c(
+        "v-uni-button",
+        {
+          attrs: { type: "primary", _i: 1 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("下一页")]
+      )
+    ],
+    1
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
