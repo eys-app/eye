@@ -4,6 +4,7 @@
     "ignore": []
   },
   "setting": {
+<<<<<<< HEAD
     "urlCheck": true,
     "es6": true,
     "enhance": false,
@@ -33,6 +34,9 @@
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": []
+=======
+    "urlCheck": true
+>>>>>>> ff15ea1571dc80f8277da6ff6cb8438f20214aec
   },
   "compileType": "miniprogram",
   "libVersion": "",
@@ -54,8 +58,19 @@
       "list": []
     },
     "miniprogram": {
+<<<<<<< HEAD
       "current": -1,
       "list": []
+=======
+      "list": [
+        {
+          "name": "",
+          "path": "",
+          "query": "",
+          "id": 0
+        }
+      ]
+>>>>>>> ff15ea1571dc80f8277da6ff6cb8438f20214aec
     }
   }
 }

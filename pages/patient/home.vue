@@ -1,6 +1,7 @@
 <template>
 	<div>
 		home
+		<button type="warn" size="mini">this is home</button>
 	</div>
 </template>
 

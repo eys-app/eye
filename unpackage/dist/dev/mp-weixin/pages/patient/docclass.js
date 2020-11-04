@@ -21,8 +21,9 @@ createPage(_docclass.default);
   !*** D:/HBuildXCode/EYE/eye/pages/patient/docclass.nvue ***!
   \**********************************************************/
 /*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
+<<<<<<< HEAD
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _docclass_nvue_vue_type_template_id_f22ace0a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./docclass.nvue?vue&type=template&id=f22ace0a& */ 45);
@@ -196,6 +197,9 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
     if(false) { var cssReload; }
   
+=======
+throw new Error("Module build failed (from ./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\Administrator\\Documents\\HBuilderProjects\\eyeSystemApp\\pages\\patient\\docclass.nvue'");
+>>>>>>> ff15ea1571dc80f8277da6ff6cb8438f20214aec
 
 /***/ })
 

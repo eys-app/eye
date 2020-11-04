@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 <view>this is login page<button type="primary" data-event-opts="{{[['tap',[['enterDocPage',['$event']]]]]}}" bindtap="__e">进入医生页面</button><button type="warn" data-event-opts="{{[['tap',[['enterPriPage',['$event']]]]]}}" bindtap="__e">进入患者页面</button>我是测试提交==</view>
+=======
+<view class="login-class"><view style="margin-top:100px;"><button type="primary" size="mini" data-event-opts="{{[['tap',[['enterDocPage',['$event']]]]]}}" bindtap="__e">进入医生页面</button><button type="warn" size="mini" data-event-opts="{{[['tap',[['enterPriPage',['$event']]]]]}}" bindtap="__e">进入患者页面</button></view></view>
+>>>>>>> ff15ea1571dc80f8277da6ff6cb8438f20214aec
