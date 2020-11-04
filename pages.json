@@ -49,7 +49,7 @@
 			}
 		}
 	    ,{
-            "path" : "pages/ListContact/ListContact",
+            "path" : "pages/listContact/listContact",
             "style" : {
 				"navigationBarTitleText": "问诊人管理"
 			}
@@ -60,6 +60,18 @@
         }
         ,{
             "path" : "pages/patient/addUser",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/listContact/listContact",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/patient/addUser",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/patient/userInfo",
             "style" : {}
         }
     ],
