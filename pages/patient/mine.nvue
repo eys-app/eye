@@ -1,12 +1,19 @@
 <template>
 	<div>
 		mine
+		<h3 @click="enterListContact">问诊人</h3>
 	</div>
 </template>
 
 <script>
 	export default {
-		
+		methods:{
+			enterListContact(){
+				uni.navigateTo({
+					url:'/pages/ListContact/ListContact'
+				})
+			}
+		}
 	}
 </script>
 

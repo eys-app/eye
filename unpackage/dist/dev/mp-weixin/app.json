@@ -6,7 +6,10 @@
     "pages/patient/home",
     "pages/patient/docclass",
     "pages/patient/mine",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/ListContact/ListContact",
+    "pages/patient/userInfo",
+    "pages/patient/addUser"
   ],
   "subPackages": [],
   "window": {
@@ -42,5 +45,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap26.json"
 }
