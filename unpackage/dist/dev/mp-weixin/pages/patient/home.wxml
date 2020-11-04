@@ -1,1 +1,1 @@
-<view class="_div">home</view>
+<view class="_div">home<button type="warn" size="mini">this is home</button></view>
