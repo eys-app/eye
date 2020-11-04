@@ -8,6 +8,12 @@
 			}
 		},
 		{
+			"path":"pages/aidiagnosis/diagnosis",
+			"style":{
+				"navigationBarTitleText":"AI诊断"
+			}
+		},
+		{
 			"path": "pages/doctor/apply",
 			"style": {
 				"navigationBarTitleText": "医生认证页面"
