@@ -39,13 +39,13 @@
 		methods: {
 			addUser(){
 				uni.navigateTo({
-					url:"../patient/addUser"
+					url:"/pages/patient/patientmanager/addUser"
 				})
 			},
 			enterUserInfo(user){
 				console.log(user)
 				uni.navigateTo({
-					url:"/pages/patient/userInfo?userId="+user.id+"&userName="+user.name
+					url:"/pages/patient/patientmanager/userInfo?userId="+user.id+"&userName="+user.name
 				})
 			}
 			

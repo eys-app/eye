@@ -20,7 +20,7 @@
 			},
 			enterListContact(){
 				uni.navigateTo({
-					url:'/pages/listContact/listContact'
+					url:'/pages/patient/patientmanager/listContact'
 				})
 			}
 		}

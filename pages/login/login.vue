@@ -16,12 +16,13 @@
 		methods: {
 			enterDocPage() {
 				uni.navigateTo({
-					url: "/pages/doctor/apply"
+					url: "/pages/doctor/tabbar/apply"
 				})
 			},
 			enterPriPage() {
+				console.log('进入患者页面')
 				uni.switchTab({
-					url: "/pages/patient/docclass"
+					url: "../patient/tabbar/mine"
 				})
 			}
 		}
