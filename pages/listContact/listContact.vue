@@ -45,7 +45,7 @@
 			enterUserInfo(user){
 				console.log(user)
 				uni.navigateTo({
-					url:"../patient/userInfo?user="+user
+					url:"/pages/patient/userInfo?userId="+user.id+"&userName="+user.name
 				})
 			}
 			

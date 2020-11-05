@@ -1,14 +1,14 @@
 <template>
 	<view>
 		<uni-card isShadow="true">
-			<view>姓名<input class="uni-input" placeholder="请输入真实姓名"></view>
-			<view>身份证<input class="uni-input" placeholder="提交后不可修改,请慎重填写"></view>
+			<view>姓名<input class="uni-input" focus placeholder="请输入真实姓名"></view>
+			<view>身份证<input type="idcard" class="uni-input" placeholder="提交后不可修改,请慎重填写"></view>
 			<view>性别<input class="uni-input" placeholder="请选择"></view>
-			<view>年龄<input class="uni-input" placeholder="请输入年龄"></view>
+			<view>年龄<input type="number" class="uni-input" placeholder="请输入年龄"></view>
 		</uni-card>
 		
 		<uni-card isShadow="true">
-			<view>手机号<input class="uni-input" placeholder="请输入正确的手机号"></view>
+			<view>手机号<input type="number" class="uni-input" placeholder="请输入正确的手机号"></view>
 			<view>社保卡<input class="uni-input" placeholder="(可选)请输入您的社保卡号"></view>
 		</uni-card>
 		

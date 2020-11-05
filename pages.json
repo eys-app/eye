@@ -56,23 +56,15 @@
         }
         ,{
             "path" : "pages/patient/userInfo",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "问诊人详情"
+			}
         }
         ,{
             "path" : "pages/patient/addUser",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/listContact/listContact",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/patient/addUser",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/patient/userInfo",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "添加问诊人"
+			}
         }
     ],
 	"globalStyle": {
