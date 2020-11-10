@@ -4,39 +4,7 @@
     "ignore": []
   },
   "setting": {
-<<<<<<< HEAD
-    "urlCheck": true,
-    "es6": true,
-    "enhance": false,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": false,
-    "coverView": true,
-    "nodeModules": false,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "useIsolateContext": true,
-    "useCompilerModule": false,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": []
-=======
     "urlCheck": true
->>>>>>> ff15ea1571dc80f8277da6ff6cb8438f20214aec
   },
   "compileType": "miniprogram",
   "libVersion": "",
@@ -46,22 +14,15 @@
   "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
-<<<<<<< HEAD
-      "current": -1,
-      "list": []
-=======
       "list": [
         {
           "name": "",
@@ -70,7 +31,6 @@
           "id": 0
         }
       ]
->>>>>>> ff15ea1571dc80f8277da6ff6cb8438f20214aec
     }
   }
 }

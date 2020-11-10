@@ -1,7 +1,7 @@
 <template>
-	<view>
+	<view class="ai-diagnosis-class">
 		<template v-for="item in list">
-			<text>{{item.title}}</text>
+			<question-naire></question-naire>
 		</template>
 		
 		<button @click="changeValue('问诊人1')">问诊人1</button>
@@ -16,9 +16,13 @@
 </template>
 
 <script>
+	import questionNaire from './components/question.vue'
 	import {getTestRequest} from '../../api/index.js'
 	import {mapMutations} from 'vuex'
 	export default{
+		components:{
+			questionNaire
+		},
 		data(){
 			return{
 				list:[
@@ -47,4 +51,7 @@
 </script>
 
 <style>
+	.ai-diagnosis-class{
+		padding: 10px;
+	}
 </style>

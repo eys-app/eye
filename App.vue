@@ -1,14 +1,33 @@
 <script>
+	import {mapState} from "vuex";
 	export default {
+		
 		onLaunch: function() {
-			console.log('App Launch');
-			console.log('this is test commit ------whx develop')
+			console.log("在这判断是否登录==",this.loginData);
+			
+			// if(this.loginData == null){
+			// 	uni.switchTab({
+			// 		url: '/pages/patient/tabbar/home'
+			// 	});
+			// }
+			// else{
+			// 	uni.navigateTo({
+			// 		url: "/pages/doctor/apply"
+			// 	});
+			// }
+			
 		},
 		onShow: function() {
 			console.log('App Show');
 		},
 		onHide: function() {
 			console.log('App Hide');
+		},
+		mounted() {
+			console.log('aaa');
+		},
+		computed:{
+			...mapState(["loginData"])
 		}
 	};
 </script>

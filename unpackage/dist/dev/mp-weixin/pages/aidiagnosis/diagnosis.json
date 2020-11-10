@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "AI诊断",
+  "usingComponents": {
+    "question-naire": "/pages/aidiagnosis/components/question"
+  }
+}
