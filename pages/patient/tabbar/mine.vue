@@ -1,8 +1,8 @@
 <template>
 	<div>
 		mine {{activePatient}}
-		<button type="primary" @click="nextPage">下一页</button>
 		<h3 @click="enterListContact">问诊人</h3>
+		<button type="primary" @click="nextPage">下一页</button>
 	</div>
 </template>
 

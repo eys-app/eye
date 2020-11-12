@@ -27,6 +27,8 @@
 	export default {
 		onLoad:function(option){
 			console.log(option)
+			this.activeUser=option.user,
+			console.log(this.activeUser)
 			this.userId=option.userId
 			this.userName=option.userName
 			
@@ -34,6 +36,7 @@
 		
 		data() {
 			return {
+				activeUser:'',
 				userId:'',
 				userName:''
 			}

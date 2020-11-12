@@ -1,10 +1,9 @@
 <template>
 	<view class="container">
-		问诊者列表
 		<uni-list>
 			<uni-list-item v-for="userItem in userList" :key="userItem.id" @click="enterUserInfo(userItem)">
-				<view>{{userItem.name}}</view>
-				{{userItem.phone}}
+				<view class="userNameSty">{{userItem.name}}</view>
+				<view class="userPhoneSty">{{userItem.phone}}</view>
 			</uni-list-item>
 		</uni-list>
 		<button type="warn" @click="addUser">新增问诊者</button>
@@ -43,7 +42,6 @@
 				})
 			},
 			enterUserInfo(user){
-				console.log(user)
 				uni.navigateTo({
 					url:"/pages/patient/patientmanager/userInfo?userId="+user.id+"&userName="+user.name
 				})
@@ -53,9 +51,20 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 
 .container{
-	margin: 10px;
+	margin: 10px;z
+	.userNameSty{
+		font-size: 30rpx;
+	}
+	.userPhoneSty{
+		margin-top: 6px;
+		font-size: 16px;
+		color: #6E6E6E;
+	}
+	.warn{
+		margin-top: 10px;
+	}
 }
 </style>

@@ -1,15 +1,15 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/aidiagnosis/diagnosis",
     "pages/doctor/apply",
-    "pages/patient/add",
-    "pages/patient/home",
-    "pages/patient/docclass",
-    "pages/patient/mine",
+    "pages/patient/tabbar/home",
+    "pages/patient/tabbar/docclass",
+    "pages/patient/tabbar/mine",
     "pages/index/index",
-    "pages/ListContact/ListContact",
-    "pages/patient/userInfo",
-    "pages/patient/addUser"
+    "pages/patient/patientmanager/listContact",
+    "pages/patient/patientmanager/userInfo",
+    "pages/patient/patientmanager/addUser"
   ],
   "subPackages": [],
   "window": {
@@ -25,19 +25,19 @@
     "backgroundColor": "#F8F8F8",
     "list": [
       {
-        "pagePath": "pages/patient/home",
+        "pagePath": "pages/patient/tabbar/home",
         "text": "首页",
         "iconPath": "static/component.png",
         "selectedIconPath": "static/componentHL.png"
       },
       {
-        "pagePath": "pages/patient/docclass",
+        "pagePath": "pages/patient/tabbar/docclass",
         "text": "医生小课堂",
         "iconPath": "static/api.png",
         "selectedIconPath": "static/apiHL.png"
       },
       {
-        "pagePath": "pages/patient/mine",
+        "pagePath": "pages/patient/tabbar/mine",
         "text": "我的",
         "iconPath": "static/extui.png",
         "selectedIconPath": "static/extuiHL.png"
@@ -45,9 +45,5 @@
     ]
   },
   "usingComponents": {},
-<<<<<<< HEAD
-  "sitemapLocation": "sitemap26.json"
-=======
-  "sitemapLocation": "sitemap98.json"
->>>>>>> ff15ea1571dc80f8277da6ff6cb8438f20214aec
+  "sitemapLocation": "sitemap61.json"
 }
