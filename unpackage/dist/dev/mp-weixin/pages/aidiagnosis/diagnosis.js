@@ -149,33 +149,153 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
 var _index = __webpack_require__(/*! ../../api/index.js */ 13);
-var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var questionNaire = function questionNaire() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/question */ "pages/aidiagnosis/components/question").then((function () {return resolve(__webpack_require__(/*! ./components/question.vue */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var radioQuestion = function radioQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/radioquestion */ "pages/aidiagnosis/components/radioquestion").then((function () {return resolve(__webpack_require__(/*! ./components/radioquestion.vue */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
 {
   components: {
-    questionNaire: questionNaire },
+    radioQuestion: radioQuestion },
 
   data: function data() {
     return {
-      list: [
-      { title: "这是第一题", type: 'R' },
-      { title: "这是第二题", type: 'R' },
-      { title: "这是第三题", type: 'R' },
-      { title: "这是第四题", type: 'R' },
-      { title: "这是第五题", type: 'R' }] };
+      list: [{
+        title: "这是第一题",
+        number: 1,
+        type: 'R',
+        answerList: [{
+          value: "这是第一题第1个答案" },
 
+        {
+          value: "这是第一题第2个答案" },
+
+        {
+          value: "这是第一题第3个答案" },
+
+        {
+          value: "这是第一题第4个答案" }],
+
+
+        answerCheck: [] },
+
+      {
+        title: "这是第二题",
+        type: 'R',
+        number: 2,
+        answerList: [{
+          value: "在这个地方，模板不再是简单的声明式逻辑。你必须看一段时间才能意识到，就会更加难以处理。" },
+
+        {
+          value: "你可以像绑定普通 property 一样在模板中绑定计算属性." },
+
+        {
+          value: "这是第一题第3个答案" },
+
+        {
+          value: "你可能已经注意到我们可以通过在表达式中调用方法来达到同样的效果：" }],
+
+
+        answerCheck: [{ value: 1 }] },
+
+      {
+        title: "这是第三题",
+        type: 'R',
+        number: 3,
+        answerList: [{
+          value: "这是第一题第1个答案" },
+
+        {
+          value: "这是第一题第2个答案" },
+
+        {
+          value: "这是第一题第3个答案" },
+
+        {
+          value: "这是第一题第4个答案" }],
+
+
+        answerCheck: [{ value: 1 }] },
+
+      {
+        title: "这是第四题",
+        type: 'R',
+        number: 4,
+        answerList: [{
+          value: "这是第一题第1个答案" },
+
+        {
+          value: "这是第一题第2个答案" },
+
+        {
+          value: "这是第一题第3个答案" },
+
+        {
+          value: "这是第一题第4个答案" }],
+
+
+        answerCheck: [{ value: 1 }] },
+
+      {
+        title: "这是第五题",
+        type: 'R',
+        number: 5,
+        answerList: [{
+          value: "这是第一题第1个答案" },
+
+        {
+          value: "这是第一题第2个答案" },
+
+        {
+          value: "这是第一题第3个答案" },
+
+        {
+          value: "这是第一题第4个答案" }],
+
+
+        answerCheck: [{ value: 1 }] }],
+
+
+      checkedList: Array.from(new Array(5)),
+      submit: false };
 
   },
   mounted: function mounted() {
     (0, _index.getTestRequest)().then(function (res) {
       console.log('data==', res);
     });
+
+    var that = this;
+    this.checkedList.forEach(function (item, index) {
+      that.checkedList[index] = index + 1;
+    });
+
+
+
+
+
+
+
   },
   methods: _objectSpread(_objectSpread({},
   (0, _vuex.mapMutations)(["changePatient"])), {}, {
 
     changeValue: function changeValue(value) {
       this.changePatient(value);
+    },
+
+    selectedAnswer: function selectedAnswer(value) {
+      console.log('value===', value);
+    },
+
+    submitDiagnoslsResult: function submitDiagnoslsResult() {
+      this.submit = true;
     } }) };exports.default = _default;
 
 /***/ }),

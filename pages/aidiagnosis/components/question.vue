@@ -47,7 +47,7 @@
 						name: '法国'
 					},
 				],
-				current: 0
+				current: null
 			}
 		},
 		methods:{
@@ -76,9 +76,9 @@
 		}
 		.radio-group{
 			margin-top: 20px;
-			border-top: 1px solid #dddddd;
-			border-left: 1px solid #dddddd;
-			border-right: 1px solid #dddddd;
+			//border-top: 1px solid #dddddd;
+			//border-left: 1px solid #dddddd;
+			//border-right: 1px solid #dddddd;
 			border-radius: 3px;
 		}
 		
@@ -90,7 +90,7 @@
 			}
 			.radio-name{
 				min-height: 30px;
-				border-bottom: 1px solid #dddddd;
+				//border-bottom: 1px solid #dddddd;
 				padding-left: 10px;
 				padding-top: 6px;
 			}
