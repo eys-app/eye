@@ -157,7 +157,7 @@ var _default =
   methods: {
     enterDocPage: function enterDocPage() {
       uni.navigateTo({
-        url: "/pages/doctor/tabbar/apply" });
+        url: "/pages/doctor/apply" });
 
     },
     enterPriPage: function enterPriPage() {

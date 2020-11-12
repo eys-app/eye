@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "AI诊断",
-  "usingComponents": {}
+  "usingComponents": {
+    "radio-question": "/pages/aidiagnosis/components/radioquestion"
+  }
 }

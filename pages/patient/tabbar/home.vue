@@ -1,8 +1,7 @@
 <template>
-	<div>
-		home
-		<button type="warn" size="mini">this is home</button>
-	</div>
+	<view class="home-view">
+		<button type="default" size="default">this is home</button>
+	</view>
 </template>
 
 <script>
@@ -12,5 +11,7 @@
 </script>
 
 <style>
-
+.home-view{
+	padding: 10px;
+}
 </style>
