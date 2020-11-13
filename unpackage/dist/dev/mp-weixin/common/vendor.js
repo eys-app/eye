@@ -1976,7 +1976,30 @@ store;exports.default = _default;
 
 /***/ }),
 
-/***/ 129:
+/***/ 13:
+/*!***********************************************************************************!*\
+  !*** C:/Users/Administrator/Documents/HBuilderProjects/eyeSystemApp/api/index.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getTestRequest = getTestRequest;
+var _request = _interopRequireDefault(__webpack_require__(/*! ../commen/request.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+
+function getTestRequest() {
+  return (0, _request.default)({
+    url: "http://39.106.180.14:1111/app/commen_gain_instructions",
+    method: 'get',
+    data: {},
+    header: {} });
+
+}
+
+/***/ }),
+
+/***/ 134:
 /*!****************************************************************************************************!*\
   !*** C:/Users/Administrator/Documents/HBuilderProjects/eyeSystemApp/components/uni-icons/icons.js ***!
   \****************************************************************************************************/
@@ -2115,29 +2138,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   "cloud-download-filled": "\uE8E9",
   "headphones": "\uE8BF",
   "shop": "\uE609" };exports.default = _default;
-
-/***/ }),
-
-/***/ 13:
-/*!***********************************************************************************!*\
-  !*** C:/Users/Administrator/Documents/HBuilderProjects/eyeSystemApp/api/index.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getTestRequest = getTestRequest;
-var _request = _interopRequireDefault(__webpack_require__(/*! ../commen/request.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-
-function getTestRequest() {
-  return (0, _request.default)({
-    url: "http://39.106.180.14:1111/app/commen_gain_instructions",
-    method: 'get',
-    data: {},
-    header: {} });
-
-}
 
 /***/ }),
 

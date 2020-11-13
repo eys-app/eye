@@ -130,7 +130,19 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -157,12 +169,13 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _index = __webpack_require__(/*! ../../api/index.js */ 13);
 
 
-var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var radioQuestion = function radioQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/radioquestion */ "pages/aidiagnosis/components/radioquestion").then((function () {return resolve(__webpack_require__(/*! ./components/radioquestion.vue */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var radioQuestion = function radioQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/radioquestion */ "pages/aidiagnosis/components/radioquestion").then((function () {return resolve(__webpack_require__(/*! ./components/radioquestion.vue */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var checkQuestion = function checkQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/checkquestion */ "pages/aidiagnosis/components/checkquestion").then((function () {return resolve(__webpack_require__(/*! ./components/checkquestion.vue */ 96));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var sliderQuestion = function sliderQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/sliderquestion */ "pages/aidiagnosis/components/sliderquestion").then((function () {return resolve(__webpack_require__(/*! ./components/sliderquestion.vue */ 170));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 {
   components: {
-    radioQuestion: radioQuestion },
+    radioQuestion: radioQuestion,
+    checkQuestion: checkQuestion, sliderQuestion: sliderQuestion },
 
   data: function data() {
     return {
@@ -183,7 +196,80 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
           value: "这是第一题第4个答案" }],
 
 
-        answerCheck: [] },
+        answerCheck: {} },
+
+      {
+        title: "这是第二题",
+        type: 'R',
+        number: 2,
+        answerList: [{
+          value: "在这个地方，模板不再是简单的声明式逻辑。你必须看一段时间才能意识到，就会更加难以处理。" },
+
+        {
+          value: "你可以像绑定普通 property 一样在模板中绑定计算属性." },
+
+        {
+          value: "你可能已经注意到我们可以通过在表达式中调用方法来达到同样的效果：" }],
+
+
+        answerCheck: {} },
+
+      {
+        title: "这是第三题",
+        type: 'C',
+        number: 3,
+        answerList: [{
+          value: "这是第一题第1个答案" },
+
+        {
+          value: "这是第一题第2个答案" },
+
+        {
+          value: "这是第一题第3个答案" },
+
+        {
+          value: "这是第一题第4个答案" }],
+
+
+        answerCheck: {} },
+
+      {
+        title: "这是第四题",
+        type: 'S',
+        number: 4,
+        answerList: [{
+          value: "这是第一题第1个答案" },
+
+        {
+          value: "这是第一题第2个答案" },
+
+        {
+          value: "这是第一题第3个答案" },
+
+        {
+          value: "这是第一题第4个答案" }],
+
+
+        answerCheck: {} },
+
+      {
+        title: "这是第五题",
+        type: 'C',
+        number: 5,
+        answerList: [{
+          value: "这是第一题第1个答案" },
+
+        {
+          value: "这是第一题第2个答案" },
+
+        {
+          value: "这是第一题第3个答案" },
+
+        {
+          value: "这是第一题第4个答案" }],
+
+
+        answerCheck: {} },
 
       {
         title: "这是第二题",
@@ -202,7 +288,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
           value: "你可能已经注意到我们可以通过在表达式中调用方法来达到同样的效果：" }],
 
 
-        answerCheck: [{ value: 1 }] },
+        answerCheck: {} },
 
       {
         title: "这是第三题",
@@ -221,7 +307,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
           value: "这是第一题第4个答案" }],
 
 
-        answerCheck: [{ value: 1 }] },
+        answerCheck: {} },
 
       {
         title: "这是第四题",
@@ -240,7 +326,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
           value: "这是第一题第4个答案" }],
 
 
-        answerCheck: [{ value: 1 }] },
+        answerCheck: {} },
 
       {
         title: "这是第五题",
@@ -259,29 +345,17 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
           value: "这是第一题第4个答案" }],
 
 
-        answerCheck: [{ value: 1 }] }],
+        answerCheck: {} }],
 
 
-      checkedList: Array.from(new Array(5)),
+
       submit: false };
 
   },
   mounted: function mounted() {
     (0, _index.getTestRequest)().then(function (res) {
-      console.log('data==', res);
+      //console.log('data==', res)
     });
-
-    var that = this;
-    this.checkedList.forEach(function (item, index) {
-      that.checkedList[index] = index + 1;
-    });
-
-
-
-
-
-
-
   },
   methods: _objectSpread(_objectSpread({},
   (0, _vuex.mapMutations)(["changePatient"])), {}, {
@@ -290,13 +364,60 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
       this.changePatient(value);
     },
 
+    //选择答案  ---- radio
     selectedAnswer: function selectedAnswer(value) {
-      console.log('value===', value);
+      this.list[value.index].answerCheck.checkValue = value.value;
+    },
+    //选择答案 ---- CheckBox
+    checkboxSelectedAnswer: function checkboxSelectedAnswer(value) {
+      this.list[value.index].answerCheck = value.value;
     },
 
-    submitDiagnoslsResult: function submitDiagnoslsResult() {
+
+    /**
+        * 提交问卷结果
+        * 1、判断是否有未选择的题目
+        * 2、如果有未选择的题目，(1)滚动到该题目位置,(2)未选择的题目增加红色的框和提示
+        * 
+        * */
+    submitDiagnoslsResult: function submitDiagnoslsResult() {var _this = this;
+      //提交选择 ---- 为了改变未选择题目的提示
       this.submit = true;
+
+      // 遍历list
+      for (var i = 0; i < this.list.length; i++) {
+        //判断是否有未选择的题目
+        var tempArray = Object.keys(this.list[i].answerCheck);
+        if (tempArray.length == 0) {
+          setTimeout(function () {
+
+            console.log('----');
+
+
+
+
+
+
+
+
+
+
+
+            uni.createSelectorQuery().in(_this).selectAll('.ai-diagnosis-class >>> .questionClass').boundingClientRect(function (data) {
+              uni.pageScrollTo({
+                scrollTop: Math.abs(data[0].top) - Math.abs(data[i].top) + 10,
+                duration: 500 });
+
+            }).exec();
+
+
+          }, 100);
+          break;
+        }
+      }
+
     } }) };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

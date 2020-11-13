@@ -142,13 +142,15 @@ var _default =
 {
   props: {
     item: Object,
+    itemIndex: Number,
     showError: Boolean },
 
   data: function data() {
     return {
       current: null, //选中的index
       radioHeight: [], //答案的radio高度
-      itemError: this.showError };
+      itemError: this.showError, //是否点击了提交
+      itemCheck: this.item };
 
   },
   methods: {
@@ -156,13 +158,22 @@ var _default =
     selectedRadio: function selectedRadio(index, item) {
       this.current = index;
       this.itemError = false;
-      this.$emit('answerSelected', item);
+      this.$emit('answerSelected', {
+        value: item,
+        index: this.itemIndex });
+
     } },
+
 
   watch: {
     showError: {
       handler: function handler(n) {
-        this.itemError = this.showError;
+        this.itemError = n;
+      } },
+
+    item: {
+      handler: function handler(n) {
+        this.itemCheck = n;
       } } },
 
 
@@ -171,19 +182,6 @@ var _default =
     /**
                                                   * 设置每个radio的高度，让radio水平-垂直居中
                                                   */
-
-
-
-
-
-
-
-
-
-
-
-
-
     uni.createSelectorQuery().in(this).selectAll('.aswer-item-text').boundingClientRect(function (data) {
       for (var i = 0; i < data.length; i++) {
         _this.radioHeight.push(
@@ -191,17 +189,6 @@ var _default =
 
       }
     }).exec();
-
-
-
-
-
-
-
-
-
-
-
 
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
