@@ -1,9 +1,12 @@
 <template>
 	<view class="container">
 		<uni-list>
-			<uni-list-item v-for="userItem in userList" :key="userItem.id" @click="enterUserInfo(userItem)">
-				<view class="userNameSty">{{userItem.name}}</view>
-				<view class="userPhoneSty">{{userItem.phone}}</view>
+			<uni-list-item v-for="userItem in userList" :key="userItem.id" @click="enterUserInfo(userItem)"  >
+				<view :userMsg="userItem">
+					<view class="userNameSty">{{userItem.name}}</view>
+					<view class="userPhoneSty">{{userItem.phone}}</view>
+				</view>
+				
 			</uni-list-item>
 		</uni-list>
 		<button type="warn" @click="addUser">新增问诊者</button>
@@ -43,7 +46,12 @@
 			},
 			enterUserInfo(user){
 				uni.navigateTo({
-					url:"/pages/patient/patientmanager/userInfo?userId="+user.id+"&userName="+user.name
+					url:"/pages/patient/patientmanager/userInfo",
+					success:function(res){
+						//通过eventChannel向被打开的页面传送数据
+						// res.eventChannel.emit('chuansong',{data:'test'})
+						res.eventChannel.emit('chuansong',{data:user})
+					}
 				})
 			}
 			

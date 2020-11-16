@@ -1,0 +1,18 @@
+
+.user_card{
+	/* background-color: #AAAAAA; */
+}
+.u_title{
+	font-size: 18px;
+	color: #808080;
+}
+.uni-input{
+	background-color: #FFFFFF;
+	font-size: 44rpx;
+	height: 30px;
+	min-height: 20rpx;
+	border: 1px;
+	border: #007AFF;
+}
+
+
