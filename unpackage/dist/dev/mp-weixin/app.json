@@ -9,7 +9,8 @@
     "pages/index/index",
     "pages/patient/patientmanager/listContact",
     "pages/patient/patientmanager/userInfo",
-    "pages/patient/patientmanager/addUser"
+    "pages/patient/patientmanager/addUser",
+    "pages/patient/home/articledetail"
   ],
   "subPackages": [],
   "window": {
@@ -20,27 +21,27 @@
   },
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#007AFF",
+    "selectedColor": "#1ea0fa",
     "borderStyle": "black",
     "backgroundColor": "#F8F8F8",
     "list": [
       {
         "pagePath": "pages/patient/tabbar/home",
         "text": "首页",
-        "iconPath": "static/component.png",
-        "selectedIconPath": "static/componentHL.png"
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home-ed.png"
       },
       {
         "pagePath": "pages/patient/tabbar/docclass",
         "text": "医生小课堂",
-        "iconPath": "static/api.png",
-        "selectedIconPath": "static/apiHL.png"
+        "iconPath": "static/class.png",
+        "selectedIconPath": "static/class-ed.png"
       },
       {
         "pagePath": "pages/patient/tabbar/mine",
         "text": "我的",
-        "iconPath": "static/extui.png",
-        "selectedIconPath": "static/extuiHL.png"
+        "iconPath": "static/mine.png",
+        "selectedIconPath": "static/mine-ed.png"
       }
     ]
   },

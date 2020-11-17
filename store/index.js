@@ -5,7 +5,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 	state:{
 		activePatient: '',//当前问诊人信息
-		loginData: {},//当前登录用户
+		loginData: null,//当前登录用户
 	},
 	mutations:{
 		//改变问诊人
@@ -23,6 +23,17 @@ const store = new Vuex.Store({
 		 * **/
 		logoutFunction(state){
 			state.loginData = null
+		},
+		
+		loginFunction(state, provider){
+			console.log('aaaaaa===',state)
+			console.log('bbbbbb===',provider)
+			state.loginData = provider;
+			
+			uni.setStorage({
+				key: 'loginData',
+				data: provider
+			})
 		}
 	},
 })
