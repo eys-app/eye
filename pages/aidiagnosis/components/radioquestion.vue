@@ -1,5 +1,5 @@
 <template>
-	<view class="questionClass " :class="{unSelected: item.answerCheck.length == 0 && itemError == true}">
+	<view class="questionClass " :class="{unSelected: itemCheck.answerCheck.checkValue == null && itemError == true}">
 		<view class="question-title">
 			<view class="red-tag">*</view>{{item.number}}.{{item.title}}
 		</view>
@@ -10,7 +10,7 @@
 						<view class="radio-left" :class="{'radio-left-active': index == current}"></view>
 					</view>
 
-					<view class="aswer-item-text" ref="answerText">{{aitem.value}}{{aitem.value}}{{aitem.value}}{{aitem.value}}</view>
+					<view class="aswer-item-text" ref="answerText">{{aitem.value}}</view>
 				</view>
 
 				<view style="clear: both;"></view>
@@ -18,7 +18,7 @@
 
 		</view>
 
-		<view class="un-active-alert" v-show="item.answerCheck.length == 0 && itemError == true">请选择选项</view>
+		<view class="un-active-alert" v-show="itemCheck.answerCheck.checkValue == null && itemError == true">请选择选项</view>
 	</view>
 </template>
 
@@ -26,13 +26,15 @@
 	export default {
 		props: {
 			item: Object,
+			itemIndex: Number,
 			showError: Boolean
 		},
 		data() {
 			return {
 				current: null, //选中的index
 				radioHeight: [], //答案的radio高度
-				itemError: this.showError
+				itemError: this.showError,//是否点击了提交
+				itemCheck: this.item
 			}
 		},
 		methods: {
@@ -40,13 +42,22 @@
 			selectedRadio(index, item) {
 				this.current = index
 				this.itemError = false
-				this.$emit('answerSelected', item)
-			}
+				this.$emit('answerSelected', {
+					value: item,
+					index: this.itemIndex
+				})
+			},
+			
 		},
 		watch: {
 			showError: {
 				handler(n) {
-					this.itemError = this.showError
+					this.itemError = n
+				}
+			},
+			item:{
+				handler(n){
+					this.itemCheck = n
 				}
 			}
 		},
@@ -55,19 +66,6 @@
 			/**
 			 * 设置每个radio的高度，让radio水平-垂直居中
 			 */
-			
-			// #ifdef APP-PLUS || H5
-			let answerTextArray = this.$refs.answerText;
-			let heightArray = []
-			for (var i = 0; i < answerTextArray.length; i++) {
-				let eachHeight = answerTextArray[i].$el.clientHeight
-				this.radioHeight.push(
-					eachHeight + 'px'
-				)
-			}
-			// #endif
-			
-			// #ifdef MP-WEIXIN
 			uni.createSelectorQuery().in(this).selectAll('.aswer-item-text').boundingClientRect(data => {
 				for (var i = 0; i < data.length; i++) {
 					this.radioHeight.push(
@@ -75,17 +73,6 @@
 					)
 				}
 			}).exec()
-						
-			// #endif
-			
-			
-			
-			
-			
-			
-
-
-
 
 		}
 	}

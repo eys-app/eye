@@ -1,11 +1,19 @@
 <template>
 	<view>
 		这是医生认证页面
+		<button type="primary" @click="toPatientsList">病人库管理</button>
 	</view>
 </template>
 
 <script>
 	export default {
+		methods:{
+			toPatientsList(){
+				uni.navigateTo({
+					url:"/pages/doctor/patientsList"
+				})
+			}
+		}
 		
 	}
 </script>

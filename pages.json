@@ -60,6 +60,23 @@
 				"navigationBarTitleText": "添加问诊人"
 			}
         }
+        ,{
+            "path" : "pages/doctor/patientsList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "病人库管理"
+            }
+            
+        }
+        ,{
+            "path" : "pages/doctor/shaixuanTest",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

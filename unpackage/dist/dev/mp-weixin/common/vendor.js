@@ -1769,10 +1769,40 @@ store;exports.default = _default;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 118:
 /*!************************************************************!*\
   !*** D:/HBuildXCode/EYE/eye/components/uni-icons/icons.js ***!
   \************************************************************/
+=======
+/***/ 13:
+/*!***********************************************************************************!*\
+  !*** C:/Users/Administrator/Documents/HBuilderProjects/eyeSystemApp/api/index.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getTestRequest = getTestRequest;
+var _request = _interopRequireDefault(__webpack_require__(/*! ../commen/request.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+
+function getTestRequest() {
+  return (0, _request.default)({
+    url: "http://39.106.180.14:1111/app/commen_gain_instructions",
+    method: 'get',
+    data: {},
+    header: {} });
+
+}
+
+/***/ }),
+
+/***/ 134:
+/*!****************************************************************************************************!*\
+  !*** C:/Users/Administrator/Documents/HBuilderProjects/eyeSystemApp/components/uni-icons/icons.js ***!
+  \****************************************************************************************************/
+>>>>>>> 385cfb976f99cf8f52dfb6f806e7060309f3304e
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1911,6 +1941,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 12:
 /*!********************************************!*\
   !*** ./node_modules/vuex/dist/vuex.esm.js ***!
@@ -1967,6 +1998,14 @@ var applyMixin = function (Vue) {
     }
   }
 };
+=======
+/***/ 14:
+/*!****************************************************************************************!*\
+  !*** C:/Users/Administrator/Documents/HBuilderProjects/eyeSystemApp/commen/request.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+>>>>>>> 385cfb976f99cf8f52dfb6f806e7060309f3304e
 
 var devtoolHook =
   typeof window !== 'undefined' &&

@@ -62,17 +62,17 @@
 <style lang="scss">
 
 .container{
-	margin: 10px;z
+	margin: 10rpx;
 	.userNameSty{
-		font-size: 30rpx;
+		font-size: 36rpx;
 	}
 	.userPhoneSty{
-		margin-top: 6px;
-		font-size: 16px;
+		margin-top: 6rpx;
+		font-size: 30rpx;
 		color: #6E6E6E;
 	}
 	.warn{
-		margin-top: 10px;
+		margin-top: 10rpx;
 	}
 }
 </style>

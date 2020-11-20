@@ -57,15 +57,15 @@
 
 <style>
 	.u_title {
-		font-size: 18px;
+		font-size: 30rpx;
 		color: #808080;
 	}
 
 	.uni-input {
 		background-color: #FFFFFF;
-		font-size: 44rpx;
-		height: 30px;
-		min-height: 20rpx;
+		font-size: 34rpx;
+		height: 80rpx;
+		min-height: 80rpx;
 		border: 0;
 		border-bottom: 1 solid;
 		border: #007AFF;

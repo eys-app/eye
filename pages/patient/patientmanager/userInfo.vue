@@ -1,6 +1,5 @@
 <template>
 	<view>
-		问诊者详情页面------------
 		<user_sty :msg='this.activeUser'></user_sty>
 
 		<!-- <uni-card isShadow="true" class="user_card">
@@ -40,7 +39,7 @@
 				console.log(data)
 				this.activeUser=data.data
 				
-				console.log(this.activeUser.name)
+				console.log(this.activeUser)
 			})
 			// this.activeUser = option.user,
 			// 	console.log(this.activeUser)
@@ -78,7 +77,7 @@
 	}
 
 	.u_title {
-		font-size: 18px;
+		font-size: 18rpx;
 		color: #808080;
 	}
 
@@ -94,6 +93,6 @@
 	}
 
 	.submit {
-	margin:10px 20px ;
+	margin:10rpx 20rpx ;
 	}
 </style>
