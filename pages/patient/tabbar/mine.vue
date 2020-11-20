@@ -3,6 +3,8 @@
 		mine {{activePatient}}
 		<button type="primary" @click="nextPage">下一页</button>
 		<h3 @click="enterListContact">问诊人</h3>
+		
+		<button type="primary" @click="logoutClicked">退出登录</button>
 	</div>
 </template>
 
@@ -21,6 +23,11 @@
 			enterListContact(){
 				uni.navigateTo({
 					url:'/pages/patient/patientmanager/listContact'
+				})
+			},
+			logoutClicked(){
+				uni.redirectTo({
+					url: "../../login/login"
 				})
 			}
 		}

@@ -40,7 +40,7 @@
 			"path": "pages/patient/tabbar/docclass",
 			"style": {
 				"navigationBarTitleText": "医生小课堂"
-			}
+			} 
 		}, {
 			"path": "pages/patient/tabbar/mine",
 			"style": {

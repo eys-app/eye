@@ -2842,6 +2842,18 @@ var render = function() {
           }
         },
         [_vm._v("问诊人")]
+      ),
+      _c(
+        "v-uni-button",
+        {
+          attrs: { type: "primary", _i: 3 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("退出登录")]
       )
     ],
     1
