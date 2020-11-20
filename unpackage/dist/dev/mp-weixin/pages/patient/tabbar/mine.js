@@ -156,6 +156,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
 
     },
     logoutClicked: function logoutClicked() {
+      console.log('logout');
       uni.redirectTo({
         url: "../../login/login" });
 

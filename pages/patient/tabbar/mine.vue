@@ -26,6 +26,7 @@
 				})
 			},
 			logoutClicked(){
+				console.log('logout')
 				uni.redirectTo({
 					url: "../../login/login"
 				})

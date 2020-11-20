@@ -1,6 +1,10 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/usernumber/register",
+    "pages/usernumber/selecttype",
+    "pages/usernumber/apply/applydoctor",
+    "pages/usernumber/apply/applypatient",
     "pages/aidiagnosis/diagnosis",
     "pages/doctor/apply",
     "pages/patient/tabbar/home",
@@ -28,23 +32,22 @@
       {
         "pagePath": "pages/patient/tabbar/home",
         "text": "首页",
-        "iconPath": "static/home.png",
-        "selectedIconPath": "static/home-ed.png"
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home-ed.png"
       },
       {
         "pagePath": "pages/patient/tabbar/docclass",
         "text": "医生小课堂",
-        "iconPath": "static/class.png",
-        "selectedIconPath": "static/class-ed.png"
+        "iconPath": "static/images/class.png",
+        "selectedIconPath": "static/images/class-ed.png"
       },
       {
         "pagePath": "pages/patient/tabbar/mine",
         "text": "我的",
-        "iconPath": "static/mine.png",
-        "selectedIconPath": "static/mine-ed.png"
+        "iconPath": "static/images/mine.png",
+        "selectedIconPath": "static/images/mine-ed.png"
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap40.json"
+  "usingComponents": {}
 }

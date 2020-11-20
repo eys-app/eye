@@ -1,0 +1,1 @@
+<view class="page-view"><view>您的账户已注册成功，请选择您身份</view><view style="padding:30px;"><button type="primary" data-event-opts="{{[['tap',[['selectedType',['doc']]]]]}}" bindtap="__e">我是医生</button><button type="primary" data-event-opts="{{[['tap',[['selectedType',['pat']]]]]}}" bindtap="__e">我是患者</button></view></view>

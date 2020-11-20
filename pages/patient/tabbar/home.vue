@@ -7,15 +7,15 @@
 
 			<view class="content-grid">
 				<view class="cus-grid-item" @click="gridClicked('ai')">
-					<image src="../../../static/class-ed.png"></image>
+					<image src="../../../static/images/class-ed.png"></image>
 					<label>AI诊断</label>
 				</view>
 				<view class="cus-grid-item" @click="gridClicked('fuzhu')">
-					<image src="../../../static/class-ed.png"></image>
+					<image src="../../../static/images/class-ed.png"></image>
 					<label>辅助诊断</label>
 				</view>
 				<view class="cus-grid-item" @click="gridClicked('report')">
-					<image src="../../../static/class-ed.png"></image>
+					<image src="../../../static/images/class-ed.png"></image>
 					<label>诊断报告</label>
 				</view>
 			</view>

@@ -7,12 +7,12 @@
 
 			<view class="input-view">
 				<view class="input-view-item">
-					<image src="../../static/phone.svg"></image>
+					<image src="../../static/images/phone.svg"></image>
 					<input class="uni-input input-cus" type="number" placeholder="请输入手机号码" />
 				</view>
 
 				<view class="input-view-item">
-					<image src="../../static/pwd.svg"></image>
+					<image src="../../static/images/pwd.svg"></image>
 					<input class="uni-input input-cus" type="text" placeholder="请输入密码" password />
 				</view>
 
@@ -20,7 +20,7 @@
 				
 				<view class="resite-password">忘记密码?</view>
 				
-				<view class="resite-password register">注册账户</view>
+				<view class="resite-password register" @click="navigateToRegisterPage">注册账户</view>
 
 
 			</view>
@@ -63,6 +63,11 @@
 				console.log('进入患者页面')
 				uni.switchTab({
 					url: "/pages/patient/tabbar/home"
+				})
+			},
+			navigateToRegisterPage(){
+				uni.navigateTo({
+					url: "/pages/usernumber/register"
 				})
 			}
 		}

@@ -205,6 +205,11 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
       uni.switchTab({
         url: "/pages/patient/tabbar/home" });
 
+    },
+    navigateToRegisterPage: function navigateToRegisterPage() {
+      uni.navigateTo({
+        url: "/pages/usernumber/register" });
+
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
