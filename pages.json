@@ -77,6 +77,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/doctor/patientsCard",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

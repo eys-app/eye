@@ -10,7 +10,8 @@
 		methods:{
 			toPatientsList(){
 				uni.navigateTo({
-					url:"/pages/doctor/patientsList"
+					// url:"/pages/doctor/patientsList"
+					url:"/pages/doctor/patientsCard"
 				})
 			}
 		}

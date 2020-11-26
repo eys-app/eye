@@ -25,18 +25,17 @@
 /* 透明度 */
 /* 文章场景相关 */
 .container {
-  margin: 10px;
+  margin: 10rpx;
 }
-.container z
-.userNameSty {
-  font-size: 30rpx;
+.container .userNameSty {
+  font-size: 36rpx;
 }
 .container .userPhoneSty {
-  margin-top: 6px;
-  font-size: 16px;
+  margin-top: 6rpx;
+  font-size: 30rpx;
   color: #6E6E6E;
 }
 .container .warn {
-  margin-top: 10px;
+  margin-top: 10rpx;
 }
 

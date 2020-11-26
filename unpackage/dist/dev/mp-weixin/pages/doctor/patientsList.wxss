@@ -1,0 +1,29 @@
+
+.topBar{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+}
+.contain{
+	background-color: #000;
+	color: #FFFFFF;
+}
+.shaixuan{
+	background-color: #0A98D5;
+	width: 25%;
+}
+.shijian{
+	background-color: #09BB07;
+	width: 25%;
+}
+.qingzhong{
+	background-color:#E6A23C;
+	width: 25%;
+}
+.zhidao{
+	background-color: #F56C6C;
+	width: 25%;
+}
+
+

@@ -33,7 +33,8 @@ textarea,
 video {
   position: relative;
   border: 0px solid #000000;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 swiper-item {
   position: absolute;

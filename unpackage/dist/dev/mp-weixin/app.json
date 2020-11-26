@@ -9,7 +9,10 @@
     "pages/index/index",
     "pages/patient/patientmanager/listContact",
     "pages/patient/patientmanager/userInfo",
-    "pages/patient/patientmanager/addUser"
+    "pages/patient/patientmanager/addUser",
+    "pages/doctor/patientsList",
+    "pages/doctor/shaixuanTest",
+    "pages/doctor/patientsCard"
   ],
   "subPackages": [],
   "window": {
@@ -44,10 +47,5 @@
       }
     ]
   },
-<<<<<<< HEAD
-  "usingComponents": {},
-  "sitemapLocation": "sitemap61.json"
-=======
   "usingComponents": {}
->>>>>>> 95d609b76df296289d4f60a4969f6895c736d0d9
 }
