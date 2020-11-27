@@ -4,7 +4,6 @@
 			<template v-if="activeP != null">
 				<view class="pa-text-title">当前问诊人:</view>
 				<view class="pa-text-name">{{activeP.name}}</view>
-
 			</template>
 			<template v-else>
 				请选择问诊人
