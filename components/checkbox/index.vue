@@ -1,5 +1,9 @@
 <template>
-	<view class="box" :class="{'box-active': checkValue == true}"></view>
+	<view class="box" :class="{'box-active': checkValue == true}">
+		<uni-icons type="checkmarkempty" 
+		v-show="checkValue == true" color="#ffffff"
+		size="18"></uni-icons>
+	</view>
 </template>
 
 <script>
@@ -31,10 +35,12 @@
 	}
 	.box-active{
 		border: none;
-		background-image: url(../../static/images/check_box.svg);
-		background-repeat: no-repeat;
-		background-size: 100%;
-		width: 23px;
-		height: 23px;
+		background-color: #007AFF;
+		width: 18px;
+		height: 18px;
+	}
+	
+	.box-check{
+		margin-top: -5px;
 	}
 </style>

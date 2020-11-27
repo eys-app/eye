@@ -1,7 +1,8 @@
 {
   "navigationBarTitleText": "问诊人管理",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
-    "uni-list": "/components/uni-list/uni-list",
-    "uni-list-item": "/components/uni-list-item/uni-list-item"
+    "uni-icons": "/components/uni-icons/uni-icons"
   }
 }

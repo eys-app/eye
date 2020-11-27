@@ -8,10 +8,11 @@
 }
 .box-active{
 	border: none;
-	background-image: url(../../static/img/check_box.6c64eefe.svg);
-	background-repeat: no-repeat;
-	background-size: 100%;
-	width: 23px;
-	height: 23px;
+	background-color: #007AFF;
+	width: 18px;
+	height: 18px;
+}
+.box-check{
+	margin-top: -5px;
 }
 

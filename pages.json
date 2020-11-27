@@ -65,11 +65,16 @@
 			"style": {
 				"navigationBarTitleText": "医生小课堂"
 			} 
-		}, {
+		}, 
+		{
+			"path": "pages/patient/tabbar/classdoc",
+			"style": {
+				"navigationBarTitleText": "医生小课堂666"
+			} 
+		},{
 			"path": "pages/patient/tabbar/mine",
 			"style": {
-				"navigationBarTitleText": "我的",
-				"backgroundColor": "#007AFF"
+				"navigationBarTitleText": "我的"
 			}
 		},
 		{
@@ -80,7 +85,9 @@
 		}, {
 			"path": "pages/patient/patientmanager/listContact",
 			"style": {
-				"navigationBarTitleText": "问诊人管理"
+				"navigationBarTitleText": "问诊人管理",
+				"navigationBarBackgroundColor":"#FFFFFF",
+				"navigationBarTextStyle":"black"
 			}
 		}, {
 			"path": "pages/patient/patientmanager/userInfo",
@@ -102,7 +109,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#007AFF",
+		"navigationBarBackgroundColor": "#6a85f8",
 		"backgroundColor": "#FFFFFF"
 	},
 	"tabBar": {
@@ -117,7 +124,7 @@
 				"selectedIconPath": "static/images/home-ed.png"
 			},
 			{
-				"pagePath": "pages/patient/tabbar/docclass",
+				"pagePath": "pages/patient/tabbar/classdoc",
 				"text": "医生小课堂",
 				"iconPath": "static/images/class.png",
 				"selectedIconPath": "static/images/class-ed.png"

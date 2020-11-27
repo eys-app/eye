@@ -4,7 +4,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
 	state:{
-		activePatient: '',//当前问诊人信息
+		activePatient: null,//当前问诊人信息
 		loginData: null,//当前登录用户
 	},
 	mutations:{

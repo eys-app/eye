@@ -1,7 +1,5 @@
 <template>
 	<view>
-		问诊者详情页面------------{{userId}}{{userName}}
-		
 		<uni-card isShadow="true">
 			<view>姓名<input class="uni-input" placeholder="请输入真实姓名" :value="userName"></view>
 			<view>身份证<input type="idcard" class="uni-input" placeholder="提交后不可修改,请慎重填写" ></view>
@@ -25,21 +23,22 @@
 
 <script>
 	export default {
-		onLoad:function(option){
-			console.log(option)
-			this.userId=option.userId
-			this.userName=option.userName
-			
-		},
-		
+
 		data() {
 			return {
 				userId:'',
 				userName:''
 			}
 		},
+		mounted() {
+			uni.$on('itemPatient',function(data){
+				console.log('data==',data)
+			})
+		},
 		methods: {
-			
+			addOK(){
+				
+			}
 		}
 	}
 </script>

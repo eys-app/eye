@@ -1,1 +1,1 @@
-<view class="_div"></view>
+<view class="doctor-apply"><view class="top-back"><view class="enpty-class"></view><uni-steps class="step-class" vue-id="d28fc548-1" options="{{stepsOptions}}" activeColor="#0fe7ff" active="{{activeIndex}}" bind:__l="__l"></uni-steps></view><view class="content-view"></view><button data-event-opts="{{[['tap',[['nextSteps',['$event']]]]]}}" bindtap="__e">下一步</button></view>

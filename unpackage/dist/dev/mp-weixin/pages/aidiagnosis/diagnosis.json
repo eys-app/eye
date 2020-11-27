@@ -2,6 +2,7 @@
   "navigationBarTitleText": "AI诊断",
   "usingComponents": {
     "radio-question": "/pages/aidiagnosis/components/radioquestion",
+    "patient-model-view": "/components/patientchange/index",
     "check-question": "/pages/aidiagnosis/components/checkquestion",
     "slider-question": "/pages/aidiagnosis/components/sliderquestion"
   }

@@ -75,8 +75,12 @@
 </script>
 
 <style lang="scss">
+	
+	
+	
+	
 	.login-back {
-		background-color: #0A98D5;
+		background-color: $backColor;
 		position: fixed;
 		width: 100vw;
 		height: 100vh;
@@ -140,7 +144,7 @@
 				font-size: 12px;
 				margin-top: 20px;
 				border-bottom: 1px solid #007AFF;
-				width: 54px;
+				width: 56px;
 				float: left;
 			}
 			.register{

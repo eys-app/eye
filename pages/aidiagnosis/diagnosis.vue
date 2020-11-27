@@ -1,31 +1,32 @@
 <template>
-	<view class="ai-diagnosis-class">
-		<template v-for="(item, index) in list">
-			<template v-if="item.type == 'R'">
-				<radio-question :item="item" :itemIndex="index" @answerSelected="selectedAnswer"  ref="radioItem"
-				 :showError="submit"></radio-question>
+	<view>
+		<patient-model-view></patient-model-view>
+		
+		<view class="ai-diagnosis-class">
+			<template v-for="(item, index) in list">
+				<template v-if="item.type == 'R'">
+					<radio-question :item="item" :itemIndex="index" @answerSelected="selectedAnswer" ref="radioItem" :showError="submit"></radio-question>
+				</template>
+				<template v-if="item.type == 'C' ">
+					<check-question :item="item" :showError="submit" :itemIndex="index" @checkboxSelected="checkboxSelectedAnswer"></check-question>
+				</template>
+				<template v-if="item.type == 'S' ">
+					<slider-question :item="item" :showError="submit" :itemIndex="index"></slider-question>
+				</template>
 			</template>
-			<template v-if="item.type == 'C' ">
-				<check-question :item="item" :showError="submit" :itemIndex="index"
-				@checkboxSelected="checkboxSelectedAnswer"
-				></check-question>
-			</template>
-			<template v-if="item.type == 'S' ">
-				<slider-question :item="item" :showError="submit" :itemIndex="index"
-				></slider-question>
-			</template>
-		</template>
 
 
-		<button type="primary" @click="submitDiagnoslsResult" id="submit" class="submit">下一步</button>
+			<button type="primary" @click="submitDiagnoslsResult" id="submit" class="submit">下一步</button>
 
-		<button @click="changeValue('问诊人1')">问诊人1</button>
-		<button @click="changeValue('问诊人2')">问诊人2</button>
-		<button @click="changeValue('问诊人3')">问诊人3</button>
-		<button @click="changeValue('问诊人4')">问诊人4</button>
-		<button @click="changeValue('问诊人5')">问诊人5</button>
-		<button @click="changeValue('问诊人6')">问诊人6</button>
-		<button @click="changeValue('问诊人7')">问诊人7</button>
+			<button @click="changeValue('问诊人1')">问诊人1</button>
+			<button @click="changeValue('问诊人2')">问诊人2</button>
+			<button @click="changeValue('问诊人3')">问诊人3</button>
+			<button @click="changeValue('问诊人4')">问诊人4</button>
+			<button @click="changeValue('问诊人5')">问诊人5</button>
+			<button @click="changeValue('问诊人6')">问诊人6</button>
+			<button @click="changeValue('问诊人7')">问诊人7</button>
+
+		</view>
 
 	</view>
 </template>
@@ -34,6 +35,7 @@
 	import radioQuestion from './components/radioquestion.vue'
 	import checkQuestion from './components/checkquestion.vue'
 	import sliderQuestion from './components/sliderquestion.vue'
+	import patientModelView from '../../components/patientchange/index.vue'
 	import {
 		getTestRequest
 	} from '../../api/index.js'
@@ -43,7 +45,9 @@
 	export default {
 		components: {
 			radioQuestion,
-			checkQuestion, sliderQuestion
+			patientModelView,
+			checkQuestion,
+			sliderQuestion
 		},
 		data() {
 			return {
@@ -220,6 +224,7 @@
 				submit: false
 			}
 		},
+		
 		mounted() {
 			getTestRequest().then(res => {
 				//console.log('data==', res)
@@ -237,7 +242,7 @@
 				this.list[value.index].answerCheck.checkValue = value.value
 			},
 			//选择答案 ---- CheckBox
-			checkboxSelectedAnswer(value){
+			checkboxSelectedAnswer(value) {
 				this.list[value.index].answerCheck = value.value
 			},
 
@@ -252,15 +257,15 @@
 				//提交选择 ---- 为了改变未选择题目的提示
 				this.submit = true
 
-                // 遍历list
+				// 遍历list
 				for (var i = 0; i < this.list.length; i++) {
 					//判断是否有未选择的题目
 					let tempArray = Object.keys(this.list[i].answerCheck)
 					if (tempArray.length == 0) {
 						setTimeout(() => {
-							
+
 							console.log('----')
-							
+
 							// #ifdef APP-PLUS || H5
 							uni.createSelectorQuery().in(this).selectAll('.ai-diagnosis-class .questionClass').boundingClientRect(data => {
 								uni.pageScrollTo({
@@ -290,9 +295,10 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.ai-diagnosis-class {
 		padding: 10px;
 		background-color: white;
+
 	}
 </style>
