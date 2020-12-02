@@ -31,7 +31,7 @@
 	}
 	.box-active{
 		border: none;
-		background-image: url(../../static/check_box.svg);
+		background-image: url(../../static/images/check_box.svg);
 		background-repeat: no-repeat;
 		background-size: 100%;
 		width: 23px;

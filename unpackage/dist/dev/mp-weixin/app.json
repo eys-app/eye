@@ -1,6 +1,10 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/usernumber/register",
+    "pages/usernumber/selecttype",
+    "pages/usernumber/apply/applydoctor",
+    "pages/usernumber/apply/applypatient",
     "pages/aidiagnosis/diagnosis",
     "pages/doctor/apply",
     "pages/patient/tabbar/home",
@@ -12,7 +16,8 @@
     "pages/patient/patientmanager/addUser",
     "pages/doctor/patientsList",
     "pages/doctor/shaixuanTest",
-    "pages/doctor/patientsCard"
+    "pages/doctor/patientsCard",
+    "pages/patient/home/articledetail"
   ],
   "subPackages": [],
   "window": {
@@ -23,27 +28,27 @@
   },
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#007AFF",
+    "selectedColor": "#1ea0fa",
     "borderStyle": "black",
     "backgroundColor": "#F8F8F8",
     "list": [
       {
         "pagePath": "pages/patient/tabbar/home",
         "text": "首页",
-        "iconPath": "static/component.png",
-        "selectedIconPath": "static/componentHL.png"
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home-ed.png"
       },
       {
         "pagePath": "pages/patient/tabbar/docclass",
         "text": "医生小课堂",
-        "iconPath": "static/api.png",
-        "selectedIconPath": "static/apiHL.png"
+        "iconPath": "static/images/class.png",
+        "selectedIconPath": "static/images/class-ed.png"
       },
       {
         "pagePath": "pages/patient/tabbar/mine",
         "text": "我的",
-        "iconPath": "static/extui.png",
-        "selectedIconPath": "static/extuiHL.png"
+        "iconPath": "static/images/mine.png",
+        "selectedIconPath": "static/images/mine-ed.png"
       }
     ]
   },
