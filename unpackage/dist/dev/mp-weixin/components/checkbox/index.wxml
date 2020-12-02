@@ -1,1 +1,1 @@
-<view class="{{['box',(checkValue==true)?'box-active':'']}}"></view>
+<view class="{{['box',(checkValue==true)?'box-active':'']}}"><uni-icons data-custom-hidden="{{!(checkValue==true)}}" vue-id="b704aab6-1" type="checkmarkempty" color="#ffffff" size="18" bind:__l="__l"></uni-icons></view>

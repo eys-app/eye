@@ -1,8 +1,15 @@
 <!-- 病人库管理页面的病人信息 card -->
 <template>
 	<view class="root">
-	   <ren-dropdown-filter :filterData='filterData' :defaultIndex='defaultIndex'
-		    @onSelected='onSelected' @dateChange='dateChange'></ren-dropdown-filter> 
+		<view class="title_bar">
+			<ren-dropdown-filter :filterData='filterData' :defaultIndex='defaultIndex'
+					    @onSelected='onSelected' @dateChange='dateChange'></ren-dropdown-filter> 
+						
+						<view class="mine">
+							<image src="../../static/images/mine-ed.png" ></image>
+						</view>
+		</view>
+	  
 			
 		<view class="card-view">
 			<uni-card isShadow="true" v-for="item in patientList" :key="item.id">
@@ -94,6 +101,22 @@
 					zhidao:true,
 					tagList:['标签1','标签2','标签3'],
 					time:'2020-11-26'
+				},{
+					id:5,
+					name:'李小龙',
+					sex:'男',
+					old:'25',
+					zhidao:true,
+					tagList:['标签1','标签2','标签3'],
+					time:'2020-11-29'
+				},{
+					id:5,
+					name:'孙悟空',
+					sex:'男',
+					old:'28',
+					zhidao:true,
+					tagList:['标签1','标签2','标签3'],
+					time:'2020-11-21'
 				}],
 				filterData:[
 				    [{ text: '全部症状', value: '' }, { text: '非常严重', value: 1 }, { text: '严重', value: 2 }, { text: '轻微', value: 3 }],
@@ -130,6 +153,24 @@
 	.card-view{
 		// margin-top: 300rpx;
 	}
+	
+	.title_bar{
+		display: flex;
+	}
+
+.mine{
+	// width: 100rpx;
+	height: 100rpx;
+	margin-right: 20rpx;
+	display: flex;
+	// background-color: #67C23A;
+	justify-content: center;
+	align-items: center;
+	image{
+		width: 80rpx;
+		height: 80rpx;
+	}
+}
 
 	.card {
 		padding-top: 20rpx;

@@ -46,6 +46,7 @@
 				passwordTextRepeat: null,//验证码重复
 			}
 		},
+		
 		methods: {
 
 			/**
@@ -207,7 +208,7 @@
 	.register-view {
 		width: 100%;
 		height: 100vh;
-		background-color: #55aaff;
+		background-color: $backColor;
 		display: flex;
 		justify-content: center;
 		align-items: center;

@@ -4,7 +4,6 @@
 		<view class="inner-wrapper">
 			<view class="mask" :class="showMask ? 'show' : 'hide'" @tap="tapMask"></view>
 			<view class="navs">
-				<view class="shaixuan">筛选：</view>
 				<view class="date-wrapper">
 					<picker mode="date" @change="handleDate">
 						<view class="date c-flex-align" :style="{ height: height + 'rpx' }" @click="dateClick">
@@ -20,7 +19,12 @@
 					<image src="https://i.loli.net/2020/07/15/QsHxlr1gbSImvWt.png" mode="" class="icon-triangle" v-if="index === actNav"></image>
 					<image src="https://i.loli.net/2020/07/15/xjVSvzWcH9NO7al.png" mode="" class="icon-triangle" v-else></image>
 				</view>
+				
+				<!-- <view class="mine"> 
+				<image src="../../static/images/mine-ed.png"> </image>
+				</view> -->
 			</view>
+			
 			<scroll-view scroll-y="true" class="popup" :class="popupShow ? 'popupShow' : ''">
 				<view class="item-opt c-flex-align" :class="item.select ? 'actOpt' : ''" v-for="(item, index) in navData[actNav]"
 				 :key="index" @click="handleOpt(index)">
@@ -154,25 +158,13 @@
 		flex: 1;
 	}
 
-
-	.shaixuan {
-		width: 100rpx;
-		padding-left: 20rpx;
-		// background-color: #67C23A;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 32rpx;
-
-	}
-
 	.c-flex-center {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
 		color: #8b9aae;
-		margin-right: 30rpx;
+		// margin-right: 30rpx;
 		// background-color: #DD524D;
 		// flex: 1;
 	}
@@ -209,8 +201,8 @@
 				.date {
 					// background-color: #F0AD4E;
 					// flex: 1;
-					padding-left: 40rpx;
-					padding-right: 40rpx;
+					padding-left: 35rpx;
+					padding-right: 35rpx;
 					// justify-content: flex-end;
 				}
 

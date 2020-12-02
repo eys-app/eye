@@ -17,6 +17,9 @@
 			</template>
 		</view>
 		<view class="un-active-alert" v-show="itemCheck.answerCheck.checkValue == null && itemError == true">请选择选项</view>
+		
+		
+		
 	</view>
 </template>
 

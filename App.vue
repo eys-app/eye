@@ -40,9 +40,12 @@
 	};
 </script>
 
-<style>
+<style lang="scss">
+	
+	
 	/* #ifdef APP-PLUS-NVUE*/
 	@import './commen/uni.css';
+	
 
 	page {
 		background-color: #F4F5F6;
@@ -64,4 +67,9 @@
 
 
 	/* #endif */
+	
+	
+	
+	
+	
 </style>

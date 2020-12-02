@@ -8,27 +8,125 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   data: function data() {
     return {
 
-      userList: [
+      userList: [{
+        id: '1',
+        name: '郭晓蓉',
+        sex: '男',
+        phone: '15116961228' },
+      {
+        id: '2',
+        name: '王龙',
+        sex: '女',
+        phone: '15116961229' },
+      {
+        id: '3',
+        name: '李小倩',
+        sex: '女',
+        phone: '15116961233' },
+
+      {
+        id: '1',
+        name: '郭晓蓉',
+        sex: '男',
+        phone: '15116961228' },
+      {
+        id: '2',
+        name: '王龙',
+        sex: '女',
+        phone: '15116961229' },
+      {
+        id: '3',
+        name: '李小倩',
+        sex: '女',
+        phone: '15116961233' },
+
+      {
+        id: '1',
+        name: '郭晓蓉',
+        sex: '男',
+        phone: '15116961228' },
+      {
+        id: '2',
+        name: '王龙',
+        sex: '女',
+        phone: '15116961229' },
+      {
+        id: '3',
+        name: '李小倩',
+        sex: '女',
+        phone: '15116961233' },
+
+      {
+        id: '1',
+        name: '郭晓蓉',
+        sex: '男',
+        phone: '15116961228' },
+      {
+        id: '2',
+        name: '王龙',
+        sex: '女',
+        phone: '15116961229' },
+      {
+        id: '3',
+        name: '李小倩',
+        sex: '女',
+        phone: '15116961233' },
+
+      {
+        id: '1',
+        name: '郭晓蓉',
+        sex: '男',
+        phone: '15116961228' },
+      {
+        id: '2',
+        name: '王龙',
+        sex: '女',
+        phone: '15116961229' },
+      {
+        id: '3',
+        name: '李小倩',
+        sex: '女',
+        phone: '15116961233' },
+
       {
         id: '1',
         name: '郭晓蓉',
@@ -46,24 +144,37 @@ var _default =
         phone: '15116961233' }] };
 
 
-
   },
-  methods: {
+
+  methods: _objectSpread(_objectSpread({},
+  (0, _vuex.mapMutations)(['changePatient'])), {}, {
+
     addUser: function addUser() {
       uni.navigateTo({
         url: "/pages/patient/patientmanager/addUser" });
 
     },
+    // enterUserInfo(user){
+    // 	uni.navigateTo({
+    // 		url:"/pages/patient/patientmanager/userInfo",
+    // 		success:function(res){
+    // 			//通过eventChannel向被打开的页面传送数据
+    // 			// res.eventChannel.emit('chuansong',{data:'test'})
+    // 			res.eventChannel.emit('chuansong',{data:user})
+    // 		}
     enterUserInfo: function enterUserInfo(user) {
+      console.log(user);
+      uni.$emit('itemPatient', user);
       uni.navigateTo({
-        url: "/pages/patient/patientmanager/userInfo",
-        success: function success(res) {
-          //通过eventChannel向被打开的页面传送数据
-          // res.eventChannel.emit('chuansong',{data:'test'})
-          res.eventChannel.emit('chuansong', { data: user });
-        } });
+        url: "/pages/patient/patientmanager/userInfo" });
 
-    } } };exports.default = _default;
+    },
+    itemClicked: function itemClicked(value) {
+      this.changePatient(value);
+      uni.navigateBack({
+        delta: 1 });
+
+    } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
@@ -190,11 +301,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
-  uniList: function() {
-    return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 182))
-  },
-  uniListItem: function() {
-    return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 189))
+  uniIcons: function() {
+    return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 217))
   }
 }
 var render = function() {

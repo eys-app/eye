@@ -178,6 +178,7 @@ var _default =
       passwordTextRepeat: null //验证码重复
     };
   },
+
   methods: {
 
     /**

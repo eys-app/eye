@@ -27,7 +27,7 @@
 .register-view {
   width: 100%;
   height: 100vh;
-  background-color: #55aaff;
+  background-color: #6a85f8;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;

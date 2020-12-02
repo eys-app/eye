@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "医生小课堂666",
+  "usingComponents": {
+    "media-item": "/pages/patient/tabbar/news-item"
+  }
+}

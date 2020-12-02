@@ -24,18 +24,49 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.container {
-  margin: 10rpx;
+.back-view-class {
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+  position: absolute;
 }
-.container .userNameSty {
-  font-size: 36rpx;
+.back-view-class .container {
+  margin-bottom: 50px;
 }
-.container .userPhoneSty {
-  margin-top: 6rpx;
-  font-size: 30rpx;
-  color: #6E6E6E;
+.back-view-class .container .item-list {
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  border-bottom: 1px solid #F1F1F1;
+  background-color: #FFFFFF;
+  line-height: 40px;
 }
-.container .warn {
-  margin-top: 10rpx;
+.back-view-class .container .item-list .user-name {
+  float: left;
+  margin-left: 10px;
+  width: 100px;
+  color: #55aa7f;
+  font-weight: 600;
+}
+.back-view-class .container .item-list .user-phone {
+  float: left;
+  margin-left: 10px;
+  color: #888888;
+  font-size: 14px;
+}
+.back-view-class .container .item-list .user-compose {
+  float: right;
+  margin-right: 20px;
+}
+.back-view-class .add-button {
+  position: fixed;
+  bottom: 10px;
+  width: calc(100% - 20px);
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  -webkit-border-radius: 20px;
+          border-radius: 20px;
+  margin-left: 10px;
 }
 

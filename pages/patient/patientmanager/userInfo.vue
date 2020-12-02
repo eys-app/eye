@@ -7,6 +7,11 @@
 				<view class="u_title">姓名</view><input class="uni-input" placeholder="请输入真实姓名" :value="userName">
 			</view>
 			<view>身份证<input type="idcard" class="uni-input" placeholder="提交后不可修改,请慎重填写"></view>
+=======
+		<uni-card isShadow="true">
+			<view>姓名<input class="uni-input" placeholder="请输入真实姓名" :value="userName"></view>
+			<view>身份证<input type="idcard" class="uni-input" placeholder="提交后不可修改,请慎重填写" ></view>
+>>>>>>> de287255acf8684bbfb62d39b7bf3ae708e43f00
 			<view>性别<input class="uni-input" placeholder="请选择"></view>
 			<view>年龄<input type="number" class="uni-input" placeholder="请输入年龄"></view>
 		</uni-card>
@@ -31,22 +36,22 @@
 <script>
 	import userSty from './components/userSty.vue'
 	export default {
-		 onLoad: function(option) {
+		//  onLoad: function(option) {
 			
-			const eventChannel=this.getOpenerEventChannel()
-			//监听acceptData	FromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
-			eventChannel.on('chuansong',function(data){
-				console.log(data)
-				this.activeUser=data.data
+		// 	const eventChannel=this.getOpenerEventChannel()
+		// 	//监听acceptData	FromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
+		// 	eventChannel.on('chuansong',function(data){
+		// 		console.log(data)
+		// 		this.activeUser=data.data
 				
-				console.log(this.activeUser)
-			})
-			// this.activeUser = option.user,
-			// 	console.log(this.activeUser)
-			// this.userId = option.userId
-			// this.userName = option.userName
+		// 		console.log(this.activeUser)
+		// 	})
+		// 	// this.activeUser = option.user,
+		// 	// 	console.log(this.activeUser)
+		// 	// this.userId = option.userId
+		// 	// this.userName = option.userName
 
-		}, 
+		// }, 
 		components: {
 			user_sty: userSty
 		},
@@ -61,11 +66,18 @@
 				}
 			}
 		},
+		mounted() {
+			uni.$on('itemPatient',function(data){
+				console.log('data==',data)
+			})
+		},
 		methods: {
-			addOK() {
-				uni.navigateBack({
-					url: "/pages/listContact/listContact"
-				})
+			// addOK() {
+			// 	uni.navigateBack({
+			// 		url: "/pages/listContact/listContact"
+			// 	})
+			addOK(){
+				
 			}
 		}
 	}

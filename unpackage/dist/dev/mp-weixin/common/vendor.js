@@ -1949,7 +1949,7 @@ _vue.default.use(_vuex.default);
 
 var store = new _vuex.default.Store({
   state: {
-    activePatient: '', //当前问诊人信息
+    activePatient: null, //当前问诊人信息
     loginData: null //当前登录用户
   },
   mutations: {
@@ -9360,6 +9360,79 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   "cloud-download-filled": "\uE8E9",
   "headphones": "\uE8BF",
   "shop": "\uE609" };exports.default = _default;
+
+/***/ }),
+
+/***/ 287:
+/*!************************************************************!*\
+  !*** D:/HBuildXCode/EYE/eye/components/uni-popup/popup.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 288));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+// 定义 type 类型:弹出类型：top/bottom/center
+var config = {
+  // 顶部弹出
+  top: 'top',
+  // 底部弹出
+  bottom: 'bottom',
+  // 居中弹出
+  center: 'center',
+  // 消息提示
+  message: 'top',
+  // 对话框
+  dialog: 'center',
+  // 分享
+  share: 'bottom' };var _default =
+
+
+{
+  data: function data() {
+    return {
+      config: config };
+
+  },
+  mixins: [_message.default] };exports.default = _default;
+
+/***/ }),
+
+/***/ 288:
+/*!**************************************************************!*\
+  !*** D:/HBuildXCode/EYE/eye/components/uni-popup/message.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _created$created$meth;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = (_created$created$meth = {
+  created: function created() {
+    if (this.type === 'message') {
+      // 获取自组件对象
+      this.maskShow = false;
+      this.children = null;
+    }
+  } }, _defineProperty(_created$created$meth, "created", function created()
+{
+  if (this.type === 'message') {
+    // 不显示遮罩
+    this.maskShow = false;
+    // 获取子组件对象
+    this.childrenMsg = null;
+  }
+}), _defineProperty(_created$created$meth, "methods",
+{
+  customOpen: function customOpen() {
+    if (this.childrenMsg) {
+      this.childrenMsg.open();
+    }
+  },
+  customClose: function customClose() {
+    if (this.childrenMsg) {
+      this.childrenMsg.close();
+    }
+  } }), _created$created$meth);exports.default = _default;
 
 /***/ }),
 

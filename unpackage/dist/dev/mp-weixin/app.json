@@ -9,21 +9,21 @@
     "pages/doctor/apply",
     "pages/patient/tabbar/home",
     "pages/patient/tabbar/docclass",
+    "pages/patient/tabbar/classdoc",
     "pages/patient/tabbar/mine",
     "pages/index/index",
     "pages/patient/patientmanager/listContact",
     "pages/patient/patientmanager/userInfo",
     "pages/patient/patientmanager/addUser",
-    "pages/doctor/patientsList",
-    "pages/doctor/shaixuanTest",
-    "pages/doctor/patientsCard",
+    "pages/doctor/patientsListCard",
+    "pages/doctor/doctor_mine",
     "pages/patient/home/articledetail"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#007AFF",
+    "navigationBarBackgroundColor": "#6a85f8",
     "backgroundColor": "#FFFFFF"
   },
   "tabBar": {
@@ -39,7 +39,7 @@
         "selectedIconPath": "static/images/home-ed.png"
       },
       {
-        "pagePath": "pages/patient/tabbar/docclass",
+        "pagePath": "pages/patient/tabbar/classdoc",
         "text": "医生小课堂",
         "iconPath": "static/images/class.png",
         "selectedIconPath": "static/images/class-ed.png"

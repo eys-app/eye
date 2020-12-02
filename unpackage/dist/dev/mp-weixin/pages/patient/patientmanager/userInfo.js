@@ -162,23 +162,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 {
-  onLoad: function onLoad(option) {
+  //  onLoad: function(option) {
 
-    var eventChannel = this.getOpenerEventChannel();
-    //监听acceptData	FromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
-    eventChannel.on('chuansong', function (data) {
-      console.log(data);
-      this.activeUser = data.data;
+  // 	const eventChannel=this.getOpenerEventChannel()
+  // 	//监听acceptData	FromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
+  // 	eventChannel.on('chuansong',function(data){
+  // 		console.log(data)
+  // 		this.activeUser=data.data
 
-      console.log(this.activeUser);
-    });
-    // this.activeUser = option.user,
-    // 	console.log(this.activeUser)
-    // this.userId = option.userId
-    // this.userName = option.userName
+  // 		console.log(this.activeUser)
+  // 	})
+  // 	// this.activeUser = option.user,
+  // 	// 	console.log(this.activeUser)
+  // 	// this.userId = option.userId
+  // 	// this.userName = option.userName
 
-  },
+  // }, 
   components: {
     user_sty: userSty },
 
@@ -193,10 +198,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
   },
+  mounted: function mounted() {
+    uni.$on('itemPatient', function (data) {
+      console.log('data==', data);
+    });
+  },
   methods: {
+    // addOK() {
+    // 	uni.navigateBack({
+    // 		url: "/pages/listContact/listContact"
+    // 	})
     addOK: function addOK() {
-      uni.navigateBack({
-        url: "/pages/listContact/listContact" });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

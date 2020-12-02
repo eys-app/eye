@@ -11,7 +11,7 @@
 				<view :class="[direction==='column'?'uni-steps__column-line-item':'uni-steps__row-line-item']" v-for="(item,index) in options" :key="index">
 					<view :class="[direction==='column'?'uni-steps__column-line':'uni-steps__row-line',direction==='column'?'uni-steps__column-line--before':'uni-steps__row-line--before']" :style="{backgroundColor:index<=active&&index!==0?activeColor:index===0?'transparent':deactiveColor}"></view>
 					<view :class="[direction==='column'?'uni-steps__column-check':'uni-steps__row-check']" v-if="index === active">
-						<uni-icons :color="activeColor" type="checkbox-filled" size="14"></uni-icons>
+						<uni-icons :color="activeColor" type="checkbox-filled" size="24"></uni-icons>
 					</view>
 					<view :class="[direction==='column'?'uni-steps__column-circle':'uni-steps__row-circle']" v-else :style="{backgroundColor:index<active?activeColor:deactiveColor}"></view>
 					<view :class="[direction==='column'?'uni-steps__column-line':'uni-steps__row-line',direction==='column'?'uni-steps__column-line--after':'uni-steps__row-line--after']" :style="{backgroundColor:index<active&&index!==options.length-1?activeColor:index===options.length-1?'transparent':deactiveColor}"></view>
@@ -55,7 +55,7 @@
 			deactiveColor: {
 				// 未激活状态颜色
 				type: String,
-				default: '#999999'
+				default: 'white'
 			},
 			active: {
 				// 当前步骤
@@ -164,6 +164,7 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
+		margin-top: 10px;
 	}
 
 	.uni-steps__column-container {
