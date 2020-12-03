@@ -54,13 +54,16 @@
 
 		<button type="primary" class="submit-button" @click="submitClicked">确认提交</button>
 
-		<view class="next-step" @click="navgaitionToHomePage">暂不增加，开始使用</view>
+		<view v-show="showType" class="next-step" @click="navgaitionToHomePage">暂不增加，开始使用</view>
 
 	</view>
 </template>
 
 <script>
+	import {addPatient} from '../../../api/index.js'
+	import {mapState} from 'vuex'
 	export default {
+		
 		data() {
 			return {
 				sexList: ["男", "女"],
@@ -71,7 +74,16 @@
 				phoneNumber: "",//手机号码
 				relation: "",//与患者关系
 				socialCard: "",//社保卡号
+				showType: true
 			}
+		},
+		onLoad: function(option){
+			if(option.type == 'A'){
+				this.showType = false
+			}
+		},
+		computed:{
+			...mapState(['loginData'])
 		},
 		methods: {
 			
@@ -101,6 +113,9 @@
 			 * 1、判断各项是否为空
 			 * **/
 			submitClicked(){
+				
+				
+				
 				if(!this.checkInputValue(this.name)){
 					uni.showToast({
 						title: "姓名不得为空",
@@ -143,6 +158,33 @@
 					})
 					return ;
 				}
+				
+				
+				
+				addPatient({
+					userId: this.loginData.id,
+					name: this.name,
+					sex: this.sexValue,
+					age: this.age,
+					phone: this.phoneNumber,
+					idCard: this.idCard,
+					patientRelation: this.relation,
+					socialSecurityCard: this.socialCard
+				}).then(res => {
+					console.log(res)
+					if(res.status == 'SUCCESS'){
+						uni.navigateBack({
+							
+						})
+					}else{
+						uni.showToast({
+							icon: 'none',
+							title: res.message
+						})
+					}
+				})
+				
+				
 			},
 			
 			//检查数据是否为空

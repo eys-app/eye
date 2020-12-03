@@ -8,18 +8,18 @@
 			<view class="input-view">
 				<view class="input-view-item">
 					<image src="../../static/images/phone.svg"></image>
-					<input class="uni-input input-cus" type="number" placeholder="请输入手机号码" />
+					<input class="uni-input input-cus" type="number" placeholder="请输入手机号码" v-model="phoneNum" />
 				</view>
 
 				<view class="input-view-item">
 					<image src="../../static/images/pwd.svg"></image>
-					<input class="uni-input input-cus" type="text" placeholder="请输入密码" password />
+					<input class="uni-input input-cus" type="text" placeholder="请输入密码" password v-model="password" />
 				</view>
 
 				<button type="default" class="login-button" @click="loginClicked">登录</button>
-				
+
 				<view class="resite-password">忘记密码?</view>
-				
+
 				<view class="resite-password register" @click="navigateToRegisterPage">注册账户</view>
 
 
@@ -36,24 +36,72 @@
 </template>
 
 <script>
-	import {mapMutations} from 'vuex'
+	import {
+		mapMutations
+	} from 'vuex'
+	import {
+		login_interface
+	} from '../../api/index.js'
 	export default {
 		data() {
-			return {}
+			return {
+				phoneNum: '',
+				password: ''
+			}
 		},
 		methods: {
-			
+
 			...mapMutations(["loginFunction"]),
-			
-			loginClicked(){
-				
-				this.loginFunction({
+			//登录接口
+			loginClicked() {
+
+
+				if (!this.checkValue(this.phoneNum)) {
+					uni.showToast({
+						icon: 'none',
+						title: "请输入手机号码"
+					})
+					return;
+				}
+				if (!this.checkValue(this.password)) {
+					uni.showToast({
+						icon: 'none',
+						title: "请输入密码"
+					})
+					return;
+				}
+				if (!this.isPhoneNumber(this.phoneNum)) {
+					uni.showToast({
+						icon: 'none',
+						title: "请输入正确的手机号码"
+					})
+					return;
+				}
+
+				login_interface({
+					loginName: this.phoneNum,
+					password: this.password
+				}).then(res => {
+					console.log(res)
+					if (res.status == 'SUCCESS') {
+						this.loginFunction(res.data);
+						this.enterPriPage();
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.message,
+						})
+					}
+				})
+
+
+				/* this.loginFunction({
 					username: 'zhangsan'
 				})
 				
-				this.enterPriPage()
+				this.enterPriPage() */
 			},
-			
+
 			enterDocPage() {
 				uni.navigateTo({
 					url: "/pages/doctor/apply"
@@ -65,20 +113,57 @@
 					url: "/pages/patient/tabbar/home"
 				})
 			},
-			navigateToRegisterPage(){
+			navigateToRegisterPage() {
 				uni.navigateTo({
 					url: "/pages/usernumber/register"
 				})
+			},
+
+
+			//检查输入是否为空
+			checkValue(text) {
+				if (text == null || text == undefined || text.length == 0 || text == '') {
+					return false;
+				} else {
+					return true;
+				}
+			},
+
+
+			// 手机号校验
+			isPhoneNumber(phoneNum) {
+				// let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+				/*
+			  * 移动号码包括的号段：134/135/136/137,138,139；
+			*                     147/148(物联卡号)；
+			*                     150/151/152/157/158/159；
+			*                     165（虚拟运营商）；
+			*                     1703/1705/1706（虚拟运营商）、178；
+			*                     182/183/184/187/188
+			*                     198
+					
+			* 联通号段包括：130/131
+			*               145
+			*               155/156
+			*               166/167(虚拟运营商)
+			*               1704/1707/1708/1709、171
+			*               186/186
+			*
+			* 电信号段包括： 133
+			*                153
+			*                162(虚拟运营商)
+			*                1700/1701/1702(虚拟运营商)
+			*                180/181/189
+			*                191/199
+			* */
+				let reg = /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
+				return reg.test(phoneNum);
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	
-	
-	
-	
 	.login-back {
 		background-color: $backColor;
 		position: fixed;
@@ -134,11 +219,11 @@
 				line-height: 40px;
 				color: #FFFFFF;
 				border-radius: 20px;
-				
-				
+
+
 			}
-			
-			.resite-password{
+
+			.resite-password {
 				margin-bottom: 30px;
 				color: #007AFF;
 				font-size: 12px;
@@ -147,7 +232,8 @@
 				width: 56px;
 				float: left;
 			}
-			.register{
+
+			.register {
 				float: right;
 				width: 48px;
 			}
