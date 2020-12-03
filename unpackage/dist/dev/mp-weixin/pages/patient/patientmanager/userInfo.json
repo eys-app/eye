@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "问诊人详情",
   "usingComponents": {
-    "uni-card": "/components/uni-card/uni-card"
+    "user_sty": "/pages/patient/patientmanager/components/userSty"
   }
 }

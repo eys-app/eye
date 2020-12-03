@@ -8,7 +8,7 @@
 		<view class="image-view"></view>
 		
 		<view class="content-view">
-			<view class="content-item">
+			<view class="content-item" @click="enterListContact">
 				<image src="../../../static/images/check_box.svg"></image>
 				<view class="content-text-view">问诊人管理</view>
 				<view class="right-text">›</view>
@@ -25,10 +25,6 @@
 			</view>
 			<view class="content-item" style="border: none;"></view>
 		</view>
-
-		<!-- mine {{activePatient}}
-		<button type="primary" @click="nextPage">下一页</button>
-		<h3 @click="enterListContact">问诊人</h3> -->
 
 		<button type="default" class="logout-button" @click="logoutClicked">退出登录</button>
 	</view>
@@ -56,7 +52,8 @@
 			},
 			enterListContact() {
 				uni.navigateTo({
-					url: '/pages/patient/patientmanager/listContact'
+					// url:'/pages/patient/patientmanager/listContact'
+					url:'/pages/doctor/patientsListCard'
 				})
 			},
 			logoutClicked() {

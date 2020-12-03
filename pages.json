@@ -99,7 +99,24 @@
 			"style": {
 				"navigationBarTitleText": "添加问诊人"
 			}
-		},{
+        }
+        ,{
+            "path" : "pages/doctor/patientsListCard",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "病人库管理",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+            "path" : "pages/doctor/doctor_mine",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "医生个人中心",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
 			"path":"pages/patient/home/articledetail",
 			"style":{
 				"navigationBarTitleText":"详情"

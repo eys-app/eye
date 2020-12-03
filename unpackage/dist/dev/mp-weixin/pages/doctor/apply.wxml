@@ -1,1 +1,1 @@
-<view>这是医生认证页面</view>
+<view>这是医生认证页面<button type="primary" data-event-opts="{{[['tap',[['toPatientsList',['$event']]]]]}}" bindtap="__e">病人库管理</button></view>

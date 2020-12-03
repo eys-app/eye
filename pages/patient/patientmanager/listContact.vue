@@ -1,8 +1,20 @@
 <template>
+	<!-- <view class="container"> -->
+		<!-- <uni-list>
+			<uni-list-item v-for="userItem in userList" :key="userItem.id" @click="enterUserInfo(userItem)"  >
+				<view :userMsg="userItem">
+					<view class="userNameSty">{{userItem.name}}</view>
+					<view class="userPhoneSty">{{userItem.phone}}</view>
+				</view>
+				
+			</uni-list-item>
+		</uni-list>
+		<button type="warn" @click="addUser">新增问诊者</button> -->
 	<view class="back-view-class">
 		<view class="container">
 			<template v-for="item in userList">
-				<view class="item-list" @click="itemClicked(item)">
+				<!-- <view class="item-list" @click="itemClicked(item)"> -->
+					<view class="item-list" @click="enterUserInfo(item)">
 					<view class="user-name">{{item.name}}</view>
 					<view class="user-phone">{{item.phone}}</view>
 				</view>
@@ -15,6 +27,7 @@
 		<button class="add-button" type="warn" @click="addUser">
 			<uni-icons type="plusempty" color="#ffffff" size="14"></uni-icons>新增问诊人
 		</button>
+<!-- >>>>>>> de287255acf8684bbfb62d39b7bf3ae708e43f00 -->
 	</view>
 
 </template>
@@ -136,6 +149,14 @@
 					url: "/pages/patient/patientmanager/addUser"
 				})
 			},
+			// enterUserInfo(user){
+			// 	uni.navigateTo({
+			// 		url:"/pages/patient/patientmanager/userInfo",
+			// 		success:function(res){
+			// 			//通过eventChannel向被打开的页面传送数据
+			// 			// res.eventChannel.emit('chuansong',{data:'test'})
+			// 			res.eventChannel.emit('chuansong',{data:user})
+			// 		}
 			enterUserInfo(user) {
 				console.log(user)
 				uni.$emit('itemPatient', user)
@@ -157,6 +178,22 @@
 </script>
 
 <style lang="scss">
+
+// .container{
+// 	margin: 10rpx;
+// 	.userNameSty{
+// 		font-size: 36rpx;
+// 	}
+// 	.userPhoneSty{
+// 		margin-top: 6rpx;
+// 		font-size: 30rpx;
+// 		color: #6E6E6E;
+// 	}
+// 	.warn{
+// 		margin-top: 10rpx;
+// 	}
+// }
+
 	.back-view-class {
 		width: 100%;
 		height: 100%;
