@@ -97,7 +97,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
-
 {
 
   onLaunch: function onLaunch() {
@@ -111,8 +110,22 @@ __webpack_require__.r(__webpack_exports__);
           url: '/pages/login/login' });
 
       } else {
-        uni.switchTab({
-          url: "/pages/patient/tabbar/home" });
+        if (loginData.userType == null || loginData.userType == '' || loginData.userType == undefined) {
+          if (loginData.userType == '0') {//患者
+            uni.switchTab({
+              url: "/pages/patient/tabbar/home" });
+
+          }
+          if (loginData.userType == '1') {//医生
+            uni.redirectTo({
+              url: "/pages/patient/tabbar/home" });
+
+          }
+        } else {
+          uni.switchTab({
+            url: "/pages/patient/tabbar/home" });
+
+        }
 
       }
     } catch (e) {

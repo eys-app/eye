@@ -34,12 +34,12 @@
   margin-bottom: 50px;
 }
 .back-view-class .container .item-list {
-  width: 100%;
+  width: 90%;
   height: 40px;
   margin-top: 10px;
-  border-bottom: 1px solid #F1F1F1;
   background-color: #FFFFFF;
   line-height: 40px;
+  float: left;
 }
 .back-view-class .container .item-list .user-name {
   float: left;
@@ -57,6 +57,14 @@
 .back-view-class .container .item-list .user-compose {
   float: right;
   margin-right: 20px;
+}
+.back-view-class .container .item-list-icon {
+  width: 10%;
+  float: right;
+  height: 40px;
+  background-color: #FFFFFF;
+  margin-top: 10px;
+  line-height: 40px;
 }
 .back-view-class .add-button {
   position: fixed;

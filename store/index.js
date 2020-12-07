@@ -23,6 +23,7 @@ const store = new Vuex.Store({
 		 * **/
 		logoutFunction(state){
 			state.loginData = null
+			//uni.clearStorage('loginData')
 		},
 		
 		loginFunction(state, provider){

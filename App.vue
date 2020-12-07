@@ -1,9 +1,8 @@
 <script>
-	
 	export default {
 
 		onLaunch: function() {
-			
+
 
 			try {
 				let loginData = uni.getStorageSync('loginData');
@@ -13,9 +12,23 @@
 						url: '/pages/login/login'
 					});
 				} else {
-					uni.switchTab({
-						url: "/pages/patient/tabbar/home"
-					});
+					if (loginData.userType == null || loginData.userType == '' || loginData.userType == undefined) {
+						if(loginData.userType == '0'){//患者
+							uni.switchTab({
+								url: "/pages/patient/tabbar/home"
+							});
+						}
+						if(loginData.userType == '1'){//医生
+							uni.redirectTo({
+								url: "/pages/patient/tabbar/home"
+							});
+						}
+					} else {
+						uni.switchTab({
+							url: "/pages/patient/tabbar/home"
+						});
+					}
+
 				}
 			} catch (e) {
 				//TODO handle the exception
@@ -36,16 +49,14 @@
 		mounted() {
 			console.log('aaa');
 		},
-		
+
 	};
 </script>
 
 <style lang="scss">
-	
-	
 	/* #ifdef APP-PLUS-NVUE*/
 	@import './commen/uni.css';
-	
+
 
 	page {
 		background-color: #F4F5F6;
@@ -67,9 +78,4 @@
 
 
 	/* #endif */
-	
-	
-	
-	
-	
 </style>

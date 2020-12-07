@@ -1968,6 +1968,7 @@ var store = new _vuex.default.Store({
      * **/
     logoutFunction: function logoutFunction(state) {
       state.loginData = null;
+      //uni.clearStorage('loginData')
     },
 
     loginFunction: function loginFunction(state, provider) {
@@ -3109,8 +3110,38 @@ var index = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getTestRequest = getTestRequest;
+Object.defineProperty(exports, "__esModule", { value: true });exports.login_interface = login_interface;exports.addPatient = addPatient;exports.getEyePatientList = getEyePatientList;exports.getTestRequest = getTestRequest;
 var _request = _interopRequireDefault(__webpack_require__(/*! ../commen/request.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var strUrl = "http://192.168.4.25:8090/";
+
+//登录
+function login_interface(param) {
+  return (0, _request.default)({
+    url: strUrl + 'mobile/login',
+    method: 'get',
+    data: param });
+
+}
+
+//增加问诊人
+function addPatient(param) {
+  return (0, _request.default)({
+    url: strUrl + 'mobile/savePatient',
+    method: 'get',
+    data: param });
+
+}
+
+//获取问诊人列表
+function getEyePatientList(param) {
+  return (0, _request.default)({
+    url: strUrl + 'mobile/getEyePatientList',
+    method: 'get',
+    data: param });
+
+
+}
 
 
 function getTestRequest() {
@@ -9221,7 +9252,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 222:
+/***/ 211:
 /*!************************************************************!*\
   !*** D:/HBuildXCode/EYE/eye/components/uni-icons/icons.js ***!
   \************************************************************/
@@ -9363,7 +9394,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 287:
+/***/ 247:
 /*!************************************************************!*\
   !*** D:/HBuildXCode/EYE/eye/components/uni-popup/popup.js ***!
   \************************************************************/
@@ -9371,7 +9402,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 288));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 248));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -9398,7 +9429,7 @@ var config = {
 
 /***/ }),
 
-/***/ 288:
+/***/ 248:
 /*!**************************************************************!*\
   !*** D:/HBuildXCode/EYE/eye/components/uni-popup/message.js ***!
   \**************************************************************/

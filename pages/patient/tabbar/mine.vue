@@ -32,7 +32,7 @@
 
 <script>
 	import {
-		mapState
+		mapState, mapMutations
 	} from "vuex"
 	export default {
 		computed: {
@@ -44,6 +44,7 @@
 
 		},
 		methods: {
+			...mapMutations(['logoutFunction']),
 			nextPage() {
 				uni.navigateTo({
 					url: "/pages/aidiagnosis/diagnosis"
@@ -53,12 +54,17 @@
 				uni.navigateTo({
 					// url:'/pages/patient/patientmanager/listContact'
 					url:'/pages/doctor/patientsListCard'
+					// url:'/pages/doctor/test_shaixuan'
 				})
 			},
 			logoutClicked() {
 				console.log('logout')
+				const that = this;
 				uni.redirectTo({
-					url: "../../login/login"
+					url: "../../login/login",
+					success:function(){
+						that.logoutFunction()
+					}
 				})
 			}
 		}

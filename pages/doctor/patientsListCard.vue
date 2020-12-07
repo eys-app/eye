@@ -1,17 +1,18 @@
 <!-- 病人库管理页面的病人信息 card -->
 <template>
-	<view class="root">
-		<view class="title_bar">
-			<ren-dropdown-filter :filterData='filterData' :defaultIndex='defaultIndex'
-					    @onSelected='onSelected' @dateChange='dateChange'></ren-dropdown-filter> 
-						
-						<view class="mine">
-							<image src="../../static/images/mine-ed.png" ></image>
-						</view>
-		</view>
-	  
+	 <view class="root"> 
+		<view class="title_bar"> 
+		
+				<ren-dropdown-filter :filterData='filterData' :defaultIndex='defaultIndex'
+						    @onSelected='onSelected' @dateChange='dateChange' @doc_mineClick='doc_mineClick'></ren-dropdown-filter> 
 			
-		<view class="card-view">
+						
+					 	<!-- view class="mine">
+							 <image src="../../static/images/mine-ed.png" ></image> 
+						</view> -->
+		</view>
+			
+ 	 	<view class="card-view">
 			<uni-card isShadow="true" v-for="item in patientList" :key="item.id">
 				<view class="card">
 					<view class="one">
@@ -31,7 +32,7 @@
 						</view>
 					</view>
 			
-					<!-- <view class="two" v-for="items in perTagList"> -->
+					 <!-- <view class="two" v-for="items in perTagList"> -->
 						<view class="two">
 			
 						<view class="tag">
@@ -47,9 +48,9 @@
 							我是标签4
 						</view>
 						
-						<!-- <view class="tag">
+					 <!-- 	<view class="tag">
 							{{items}}
-						</view> -->
+						</view> --> 
 					</view>
 			
 					<view class="three">
@@ -58,7 +59,7 @@
 			
 				</view>
 			</uni-card>
-		</view>	
+		</view>	 
 		
 	</view>
 </template>
@@ -66,7 +67,9 @@
 <script>
 	
 	import RenDropdownFilter from '@/components/ren-dropdown-filter/ren-dropdown-filter.vue'
+	import {getPatientsListByDoc} from '../../api/index.js'
 	export default {
+		components:{RenDropdownFilter},
 		data() {
 			return {
 				patientList:[{
@@ -135,15 +138,25 @@
 					
 			    },
 			    dateChange(d){
-			       uni.showToast({
-			           icon:'none',
-			           title:d
-			       })
+			       // uni.showToast({
+			       //     icon:'none',
+			       //     title:d
+			       // })
 				  
 				   this.selectTime=d
 				   
 				    console.log('选择日期是=='+this.selectTime)
-			    }
+			    },
+				doc_mineClick(){
+					console.log('点击了===医生个人中心=')
+					uni.navigateTo({
+						url:'/pages/doctor/doctor_mine'
+					})
+				},
+				getPatientsList(){
+					
+				}
+				
 		}
 	}
 </script>
@@ -159,11 +172,11 @@
 	}
 
 .mine{
-	// width: 100rpx;
+	width: 100rpx;
 	height: 100rpx;
 	margin-right: 20rpx;
-	display: flex;
-	// background-color: #67C23A;
+	// display: flex;
+	background-color: #67C23A;
 	justify-content: center;
 	align-items: center;
 	image{
