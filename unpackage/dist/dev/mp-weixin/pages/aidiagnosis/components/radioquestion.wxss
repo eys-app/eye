@@ -52,6 +52,12 @@
   margin-top: 3px;
   float: left;
 }
+.question-title .question-type {
+  font-weight: 400;
+  color: #027e7e;
+  float: left;
+  padding: 0 5px;
+}
 .answer-list {
   padding: 2px 0 0 0;
   border-left: 1px solid #d4d4d4;

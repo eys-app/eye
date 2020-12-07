@@ -60,7 +60,8 @@
 </template>
 
 <script>
-	import {addPatient} from '../../../api/index.js'
+	import {addPatient } from '../../../api/index.js'
+	import {sexValueToNumber} from '../../../commen/common.js'
 	import {mapState} from 'vuex'
 	export default {
 		
@@ -86,6 +87,7 @@
 			...mapState(['loginData'])
 		},
 		methods: {
+			
 			
 			//选择性别
 			showActionSex() {
@@ -113,7 +115,6 @@
 			 * 1、判断各项是否为空
 			 * **/
 			submitClicked(){
-				
 				
 				
 				if(!this.checkInputValue(this.name)){
@@ -160,11 +161,13 @@
 				}
 				
 				
+				let numberSex = sexValueToNumber(this.sexValue)
+				
 				
 				addPatient({
 					userId: this.loginData.id,
 					name: this.name,
-					sex: this.sexValue,
+					sex: numberSex,
 					age: this.age,
 					phone: this.phoneNumber,
 					idCard: this.idCard,

@@ -1,6 +1,6 @@
 let strUrl = '';
 if(process.env.NODE_ENV == "development"){
-	strUrl = "";
+	strUrl = "http://192.168.4.195:8090/";
 }
 else{
 	strUrl = "";
@@ -32,6 +32,10 @@ const sendRequest = function(option){
 					title: "网络请求失败",
 					icon: "none"
 				})
+			},
+			complete(res) {
+				
+				uni.hideLoading()
 			}
 		})
 	})

@@ -87,7 +87,8 @@
 			"style": {
 				"navigationBarTitleText": "问诊人管理",
 				"navigationBarBackgroundColor":"#FFFFFF",
-				"navigationBarTextStyle":"black"
+				"navigationBarTextStyle":"black",
+				"enablePullDownRefresh": true
 			}
 		}, {
 			"path": "pages/patient/patientmanager/userInfo",
@@ -99,7 +100,14 @@
 			"style": {
 				"navigationBarTitleText": "添加问诊人"
 			}
-        }
+        },
+		{
+			"path": "pages/aidiagnosis/selectdoctor",
+			"style": {
+				"navigationBarTitleText": "选择医生",
+				"enablePullDownRefresh": true
+			}
+		}
         ,{
             "path" : "pages/doctor/patientsListCard",
             "style" :                                                                                    

@@ -34,12 +34,12 @@
   margin-bottom: 50px;
 }
 .back-view-class .container .item-list {
-  width: 100%;
+  width: 90%;
   height: 40px;
   margin-top: 10px;
-  border-bottom: 1px solid #F1F1F1;
   background-color: #FFFFFF;
   line-height: 40px;
+  float: left;
 }
 .back-view-class .container .item-list .user-name {
   float: left;
@@ -58,6 +58,14 @@
   float: right;
   margin-right: 20px;
 }
+.back-view-class .container .item-list-icon {
+  width: 10%;
+  float: right;
+  height: 40px;
+  background-color: #FFFFFF;
+  margin-top: 10px;
+  line-height: 40px;
+}
 .back-view-class .add-button {
   position: fixed;
   bottom: 10px;
@@ -68,5 +76,14 @@
   -webkit-border-radius: 20px;
           border-radius: 20px;
   margin-left: 10px;
+}
+/* loadmore */
+.uni-loadmore {
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  padding-bottom: 30rpx;
+  font-size: 12px;
+  color: gray;
 }
 

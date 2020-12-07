@@ -3,6 +3,7 @@ import App from './App'
 
 import store from "store/index.js"
 import api from "api/index.js"
+import common from "commen/common.js"
 
 
 console.log('main')

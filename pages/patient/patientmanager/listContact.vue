@@ -1,20 +1,8 @@
 <template>
-	<!-- <view class="container"> -->
-		<!-- <uni-list>
-			<uni-list-item v-for="userItem in userList" :key="userItem.id" @click="enterUserInfo(userItem)"  >
-				<view :userMsg="userItem">
-					<view class="userNameSty">{{userItem.name}}</view>
-					<view class="userPhoneSty">{{userItem.phone}}</view>
-				</view>
-				
-			</uni-list-item>
-		</uni-list>
-		<button type="warn" @click="addUser">新增问诊者</button> -->
 	<view class="back-view-class">
 		<view class="container">
 			<template v-for="item in userList">
-				<!-- <view class="item-list" @click="itemClicked(item)"> -->
-					<view class="item-list" @click="enterUserInfo(item)">
+				<view class="item-list" @click="itemClicked(item)">
 					<view class="user-name">{{item.name}}</view>
 					<view class="user-phone">{{item.phone}}</view>
 				</view>
@@ -22,12 +10,14 @@
 					<uni-icons class="user-compose" type="compose" size='18' color="gray" @click="enterUserInfo(item)"></uni-icons>
 				</view>
 			</template>
+			<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
+
+
 
 		</view>
 		<button class="add-button" type="warn" @click="addUser">
 			<uni-icons type="plusempty" color="#ffffff" size="14"></uni-icons>新增问诊人
 		</button>
-<!-- >>>>>>> de287255acf8684bbfb62d39b7bf3ae708e43f00 -->
 	</view>
 
 </template>
@@ -37,126 +27,47 @@
 		mapMutations,
 		mapState
 	} from "vuex"
+	import {
+		gainPatientList_interface
+	} from '../../../api/index.js'
 	export default {
 		data() {
 			return {
-
-				userList: [{
-						id: '1',
-						name: '郭晓蓉',
-						sex: '男',
-						phone: '15116961228'
-					}, {
-						id: '2',
-						name: '王龙',
-						sex: '女',
-						phone: '15116961229'
-					}, {
-						id: '3',
-						name: '李小倩',
-						sex: '女',
-						phone: '15116961233'
-					},
-					{
-						id: '1',
-						name: '郭晓蓉',
-						sex: '男',
-						phone: '15116961228'
-					}, {
-						id: '2',
-						name: '王龙',
-						sex: '女',
-						phone: '15116961229'
-					}, {
-						id: '3',
-						name: '李小倩',
-						sex: '女',
-						phone: '15116961233'
-					},
-					{
-						id: '1',
-						name: '郭晓蓉',
-						sex: '男',
-						phone: '15116961228'
-					}, {
-						id: '2',
-						name: '王龙',
-						sex: '女',
-						phone: '15116961229'
-					}, {
-						id: '3',
-						name: '李小倩',
-						sex: '女',
-						phone: '15116961233'
-					},
-					{
-						id: '1',
-						name: '郭晓蓉',
-						sex: '男',
-						phone: '15116961228'
-					}, {
-						id: '2',
-						name: '王龙',
-						sex: '女',
-						phone: '15116961229'
-					}, {
-						id: '3',
-						name: '李小倩',
-						sex: '女',
-						phone: '15116961233'
-					},
-					{
-						id: '1',
-						name: '郭晓蓉',
-						sex: '男',
-						phone: '15116961228'
-					}, {
-						id: '2',
-						name: '王龙',
-						sex: '女',
-						phone: '15116961229'
-					}, {
-						id: '3',
-						name: '李小倩',
-						sex: '女',
-						phone: '15116961233'
-					},
-					{
-						id: '1',
-						name: '郭晓蓉',
-						sex: '男',
-						phone: '15116961228'
-					}, {
-						id: '2',
-						name: '王龙',
-						sex: '女',
-						phone: '15116961229'
-					}, {
-						id: '3',
-						name: '李小倩',
-						sex: '女',
-						phone: '15116961233'
-					}
-				]
+				DPageNumber: 0, //列表分页-当前页码
+				userList: [], //列表数据
+				loadMoreText: "加载中...",
+				showLoadMore: true,
 			}
+		},
+		mounted() {
+			this.gainPatientListDataWithPagenumber()
+		},
+		computed: {
+			...mapState(['loginData'])
+		},
+		//下拉刷新
+		onPullDownRefresh() {
+			this.DPageNumber = 1;
+			this.userList = [];
+			this.showLoadMore = false;
+			console.log('refresh')
+			this.gainPatientListDataWithPagenumber()
+		},
+		onReachBottom() {
+			console.log('loadMore')
+			this.DPageNumber += 1;
+			this.gainPatientListDataWithPagenumber()
 		},
 
 		methods: {
 			...mapMutations(['changePatient']),
-
+			//新增问诊人点击事件
 			addUser() {
 				uni.navigateTo({
 					url: "/pages/patient/patientmanager/addUser"
 				})
 			},
-			// enterUserInfo(user){
-			// 	uni.navigateTo({
-			// 		url:"/pages/patient/patientmanager/userInfo",
-			// 		success:function(res){
-			// 			//通过eventChannel向被打开的页面传送数据
-			// 			// res.eventChannel.emit('chuansong',{data:'test'})
-			// 			res.eventChannel.emit('chuansong',{data:user})
-			// 		}
+			//编辑问诊人
 			enterUserInfo(user) {
 				console.log(user)
 				uni.$emit('itemPatient', user)
@@ -164,6 +75,7 @@
 					url: "/pages/usernumber/apply/applypatient?type=A"
 				})
 			},
+			//选中问诊人
 			itemClicked(value) {
 				this.changePatient(value);
 				uni.navigateBack({
@@ -173,27 +85,33 @@
 
 
 
+			//获取问诊人列表
+			gainPatientListDataWithPagenumber() {
+				gainPatientList_interface({
+					userId: this.loginData.id,
+					pageNo: this.DPageNumber,
+					pageSize: '15'
+				}).then(res => {
+					if (res.status == 'SUCCESS') {
+						uni.stopPullDownRefresh()
+						let tempArray = this.userList.concat(res.data.list)
+						this.userList = tempArray;
+
+						if (res.data.list.length < 15) {
+							this.loadMoreText = "没有更多了"
+						}
+					}
+				})
+			}
+
+
+
+
 		}
 	}
 </script>
 
 <style lang="scss">
-
-// .container{
-// 	margin: 10rpx;
-// 	.userNameSty{
-// 		font-size: 36rpx;
-// 	}
-// 	.userPhoneSty{
-// 		margin-top: 6rpx;
-// 		font-size: 30rpx;
-// 		color: #6E6E6E;
-// 	}
-// 	.warn{
-// 		margin-top: 10rpx;
-// 	}
-// }
-
 	.back-view-class {
 		width: 100%;
 		height: 100%;
@@ -233,8 +151,8 @@
 				}
 
 			}
-			
-			.item-list-icon{
+
+			.item-list-icon {
 				width: 10%;
 				float: right;
 				height: 40px;
@@ -255,5 +173,15 @@
 			border-radius: 20px;
 			margin-left: 10px;
 		}
+	}
+
+	/* loadmore */
+	.uni-loadmore {
+		height: 80rpx;
+		line-height: 80rpx;
+		text-align: center;
+		padding-bottom: 30rpx;
+		font-size: 12px;
+		color: gray;
 	}
 </style>

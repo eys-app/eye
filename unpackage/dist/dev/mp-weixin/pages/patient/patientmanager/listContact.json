@@ -2,6 +2,7 @@
   "navigationBarTitleText": "问诊人管理",
   "navigationBarBackgroundColor": "#FFFFFF",
   "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "uni-icons": "/components/uni-icons/uni-icons"
   }
