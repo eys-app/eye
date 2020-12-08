@@ -11,23 +11,25 @@
 							 <image src="../../static/images/mine-ed.png" ></image> 
 						</view> -->
 		</view>
+		
+		<button @click="getPatientsList">测试列表</button>
 			
  	 	<view class="card-view">
-			<uni-card isShadow="true" v-for="item in patientList" :key="item.id">
+			<uni-card isShadow="true" v-for="item in patientList" :key="item.userId">
 				<view class="card">
 					<view class="one">
 						<view class="patientName">
-							{{item.name}}
+							{{item.eyePatient.name}}
 						</view>
 						<view class="patientSex">
-							{{item.sex}}
+							{{item.eyePatient.sex}}
 						</view>
 						<view class="patientOld">
-							{{item.old}}岁
+							{{item.eyePatient.age}}岁
 						</view>
 						<view class="zhidao">
 							<view>
-								未指导
+								{{item.eyePatient.stateTag}}
 							</view>
 						</view>
 					</view>
@@ -54,12 +56,14 @@
 					</view>
 			
 					<view class="three">
-						上次测评时间：{{item.time}}
+						上次测评时间：{{item.eyePatient.createDate}}
 					</view>
 			
 				</view>
 			</uni-card>
 		</view>	 
+		
+		<view class="noResult" v-show="isShow">没有查询结果</view>
 		
 	</view>
 </template>
@@ -68,11 +72,15 @@
 	
 	import RenDropdownFilter from '@/components/ren-dropdown-filter/ren-dropdown-filter.vue'
 	import {getPatientsListByDoc} from '../../api/index.js'
+	
+	
 	export default {
 		components:{RenDropdownFilter},
+		
 		data() {
 			return {
-				patientList:[{
+				patientList:[],
+				/* patientList:[{
 					id:1,
 					name:'小龙女',
 					sex:'女',
@@ -80,6 +88,7 @@
 					zhidao:true,
 					tagList:['标签1','标签2','标签1','标签2','标签1','标签2'],
 					time:'2020-09-20'
+				
 				},{
 					id:2,
 					name:'杨过',
@@ -120,21 +129,29 @@
 					zhidao:true,
 					tagList:['标签1','标签2','标签3'],
 					time:'2020-11-21'
-				}],
+				}], */
 				filterData:[
 				    [{ text: '全部症状', value: '' }, { text: '非常严重', value: 1 }, { text: '严重', value: 2 }, { text: '轻微', value: 3 }],
 				    [{ text: '无论指导', value: '' }, { text: '指导', value: 1 }, { text: '未指导', value: 2 }]
 				],
 				defaultIndex:[0,0],
-				selectTime:"11",
+				selectTime:"",
 				
-				perTagList:['标签1','标签2','标签1','标签2','标签1','标签2']
+				perTagList:['标签1','标签2','标签1','标签2','标签1','标签2'],
+				isShow:false,
+				doctorId:'1008611'
+				
 			}
+			
+		},
+		mounted() {
+			// this.getPatientsList()
 		},
 		methods: {
 			
 			    onSelected(res){
-			        console.log(res+'选择时间'+this.selectTime)
+			        console.log(res)
+					console.log(res[0])
 					
 			    },
 			    dateChange(d){
@@ -154,11 +171,48 @@
 					})
 				},
 				getPatientsList(){
+					console.log('选择日期是=++++='+this.selectTime)
 					
+					if(this.selectTime == ""){
+						console.log("选择日期进去了====")
+					}
+					
+					getPatientsListByDoc({
+						doctorId:this.doctorId,
+						stateTag:this.selectTime
+						
+					}).then(res => {
+						console.log(res)
+						if(res.status=='SUCCESS'){
+							console.log("已经进来")
+							this.patientList=res.data.list
+							if(this.patientList ==undefined||this.patientList.length <= 0){
+								console.log("是为空")
+								this.isShow=true
+							}
+							console.log(this.patientList)
+						}
+					})
+				},
+				getPatientSex(param){
+					if(param=='1'){
+						return '男'
+					}else{
+						return '女'
+					}
 				}
 				
+				// 	getPatientsListByDoc({
+				// 		// loginName: this.phoneNum,
+				// 		// password: this.password
+				// 		doctorId:'1008611'
+				// 	}).then(res => {
+				// 		console.log("医生返回结果=="+res)
+				// }
 		}
+		
 	}
+	
 </script>
 
 <style lang="scss">
@@ -242,5 +296,14 @@
 		flex: 1;
 		font-size: 30rpx;
 		color: #6E6E6E;
+	}
+	
+	.noResult{
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color:  #8b9aae;
+		margin-top: 30rpx;
 	}
 </style>

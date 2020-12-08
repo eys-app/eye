@@ -1,7 +1,8 @@
 
 import Request from '../commen/request.js'
 
-let strUrl = "http://192.168.4.25:8090/"
+// let strUrl = "http://192.168.4.25:8090/"
+let strUrl = "http://192.168.4.195:8090/"
 
 //登录
 export function login_interface(param){
