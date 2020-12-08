@@ -1,1 +1,1 @@
-<view><rich-text nodes="{{dataArticle}}"></rich-text></view>
+<view class="view-artical"><view class="artical-title">{{aTitle+aTitle}}</view><view class="artical-time">{{aTime}}</view><u-parse vue-id="2fce82ac-1" content="{{dataArticle}}" bind:__l="__l"></u-parse></view>

@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniIcons: function() {
-    return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 214))
+    return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 228))
   }
 }
 var render = function() {
@@ -177,6 +177,14 @@ var _index = __webpack_require__(/*! ../../../api/index.js */ 13);function ownKe
   },
   mounted: function mounted() {
     this.gainPatientListDataWithPagenumber();
+    var that = this;
+    uni.$on('updateParientList', function (e) {
+      console.log('refresh');
+      that.DPageNumber = 1;
+      that.userList = [];
+      that.showLoadMore = false;
+      that.gainPatientListDataWithPagenumber();
+    });
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['loginData'])),
@@ -200,7 +208,7 @@ var _index = __webpack_require__(/*! ../../../api/index.js */ 13);function ownKe
     //新增问诊人点击事件
     addUser: function addUser() {
       uni.navigateTo({
-        url: "/pages/patient/patientmanager/addUser" });
+        url: "/pages/usernumber/apply/applypatient?type=A" });
 
     },
     //编辑问诊人

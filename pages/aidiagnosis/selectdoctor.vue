@@ -136,6 +136,7 @@
 			//提交
 			submitclicked() {
 				let param = null
+
 				uni.getStorage({
 					key: "params",
 					success: function(res) {
@@ -143,22 +144,36 @@
 					}
 				})
 
+
+
 				if (this.currenindex == null) {
 					uni.showToast({
 						title: '请选择医生',
 						icon: "none"
 					})
-					//return;
+					return;
 				}
-				// eval('param.doctorId' + )
 				
-
-				param['doctorId'] = this.doctorList[this.currenindex].id;
-				console.log('param',param)
-				console.log(param)
-				submitQuestionnaire_interface(param).then(res => {
-					console.log('res ==', res)
-				})
+				const that = this;
+				setTimeout(()=>{
+					param['doctorId'] = that.doctorList[that.currenindex].id;
+					
+					submitQuestionnaire_interface(param).then(res => {
+						console.log('res ==', res)
+						if(res.status == 'SUCCESS'){
+							uni.$emit('patientReport',res.data.eyeDiagnosisConfig)
+							uni.navigateTo({
+								url: "/pages/report/patientreport"
+							})
+						}else{
+							uni.showToast({
+								title: "问卷提交失败，请重新提交！",
+								icon: "none"
+							})
+						}
+					})
+				},100)
+				
 			}
 		}
 	}

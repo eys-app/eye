@@ -59,9 +59,16 @@
 			} catch (e) {
 			
 			}
+			
+			try {
+				let acp = uni.getStorageSync('activePatient');
+				this.changePatient(acp)			
+			} catch (e) {
+			
+			}
 		},
 		methods:{
-			...mapMutations(['loginFunction'])
+			...mapMutations(['loginFunction',"changePatient"])
 		}
 
 	};

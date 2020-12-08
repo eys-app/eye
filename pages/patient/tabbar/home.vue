@@ -27,13 +27,13 @@
 				</view>
 
 				<template v-for="item in listData">
-					<view class="class-list-content" @click="articleClicked">
-						<image :src="item.image"></image>
+					<view class="class-list-content" @click="articleClicked(item)">
+						<image :src="item.imageUrl"></image>
 
 						<view class="right-content">
 							<view class="title">{{item.title}}</view>
-							<view class="sub-title">{{item.detail}}</view>
-							<view class="time">{{item.time}}</view>
+							<!-- <view class="sub-title">{{item.detail}}</view> -->
+							<view class="time">{{item.createDate}}</view>
 						</view>
 					</view>
 				</template>
@@ -46,6 +46,9 @@
 </template>
 
 <script>
+	import {
+		getForumList_interface
+	} from '../../../api/index.js'
 	export default {
 		data() {
 			return {
@@ -90,10 +93,14 @@
 			}
 		},
 		mounted() {
-			uni.createSelectorQuery().in(this).select('.ids').boundingClientRect(data =>{
-				
-				this.idHeight = data.width * 0.67;
-			}).exec();
+			const _this = this;
+			setTimeout(() => {
+				uni.createSelectorQuery().in(_this).select('.ids').boundingClientRect(data => {
+					_this.idHeight = data.width * 0.67;
+				}).exec();
+			},100)
+			
+			this.gainDoctorClassList()
 
 		},
 		methods: {
@@ -105,9 +112,27 @@
 					})
 				}
 			},
-			articleClicked() {
+			//医生小讲堂点击事件
+			articleClicked(item) {
+				console.log('item===' + encodeURIComponent(JSON.stringify(item)));
 				uni.navigateTo({
-					url: "/pages/patient/home/articledetail"
+					url: "/pages/patient/home/articledetail?item=" + encodeURIComponent(JSON.stringify(item)),
+					success() {
+						//uni.$emit('articleData',item)
+					}
+				})
+				
+			},
+			//获取医生小讲堂列表数据
+			gainDoctorClassList() {
+				this.listData = []
+				getForumList_interface({
+					pageNo: 1,
+					pageSize: 5
+				}).then(res => {
+					if (res.status == 'SUCCESS') {
+						this.listData = res.data.list
+					}
 				})
 			}
 		}
@@ -187,13 +212,13 @@
 
 
 				.class-list-content {
-					height: 95px;
+					height: 75px;
 					margin-top: 10px;
 					border-bottom: 1px solid #F1F1F1;
 
 					image {
-						width: 80px;
-						height: 80px;
+						width: 60px;
+						height: 60px;
 						margin-top: 5px;
 						border-radius: 5px;
 						float: left;
@@ -208,10 +233,12 @@
 							font-size: 14px;
 							font-weight: 600;
 							padding-top: 5px;
-							height: 20px;
-							text-overflow: ellipsis;
-							white-space: nowrap;
+							height: 40px;
 							overflow: hidden;
+							text-overflow: ellipsis;
+							display: -webkit-box;
+							-webkit-line-clamp: 2;
+							-webkit-box-orient: vertical;
 						}
 
 						.sub-title {
@@ -231,7 +258,7 @@
 							color: #b4b4b4;
 							height: 18px;
 							line-height: 18px;
-							margin-top: 7px;
+							// margin-top: 5px;
 						}
 					}
 				}

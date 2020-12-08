@@ -41,6 +41,14 @@
 		},
 		mounted() {
 			this.gainPatientListDataWithPagenumber()
+			const that = this;
+			uni.$on('updateParientList',function(e){
+				console.log('refresh')
+				that.DPageNumber = 1;
+				that.userList = [];
+				that.showLoadMore = false;
+				that.gainPatientListDataWithPagenumber()
+			})
 		},
 		computed: {
 			...mapState(['loginData'])
@@ -64,7 +72,7 @@
 			//新增问诊人点击事件
 			addUser() {
 				uni.navigateTo({
-					url: "/pages/patient/patientmanager/addUser"
+					url: "/pages/usernumber/apply/applypatient?type=A"
 				})
 			},
 			//编辑问诊人

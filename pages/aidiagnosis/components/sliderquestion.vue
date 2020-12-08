@@ -11,7 +11,7 @@
 		<view class="answer-list">
 			<view class="min-number">{{itemCheck.eyeOptionsList[0].score}}</view>
 			<slider class="slider-center" @change="changeValue" @changing="sliderValueChanging"
-			min="0" max="5" step="1" block-size="16" ></slider>
+			:min="itemCheck.eyeOptionsList[0].score" :max="itemCheck.eyeOptionsList[1].score" step="1" block-size="16" ></slider>
 			<view class="max-number">{{itemCheck.eyeOptionsList[1].score}}</view>
 		</view>
 		<view style="clear: both;"></view>
@@ -49,22 +49,18 @@
 		},
 		mounted() {
 
-			uni.createSelectorQuery().in(this).selectAll('.aswer-item-text').boundingClientRect(data => {
-				for (var i = 0; i < data.length; i++) {
-					this.radioHeight.push(
-						data[i].height + 'px'
-					)
-				}
-			}).exec()
+			
 		},
 		methods: {
 			//拖拽过程
 			sliderValueChanging(e){
+				this.itemError = false
 				this.sliderValue = e.detail.value
 			},
 
 			// 完成一次拖动后触发的事件
 			changeValue(e) {
+				this.itemError = false
 				this.sliderValue = e.detail.value
 				this.$emit('sliderChangeValue', {
 					index: this.itemIndex,

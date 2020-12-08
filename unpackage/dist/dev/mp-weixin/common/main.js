@@ -158,9 +158,16 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
     } catch (e) {
 
     }
+
+    try {
+      var acp = uni.getStorageSync('activePatient');
+      this.changePatient(acp);
+    } catch (e) {
+
+    }
   },
   methods: _objectSpread({},
-  (0, _vuex.mapMutations)(['loginFunction'])) };exports.default = _default;
+  (0, _vuex.mapMutations)(['loginFunction', "changePatient"])) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

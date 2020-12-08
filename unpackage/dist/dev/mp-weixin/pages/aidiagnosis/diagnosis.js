@@ -173,7 +173,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var radioQuestion = function radioQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/radioquestion */ "pages/aidiagnosis/components/radioquestion").then((function () {return resolve(__webpack_require__(/*! ./components/radioquestion.vue */ 291));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var checkQuestion = function checkQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/checkquestion */ "pages/aidiagnosis/components/checkquestion").then((function () {return resolve(__webpack_require__(/*! ./components/checkquestion.vue */ 179));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var sliderQuestion = function sliderQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/sliderquestion */ "pages/aidiagnosis/components/sliderquestion").then((function () {return resolve(__webpack_require__(/*! ./components/sliderquestion.vue */ 186));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var patientModelView = function patientModelView() {__webpack_require__.e(/*! require.ensure | components/patientchange/index */ "components/patientchange/index").then((function () {return resolve(__webpack_require__(/*! ../../components/patientchange/index.vue */ 193));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var radioQuestion = function radioQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/radioquestion */ "pages/aidiagnosis/components/radioquestion").then((function () {return resolve(__webpack_require__(/*! ./components/radioquestion.vue */ 186));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var checkQuestion = function checkQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/checkquestion */ "pages/aidiagnosis/components/checkquestion").then((function () {return resolve(__webpack_require__(/*! ./components/checkquestion.vue */ 193));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var sliderQuestion = function sliderQuestion() {__webpack_require__.e(/*! require.ensure | pages/aidiagnosis/components/sliderquestion */ "pages/aidiagnosis/components/sliderquestion").then((function () {return resolve(__webpack_require__(/*! ./components/sliderquestion.vue */ 200));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var patientModelView = function patientModelView() {__webpack_require__.e(/*! require.ensure | components/patientchange/index */ "components/patientchange/index").then((function () {return resolve(__webpack_require__(/*! ../../components/patientchange/index.vue */ 207));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -227,8 +227,6 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
     //选择答案 ---- CheckBox
     checkboxSelectedAnswer: function checkboxSelectedAnswer(value) {
 
-
-
       var tempArray = [];
       tempArray = this.list[value.index].answerCheck.answerList;
       if (tempArray == undefined) {
@@ -240,7 +238,10 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
         this.list[value.index].answerCheck.checkValue = true;
         // 
       }
+
       if (value.type == 'remove') {
+
+        console.log('remove');
 
         Array.prototype.indexOf = function (val) {
           for (var i = 0; i < this.length; i++) {
@@ -259,16 +260,17 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
         tempArray.remove(value.answerId);
 
       }
+      var that = this;
       if (tempArray.length == 0) {
-        delete this.list[value.index].answerCheck.answerList;
-        delete this.list[value.index].answerCheck.id;
-        delete this.list[value.index].answerCheck.checkValue;
+        delete that.list[value.index].answerCheck.answerList;
+        delete that.list[value.index].answerCheck.id;
+        delete that.list[value.index].answerCheck.checkValue;
       } else {
-        this.list[value.index].answerCheck.answerList = tempArray;
+        that.list[value.index].answerCheck.answerList = tempArray;
       }
 
 
-      console.log('======', this.list[value.index].answerCheck.answerList);
+
 
     },
     //改变答案， ----- 滑块
@@ -349,7 +351,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
               if (j == 0) {
                 strAnswer = aObj;
               } else {
-                strAnswer = aObj + ',' + strAnswer;
+                strAnswer = aObj + '_' + strAnswer;
               }
 
             }
@@ -384,16 +386,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
         uni.navigateTo({
           url: "/pages/aidiagnosis/selectdoctor" });
 
-
-
       }
-
-
-
-
-
-
-
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

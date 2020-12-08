@@ -63,6 +63,7 @@
 		watch: {
 			activePatient: {
 				handler(n, o) {
+					
 					this.activeP = this.activePatient
 					if (this.activeP == null) {
 						this.submitDisabled = true
@@ -84,6 +85,7 @@
 			//确定
 			submitClicked() {
 				this.$refs.popup.close()
+
 			},
 
 			showPopup() {

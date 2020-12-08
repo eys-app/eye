@@ -130,102 +130,109 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
-{
-  data: function data() {
-    return {
-      idHeight: 0,
-      listData: [{
-        image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-        title: '近视手术后多久可以用眼？',
-        detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-        time: '2020-11-17 09:18' },
-
-      {
-        image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-        title: '高血压患者为什么要定期检查眼底？',
-        detail: '我们都知道高血压对血管的影响最大，眼部亦有血管，而高血压会导致动脉硬化。',
-        time: '2020-11-14 05:43' },
-
-      {
-        image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-        title: '眼科检查这一项“没必要”就错了！',
-        detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-        time: '2020-12-17 09:18' },
-
-      {
-        image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-        title: '眼科检查这一项“没必要”就错了！',
-        detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-        time: '2020-12-17 09:18' },
-
-      {
-        image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-        title: '眼科检查这一项“没必要”就错了！',
-        detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-        time: '2020-12-17 09:18' },
-
-      {
-        image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-        title: '眼科检查这一项“没必要”就错了！',
-        detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-        time: '2020-12-17 09:18' }] };
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
-  },
-  mounted: function mounted() {var _this = this;
-    uni.createSelectorQuery().in(this).select('.ids').boundingClientRect(function (data) {
 
-      _this.idHeight = data.width * 0.67;
-    }).exec();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _index = __webpack_require__(/*! ../../../api/index.js */ 13); //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { idHeight: 0, listData: [{ image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg', title: '近视手术后多久可以用眼？', detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛', time: '2020-11-17 09:18' }, { image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg', title: '高血压患者为什么要定期检查眼底？', detail: '我们都知道高血压对血管的影响最大，眼部亦有血管，而高血压会导致动脉硬化。', time: '2020-11-14 05:43' }, { image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg', title: '眼科检查这一项“没必要”就错了！', detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛', time: '2020-12-17 09:18' }, { image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg', title: '眼科检查这一项“没必要”就错了！', detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛', time: '2020-12-17 09:18' }, { image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg', title: '眼科检查这一项“没必要”就错了！', detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛', time: '2020-12-17 09:18' }, { image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg', title: '眼科检查这一项“没必要”就错了！', detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛', time: '2020-12-17 09:18' }] };}, mounted: function mounted() {var _this = this;
+    setTimeout(function () {
+      uni.createSelectorQuery().in(_this).select('.ids').boundingClientRect(function (data) {
+        _this.idHeight = data.width * 0.67;
+      }).exec();
+    }, 100);
+
+    this.gainDoctorClassList();
 
   },
   methods: {
@@ -237,10 +244,28 @@ var _default =
 
       }
     },
-    articleClicked: function articleClicked() {
+    //医生小讲堂点击事件
+    articleClicked: function articleClicked(item) {
+      console.log('item===' + encodeURIComponent(JSON.stringify(item)));
       uni.navigateTo({
-        url: "/pages/patient/home/articledetail" });
+        url: "/pages/patient/home/articledetail?item=" + encodeURIComponent(JSON.stringify(item)),
+        success: function success() {
+          //uni.$emit('articleData',item)
+        } });
 
+
+    },
+    //获取医生小讲堂列表数据
+    gainDoctorClassList: function gainDoctorClassList() {var _this2 = this;
+      this.listData = [];
+      (0, _index.getForumList_interface)({
+        pageNo: 1,
+        pageSize: 5 }).
+      then(function (res) {
+        if (res.status == 'SUCCESS') {
+          _this2.listData = res.data.list;
+        }
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

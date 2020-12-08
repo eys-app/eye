@@ -129,6 +129,18 @@
 			"style":{
 				"navigationBarTitleText":"详情"
 			}
+		},{
+			"path":"pages/report/patientreport",
+			"style":{
+				"navigationBarTitleText":"诊断报告"
+			}
+		},
+		{
+			"path":"pages/report/reportlist",
+			"style":{
+				"navigationBarTitleText":"诊断报告",
+				"enablePullDownRefresh": true
+			}
 		}
 	],
 	"globalStyle": {

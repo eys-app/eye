@@ -11,6 +11,7 @@ const sendRequest = function(option){
 		uni.showLoading({
 			title:"loading..."
 		})
+		console.log('option====',option)
 		uni.request({
 			url: strUrl + option.url,
 			method: option.method,

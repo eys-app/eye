@@ -18,7 +18,9 @@
     "pages/aidiagnosis/selectdoctor",
     "pages/doctor/patientsListCard",
     "pages/doctor/doctor_mine",
-    "pages/patient/home/articledetail"
+    "pages/patient/home/articledetail",
+    "pages/report/patientreport",
+    "pages/report/reportlist"
   ],
   "subPackages": [],
   "window": {
