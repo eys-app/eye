@@ -18,7 +18,7 @@
 				<label style="font-size: 14px;color: #8d8d8d;padding: 0 10px;font-weight: 800;">{{reportDetail.minScore}} - {{reportDetail.maxScore}} </label>分
 			</view>
 			<view class="socre-text">
-				建议您到医院进行干眼检查，<br> 合理诊疗，避免干眼症状加重！
+				{{reportDetail.proposal}}
 			</view>
 		</view>
 	</view>
@@ -41,34 +41,23 @@
 		data() {
 			return {
 				sexValue: '',
-				reportDetail: {
-					"minScore": "0",
-					"maxScore": "14",
-					"severity": "轻度",
-					"proposal": "建议您到医院进行干眼检查，合理诊疗，避免干眼症加重！",
-					"questionSocre": 8,
-					"createDate": "2020-11-19 17:08:04",
-					"delFlag": "0",
-					"id": "253737708973719552",
-					"sqlMap": {},
-					"isNewRecord": false
-				}
+				reportDetail: {}
 			}
 		},
 		computed: {
 			...mapState(['activePatient'])
 		},
-		mounted() {
-			// const that = this;
-			uni.$on('patientReport', function(e) {
-				this.reportDetail = e;
-			})
+		onUnload() {
+			uni.$off('patientReport')
+		},
+		onLoad:function(option){
+
+			this.reportDetail = JSON.parse(option.option)
 
 			this.sexValue = sexnumberToValue(this.activePatient.sex)
-		},
-		methods: {
-
+			
 		}
+
 	}
 </script>
 

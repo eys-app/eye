@@ -9,7 +9,7 @@
 				</view>
 				<view class="input-view-item" style="width: calc(100% - 110px);float: left;">
 					<image src="../../static/images/code.svg"></image>
-					<input placeholder="请输入验证码" style="width: calc(100% - 30px);" v-model="codeText" type="number"/>
+					<input placeholder="请输入验证码" style="width: calc(100% - 30px);" v-model="codeText" type="number" />
 				</view>
 				<button type="default" class="code-button" @click="codeButtonClicked" :disabled="codeStatus">{{codeTitle}}</button>
 
@@ -17,7 +17,7 @@
 
 				<view class="input-view-item">
 					<image src="../../static/images/pwd.svg"></image>
-					<input placeholder="请输入密码" password v-model="passwordText"/>
+					<input placeholder="请输入密码" password v-model="passwordText" />
 				</view>
 				<view class="input-view-item">
 					<image src="../../static/images/pwd.svg"></image>
@@ -35,19 +35,29 @@
 </template>
 
 <script>
+	import {
+		codeGenerate_interface,
+		logon_interface,
+		login_interface
+	} from '../../api/index.js'
+	import {
+		mapMutations
+	} from 'vuex'
 	export default {
 		data() {
 			return {
-				codeTitle: '获取验证码',//获取验证码button上的文字
-				codeStatus: false,//验证码button是否禁止点击
-				phoneNumber: null,//手机号码
-				codeText: null,//验证码
-				passwordText: null,//密码
-				passwordTextRepeat: null,//验证码重复
+				codeTitle: '获取验证码', //获取验证码button上的文字
+				codeStatus: false, //验证码button是否禁止点击
+				phoneNumber: null, //手机号码
+				codeText: null, //验证码
+				passwordText: null, //密码
+				passwordTextRepeat: null, //验证码重复
 			}
 		},
-		
+
 		methods: {
+			
+			...mapMutations(['loginFunction']),
 
 			/**
 			 * 获取验证码
@@ -69,24 +79,39 @@
 
 					let bolPhone = this.isPhoneNumber(this.phoneNumber);
 					if (bolPhone) {
-						uni.showToast({
-							title: "一条包含验证码的短信已发送到您的手机，请注意查收！",
-							icon: "none"
+
+						codeGenerate_interface({
+							mobileNumber: this.phoneNumber
+						}).then(res => {
+							console.log('获取验证码====', res)
+							if (res == 'SUCCESS') {
+								uni.showToast({
+									title: "一条包含验证码的短信已发送到您的手机，请注意查收！",
+									icon: "none"
+								})
+
+								this.codeStatus = true
+								const that = this
+								let timeNumber = 12
+								let interval = setInterval(() => {
+									if (timeNumber == 0) {
+										clearInterval(interval)
+										that.codeStatus = false;
+										that.codeTitle = "获取验证码"
+									} else {
+										that.codeTitle = timeNumber + "s后获取";
+									}
+									timeNumber--;
+								}, 1000)
+							} else {
+								uni.showToast({
+									title: res.message,
+									icon: "none"
+								})
+							}
 						})
 
-						this.codeStatus = true
-						const that = this
-						let timeNumber = 12
-						let interval = setInterval(() => {
-							if (timeNumber == 0) {
-								clearInterval(interval)
-								that.codeStatus = false;
-								that.codeTitle = "获取验证码"
-							} else {
-								that.codeTitle = timeNumber + "s后获取";
-							}
-							timeNumber--;
-						}, 1000)
+
 					} else {
 						uni.showToast({
 							title: "手机号码输入错误，请检查号码",
@@ -98,76 +123,117 @@
 				}
 
 			},
-			
-			
+
+
 			/**
 			 * 注册按钮点击事件
 			 * 1、判断是否输入手机号码
 			 * 2、判断是否输入验证码
 			 * 3、判断密码是否输入
 			 * 4、判断两次输入的密码是否一样***/
-			
+
 			registerSubmitClicked() {
-				if(!this.checkValue(this.phoneNumber)){
+				if (!this.checkValue(this.phoneNumber)) {
 					uni.showToast({
 						title: "请输入手机号码",
 						icon: "none"
 					})
 					return;
 				}
-				if(!this.checkValue(this.codeText)){
+				if (!this.checkValue(this.codeText)) {
 					uni.showToast({
 						title: "请输入验证码",
 						icon: "none"
 					})
 					return;
 				}
-				if(!this.checkValue(this.passwordText)){
+				if (!this.checkValue(this.passwordText)) {
 					uni.showToast({
 						title: "请输入密码",
 						icon: "none"
 					})
 					return;
 				}
-				if(!this.checkValue(this.passwordTextRepeat)){
+				if (!this.checkValue(this.passwordTextRepeat)) {
 					uni.showToast({
 						title: "请再次输入密码",
 						icon: "none"
 					})
 					return;
 				}
-				
-				
-				if(this.passwordText != this.passwordTextRepeat ){
+
+
+				if (this.passwordText != this.passwordTextRepeat) {
 					uni.showToast({
 						title: "两次输入的密码不一样",
 						icon: "none"
 					})
 					return;
 				}
-				
-				uni.showToast({
-					title: "注册成功",
-					icon: "none"
+
+				logon_interface({
+					loginName: this.phoneNumber,
+					password: this.passwordText,
+					newPassword: this.passwordTextRepeat,
+					code: this.codeText,
+				}).then(res => {
+					if (res.status == "SUCCESS") {
+
+
+
+						uni.showToast({
+							title: "注册成功",
+							icon: "none"
+						})
+						const that = this;
+						setTimeout(() => {
+							that.autoLogin({
+								loginName: res.data.loginName,
+								password: this.passwordText
+							})
+						}, 100)
+
+						
+						
+					} else {
+						uni.showToast({
+							title: res.message,
+							icon: "none"
+						})
+					}
 				})
-				
-				uni.navigateTo({
-					url: "/pages/usernumber/selecttype"
-				})
-				
-				
+
 			},
-			
+
+			autoLogin(params) {
+				login_interface(params).then(res => {
+					if (res.status == 'SUCCESS') {
+						this.loginFunction(res.data);
+						
+						uni.navigateTo({
+							url: "/pages/usernumber/selecttype"
+						})
+						
+						
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.message,
+						})
+					}
+				})
+			},
+
 			//检查输入是否为空
-			checkValue(text){
-				if(text == null || text == undefined || text.length == 0 || text == ''){
+			checkValue(text) {
+				if (text == null || text == undefined || text.length == 0 || text == '') {
 					return false;
-				}else{
+				} else {
 					return true;
 				}
 			},
-			
-			
+
+
 			// 手机号校验
 			isPhoneNumber(phoneNum) {
 				// let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;

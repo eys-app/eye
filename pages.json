@@ -14,6 +14,12 @@
 			}
 		},
 		{
+			"path":"pages/usernumber/repassword",
+			"style":{
+				"navigationBarTitleText":"修改密码"
+			}
+		},
+		{
 			"path":"pages/usernumber/selecttype",
 			"style":{
 				"navigationBarTitleText":"选择身份"
@@ -69,7 +75,7 @@
 		{
 			"path": "pages/patient/tabbar/classdoc",
 			"style": {
-				"navigationBarTitleText": "医生小课堂666"
+				"navigationBarTitleText": "医生小课堂"
 			} 
 		},{
 			"path": "pages/patient/tabbar/mine",
@@ -140,6 +146,20 @@
 			"style":{
 				"navigationBarTitleText":"诊断报告",
 				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path":"pages/report/reportfromlist",
+			"style":{
+				"navigationBarTitleText":"报告详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path":"pages/report/historydetail",
+			"style":{
+				"navigationBarTitleText":"问卷详情",
+				"enablePullDownRefresh": false
 			}
 		}
 	],

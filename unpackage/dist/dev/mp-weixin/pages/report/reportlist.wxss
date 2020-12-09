@@ -30,9 +30,15 @@
   background-color: #F0F0F0;
   overflow-x: hidden;
 }
+.view-page .load-more-text {
+  text-align: center;
+  font-size: 12px;
+  color: gray;
+  line-height: 40px;
+  background-color: #FFFFFF;
+}
 .view-page .report-item {
   width: calc(100% - 20px);
-  height: 100px;
   background-color: #FFFFFF;
   margin-bottom: 1px;
   padding: 10px;
@@ -44,22 +50,35 @@
 .view-page .report-item .pa-relation {
   padding: 2px 10px;
   font-size: 14px;
-  background-color: #ececec;
-  -webkit-border-radius: 20px;
-          border-radius: 20px;
-  margin-left: 20px;
-  color: #55aa7f;
-  border: 1px solid #dddddd;
+  border-left: 1px solid #cdd0d5;
+  color: gray;
+  margin-left: 10px;
+}
+.view-page .report-item .pa-status {
+  float: right;
 }
 .view-page .report-item .result-text {
-  margin: 10px;
+  margin: 10px 0 0 0;
   color: gray;
-  font-size: 14px;
+  font-size: 12px;
 }
 .view-page .report-item .result-text .result-score {
   font-size: 16px;
-  color: #FF3333;
+  color: #ffaa00;
   font-weight: 800;
+  margin-right: 3px;
+}
+.view-page .report-item .result-text .result-text {
+  font-size: 16px;
+  font-weight: 800;
+  margin-left: 10px;
+}
+.view-page .report-item .reslut-time {
+  text-align: right;
+  font-size: 12px;
+  color: gray;
+  float: right;
+  margin-top: 5px;
 }
 .view-page .report-item .detail-doctor {
   margin: 15px;
@@ -77,16 +96,23 @@
   height: 35px;
   font-size: 12px;
   margin-left: 10px;
+  margin-top: -2px;
 }
 .view-page .report-item .detail-doctor .doctor-content .content-top {
   height: 17.5px;
   line-height: 17.5px;
   margin: 0;
+  padding-bottom: 2px;
+}
+.view-page .report-item .detail-doctor .doctor-content .content-top .top-name {
+  padding: 0 5px;
+  border-right: 1px solid #F1F1F1;
 }
 .view-page .report-item .detail-doctor .doctor-content .content-bottom {
   border-top: 1px solid #F0F0F0;
   height: 17.5px;
   line-height: 17.5px;
   margin: 0;
+  padding-top: 2px;
 }
 

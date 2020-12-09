@@ -8,10 +8,10 @@ else{
 
 const sendRequest = function(option){
 	var promise = new Promise(function(resolve, reject){
-		uni.showLoading({
-			title:"loading..."
-		})
-		console.log('option====',option)
+		// uni.showLoading({
+		// 	title:"loading..."
+		// })
+
 		uni.request({
 			url: strUrl + option.url,
 			method: option.method,
@@ -37,6 +37,7 @@ const sendRequest = function(option){
 			complete(res) {
 				
 				uni.hideLoading()
+				uni.stopPullDownRefresh()
 			}
 		})
 	})

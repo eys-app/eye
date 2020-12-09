@@ -15,7 +15,7 @@
 			</view>
 			<view class="content-item">
 				<image src="../../../static/images/check_box.svg"></image>
-				<view class="content-text-view">诊断记录</view>
+				<view class="content-text-view">切换问诊人</view>
 				<view class="right-text">›</view>
 			</view>
 			<view class="content-item">
@@ -52,8 +52,8 @@
 			},
 			enterListContact() {
 				uni.navigateTo({
-					// url:'/pages/patient/patientmanager/listContact'
-					url:'/pages/doctor/patientsListCard'
+					url:'/pages/patient/patientmanager/listContact'
+					// url:'/pages/doctor/patientsListCard'
 				})
 			},
 			logoutClicked() {

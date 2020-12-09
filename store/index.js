@@ -10,15 +10,13 @@ const store = new Vuex.Store({
 	mutations: {
 		//改变问诊人
 		changePatient(state, provider) {
-			console.log('state=', state)
-			console.log('provider', provider)
-
 			state.activePatient = provider
-			
 			uni.setStorage({
 				key: "activePatient",
 				data: provider
 			})
+			uni.$emit('updatePatient')
+			
 			
 		},
 		// ---- 
@@ -28,15 +26,14 @@ const store = new Vuex.Store({
 		 * 2、清除当前问诊人信息
 		 * **/
 		logoutFunction(state) {
-			state.loginData = null
-			//uni.clearStorage('loginData')
+			state.loginData = null;
+			state.activePatient = null;
+			uni.clearStorage()
 		},
 
 		loginFunction(state, provider) {
-			console.log('aaaaaa===', state)
-			console.log('bbbbbb===', provider)
+			console.log('login-data === ',provider)
 			state.loginData = provider;
-
 			uni.setStorage({
 				key: 'loginData',
 				data: provider

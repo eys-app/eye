@@ -37,12 +37,16 @@
 				userList: [], //列表数据
 				loadMoreText: "加载中...",
 				showLoadMore: true,
+				bolBackTo: false,
 			}
+		},
+		onUnload() {
+			uni.$off('updateParientList')
 		},
 		mounted() {
 			this.gainPatientListDataWithPagenumber()
 			const that = this;
-			uni.$on('updateParientList',function(e){
+			uni.$on('updateParientList', function(e) {
 				console.log('refresh')
 				that.DPageNumber = 1;
 				that.userList = [];
@@ -66,6 +70,13 @@
 			this.DPageNumber += 1;
 			this.gainPatientListDataWithPagenumber()
 		},
+		onLoad: function(option) {
+			console.log('option===',option)
+			if (option.type == 'Y') {
+				this.bolBackTo = true;
+			}
+
+		},
 
 		methods: {
 			...mapMutations(['changePatient']),
@@ -78,17 +89,22 @@
 			//编辑问诊人
 			enterUserInfo(user) {
 				console.log(user)
-				uni.$emit('itemPatient', user)
-				uni.navigateTo({
-					url: "/pages/usernumber/apply/applypatient?type=A"
-				})
+				//uni.$emit('itemPatient', user)
+				//type -  A:增加  C:修改  F:第一次进来的时候增加
+				// uni.navigateTo({
+				// 	url: "/pages/usernumber/apply/applypatient?type=C&item=" + encodeURIComponent(JSON.stringify(user))
+				// })
 			},
 			//选中问诊人
 			itemClicked(value) {
-				this.changePatient(value);
-				uni.navigateBack({
-					delta: 1
-				})
+				console.log('back or no ----',this.bolBackTo)
+				if (this.bolBackTo == true) {
+					this.changePatient(value);
+					uni.navigateBack({
+						delta: 1
+					})
+				}
+
 			},
 
 

@@ -1,15 +1,22 @@
 <template>
 	<view>
-		<view @click="showPopup" class="selected-patient">
+		<view @click="changePatient" class="selected-patient">
 			<template v-if="activeP != null">
-				<view class="pa-text-title">当前问诊人:</view>
-				<view class="pa-text-name">{{activeP.name}}</view>
+				<label class="pa-text-title">问诊人:</label>
+				<template v-if="activeP == null">
+					<label class="pa-text-name">暂无</label>
+				</template>
+				<template v-if="activeP != null">
+					<label class="pa-text-name">{{activeP.name}}</label>
+				</template>
 			</template>
 			<template v-else>
 				请选择问诊人
 			</template>
-			<uni-icons class="pa-compose" type="compose" size="20" color="#a5a5a5"></uni-icons>
+			<!-- <uni-icons class="pa-compose" type="compose" size="20" color="#a5a5a5"></uni-icons> -->
 		</view>
+		
+		
 
 		<uni-popup ref="popup" type="center" :maskClick="false">
 			<view class="back-model-view">
@@ -79,11 +86,12 @@
 			//选择问诊人
 			changePatient() {
 				uni.navigateTo({
-					url: '/pages/patient/patientmanager/listContact'
+					url: '/pages/patient/patientmanager/listContact?type=Y'
 				})
 			},
 			//确定
 			submitClicked() {
+				
 				this.$refs.popup.close()
 
 			},
@@ -97,29 +105,34 @@
 
 <style lang="scss">
 	.selected-patient {
-		width: 100%;
-		height: 40px;
-		line-height: 40px;
-		background-color: #FFFFFF;
-		border-bottom: 1px solid #F1F1F1;
-		box-shadow: 5px 5px 10px #acf2d9;
+		// width: 100px;
+		height: 25px;
+		line-height: 25px;
+		background-color: rgba($color: #ffa62a, $alpha: 0.6);
 		color: gray;
-		padding-left: 10px;
 		font-size: 14px;
+		position: fixed;
+		z-index: 99999;
+		top: 100px;
+		right: 0;
+		border-radius: 20px 0 0 20px;
+		box-shadow: 0 0 3px #FFB400;
 
 		.pa-text-title {
-			float: left;
-			font-size: 14px;
+			font-size: 12px;
 			color: gray;
-			margin-left: 10px;
+			margin-left: 12px;
 			width: 90px;
+			color: #FFFFFF;
+			text-align: left;
 		}
 
 		.pa-text-name {
 			color: $backColor;
-			font-size: 18px;
+			font-size: 14px;
 			font-weight: 700;
-			float: left;
+			text-align: center;
+			padding: 0 3px;
 		}
 
 		.pa-compose {

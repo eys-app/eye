@@ -2,6 +2,7 @@
   "pages": [
     "pages/login/login",
     "pages/usernumber/register",
+    "pages/usernumber/repassword",
     "pages/usernumber/selecttype",
     "pages/usernumber/apply/applydoctor",
     "pages/usernumber/apply/applypatient",
@@ -20,7 +21,9 @@
     "pages/doctor/doctor_mine",
     "pages/patient/home/articledetail",
     "pages/report/patientreport",
-    "pages/report/reportlist"
+    "pages/report/reportlist",
+    "pages/report/reportfromlist",
+    "pages/report/historydetail"
   ],
   "subPackages": [],
   "window": {

@@ -18,7 +18,7 @@
 
 				<button type="default" class="login-button" @click="loginClicked">登录</button>
 
-				<view class="resite-password">忘记密码?</view>
+				<view class="resite-password" @click="rePasswordClicked">忘记密码?</view>
 
 				<view class="resite-password register" @click="navigateToRegisterPage">注册账户</view>
 
@@ -85,7 +85,17 @@
 					console.log(res)
 					if (res.status == 'SUCCESS') {
 						this.loginFunction(res.data);
-						this.enterPriPage();
+						// 0 - 患者端，  1 -- 医生端
+						if(res.data.userType == 0){
+							uni.switchTab({
+								url: '/pages/patient/tabbar/home'
+							})
+						}
+						if(res.data.userType == 1){
+							uni.reLaunch({
+								url: '/pages/doctor/patientsListCard'
+							})
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -116,6 +126,11 @@
 			navigateToRegisterPage() {
 				uni.navigateTo({
 					url: "/pages/usernumber/register"
+				})
+			},
+			rePasswordClicked(){
+				uni.navigateTo({
+					url: "/pages/usernumber/repassword"
 				})
 			},
 

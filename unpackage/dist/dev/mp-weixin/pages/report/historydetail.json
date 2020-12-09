@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "问卷详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "radio-question": "/pages/report/components/radioquestion",
+    "check-question": "/pages/report/components/checkquestion",
+    "slider-question": "/pages/report/components/sliderquestion"
+  }
+}

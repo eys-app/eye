@@ -227,7 +227,17 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
         console.log(res);
         if (res.status == 'SUCCESS') {
           _this.loginFunction(res.data);
-          _this.enterPriPage();
+          // 0 - 患者端，  1 -- 医生端
+          if (res.data.userType == 0) {
+            uni.switchTab({
+              url: '/pages/patient/tabbar/home' });
+
+          }
+          if (res.data.userType == 1) {
+            uni.reLaunch({
+              url: '/pages/doctor/patientsListCard' });
+
+          }
         } else {
           uni.showToast({
             icon: 'none',
@@ -258,6 +268,11 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
     navigateToRegisterPage: function navigateToRegisterPage() {
       uni.navigateTo({
         url: "/pages/usernumber/register" });
+
+    },
+    rePasswordClicked: function rePasswordClicked() {
+      uni.navigateTo({
+        url: "/pages/usernumber/repassword" });
 
     },
 
