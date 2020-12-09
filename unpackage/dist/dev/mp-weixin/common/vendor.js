@@ -3519,8 +3519,163 @@ var arrayKeys = Object.getOwnPropertyNames(arrayMethods);
  */
 var shouldObserve = true;
 
+<<<<<<< HEAD
+/***/ }),
+
+/***/ 13:
+/*!*******************************************!*\
+  !*** D:/HBuildXCode/EYE/eye/api/index.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.login_interface = login_interface;exports.addPatient = addPatient;exports.getEyePatientList = getEyePatientList;exports.getTestRequest = getTestRequest;
+var _request = _interopRequireDefault(__webpack_require__(/*! ../commen/request.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var strUrl = "http://192.168.4.25:8090/";
+
+//登录
+function login_interface(param) {
+  return (0, _request.default)({
+    url: strUrl + 'mobile/login',
+    method: 'get',
+    data: param });
+
+}
+
+//增加问诊人
+function addPatient(param) {
+  return (0, _request.default)({
+    url: strUrl + 'mobile/savePatient',
+    method: 'get',
+    data: param });
+
+}
+
+//获取问诊人列表
+function getEyePatientList(param) {
+  return (0, _request.default)({
+    url: strUrl + 'mobile/getEyePatientList',
+    method: 'get',
+    data: param });
+
+
+}
+
+
+function getTestRequest() {
+  return (0, _request.default)({
+    url: "http://39.106.180.14:1111/app/commen_gain_instructions",
+    method: 'get',
+    data: {},
+    header: {} });
+
+}
+
+/***/ }),
+
+/***/ 14:
+/*!************************************************!*\
+  !*** D:/HBuildXCode/EYE/eye/commen/request.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var strUrl = '';
+if (true) {
+  strUrl = "";
+} else
+{}
+
+var sendRequest = function sendRequest(option) {
+  var promise = new Promise(function (resolve, reject) {
+    uni.showLoading({
+      title: "loading..." });
+
+    uni.request({
+      url: strUrl + option.url,
+      method: option.method,
+      data: option.data,
+      header: option.header,
+      success: function success(res) {
+        uni.hideLoading();
+        if (res.statusCode == 200) {
+          resolve(res.data);
+        } else {
+          resolve(res.data);
+        }
+      },
+      fail: function fail(err) {
+        uni.hideLoading();
+        console.log('网络请求失败:', err);
+        reject("网络请求失败:" + err);
+        uni.showToast({
+          title: "网络请求失败",
+          icon: "none" });
+
+      } });
+
+  });
+  return promise;
+};var _default =
+sendRequest;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 2:
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/*!
+ * Vue.js v2.6.11
+ * (c) 2014-2020 Evan You
+ * Released under the MIT License.
+ */
+/*  */
+
+var emptyObject = Object.freeze({});
+
+// These helpers produce better VM code in JS engines due to their
+// explicitness and function inlining.
+function isUndef (v) {
+  return v === undefined || v === null
+}
+
+function isDef (v) {
+  return v !== undefined && v !== null
+}
+
+function isTrue (v) {
+  return v === true
+}
+
+function isFalse (v) {
+  return v === false
+}
+
+/**
+ * Check if value is primitive.
+ */
+function isPrimitive (value) {
+  return (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    // $flow-disable-line
+    typeof value === 'symbol' ||
+    typeof value === 'boolean'
+  )
+=======
 function toggleObserving (value) {
   shouldObserve = value;
+>>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
 }
 
 /**
@@ -11197,6 +11352,14 @@ function registerGetter (store, type, rawGetter, local) {
   };
 }
 
+<<<<<<< HEAD
+/***/ 211:
+/*!************************************************************!*\
+  !*** D:/HBuildXCode/EYE/eye/components/uni-icons/icons.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+=======
 function enableStrictMode (store) {
   store._vm.$watch(function () { return this._data.$$state }, function () {
     if ((true)) {
@@ -11204,6 +11367,7 @@ function enableStrictMode (store) {
     }
   }, { deep: true, sync: true });
 }
+>>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
 
 function getNestedState (state, path) {
   return path.reduce(function (state, key) { return state[key]; }, state)
@@ -11216,6 +11380,31 @@ function unifyObjectStyle (type, payload, options) {
     type = type.type;
   }
 
+<<<<<<< HEAD
+/***/ 247:
+/*!************************************************************!*\
+  !*** D:/HBuildXCode/EYE/eye/components/uni-popup/popup.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 248));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+// 定义 type 类型:弹出类型：top/bottom/center
+var config = {
+  // 顶部弹出
+  top: 'top',
+  // 底部弹出
+  bottom: 'bottom',
+  // 居中弹出
+  center: 'center',
+  // 消息提示
+  message: 'top',
+  // 对话框
+  dialog: 'center',
+  // 分享
+  share: 'bottom' };var _default =
+=======
   if ((true)) {
     assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
   }
@@ -11235,6 +11424,7 @@ function install (_Vue) {
   Vue = _Vue;
   applyMixin(Vue);
 }
+>>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
 
 /**
  * Reduce the code which written in Vue.js for getting the state.
@@ -11291,6 +11481,14 @@ var mapMutations = normalizeNamespace(function (namespace, mutations) {
       var args = [], len = arguments.length;
       while ( len-- ) args[ len ] = arguments[ len ];
 
+<<<<<<< HEAD
+/***/ 248:
+/*!**************************************************************!*\
+  !*** D:/HBuildXCode/EYE/eye/components/uni-popup/message.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+=======
       // Get the commit method from store
       var commit = this.$store.commit;
       if (namespace) {
@@ -11307,6 +11505,7 @@ var mapMutations = normalizeNamespace(function (namespace, mutations) {
   });
   return res
 });
+>>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
 
 /**
  * Reduce the code which written in Vue.js for getting the getters

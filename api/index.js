@@ -144,6 +144,25 @@ export function getAdvertisementList_interface(param){
 
 
 
+//获取问诊人列表
+export function getEyePatientList(param){
+	return Request({
+		url:'mobile/getEyePatientList',
+		method:'get',
+		data:param
+	})
+}
+
+//获取医生角色下的患者列表
+export function getPatientsListByDoc(param){
+	return Request({
+		url:'mobile/getSubmitQuestionList',
+		method:'post',
+		data:param
+	})
+	
+}
+
 
 export function getTestRequest(){
 	 return Request({

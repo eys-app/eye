@@ -27,10 +27,12 @@
 		mapMutations,
 		mapState
 	} from "vuex"
+
 	import {
 		gainPatientList_interface
 	} from '../../../api/index.js'
 	export default {
+
 		data() {
 			return {
 				DPageNumber: 0, //列表分页-当前页码
@@ -127,10 +129,6 @@
 					}
 				})
 			}
-
-
-
-
 		}
 	}
 </script>

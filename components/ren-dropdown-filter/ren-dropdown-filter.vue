@@ -4,6 +4,8 @@
 		<view class="inner-wrapper">
 			<view class="mask" :class="showMask ? 'show' : 'hide'" @tap="tapMask"></view>
 			<view class="navs">
+				
+				
 				<view class="date-wrapper">
 					<picker mode="date" @change="handleDate">
 						<view class="date c-flex-align" :style="{ height: height + 'rpx' }" @click="dateClick">
@@ -20,9 +22,11 @@
 					<image src="https://i.loli.net/2020/07/15/xjVSvzWcH9NO7al.png" mode="" class="icon-triangle" v-else></image>
 				</view>
 				
-				<!-- <view class="mine"> 
-				<image src="../../static/images/mine-ed.png"> </image>
-				</view> -->
+				<!-- <view class="my"> 我是筛选</view> -->
+				
+				<view class="mine" @click="doc_mineClick">
+					<image src="../../static/images/mine-ed.png" ></image>
+				</view>
 			</view>
 			
 			<scroll-view scroll-y="true" class="popup" :class="popupShow ? 'popupShow' : ''">
@@ -139,7 +143,11 @@
 				this.selDate = d;
 				this.$emit('dateChange', d);
 			},
-			discard() {}
+			discard() {},
+			doc_mineClick(){
+				this.$emit('doc_mineClick', '');
+			}
+			
 		}
 	};
 </script>
@@ -148,6 +156,15 @@
 	page {
 		font-size: 28rpx;
 	}
+
+.mine{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100rpx;
+	height: 100rpx;
+	background-color: #FFFFFF;
+}
 
 	.c-flex-align {
 		display: flex;

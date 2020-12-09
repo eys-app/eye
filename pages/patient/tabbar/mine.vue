@@ -52,8 +52,14 @@
 			},
 			enterListContact() {
 				uni.navigateTo({
+<<<<<<< HEAD
 					url:'/pages/patient/patientmanager/listContact'
 					// url:'/pages/doctor/patientsListCard'
+=======
+					// url:'/pages/patient/patientmanager/listContact'
+					url:'/pages/doctor/patientsListCard'
+					// url:'/pages/doctor/test_shaixuan'
+>>>>>>> 41867ffe5b6c2dac541be8d2ed11f73ccef64a11
 				})
 			},
 			logoutClicked() {

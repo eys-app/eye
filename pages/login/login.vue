@@ -56,7 +56,7 @@
 			loginClicked() {
 
 
-				if (!this.checkValue(this.phoneNum)) {
+			 	/* if (!this.checkValue(this.phoneNum)) {
 					uni.showToast({
 						icon: 'none',
 						title: "请输入手机号码"
@@ -82,7 +82,7 @@
 					loginName: this.phoneNum,
 					password: this.password
 				}).then(res => {
-					console.log(res)
+					console.log("登录返回结果=="+res)
 					if (res.status == 'SUCCESS') {
 						this.loginFunction(res.data);
 						// 0 - 患者端，  1 -- 医生端
@@ -102,14 +102,14 @@
 							title: res.message,
 						})
 					}
-				})
+				}) */
 
 
-				/* this.loginFunction({
+				this.loginFunction({
 					username: 'zhangsan'
 				})
 				
-				this.enterPriPage() */
+				this.enterPriPage() 
 			},
 
 			enterDocPage() {
