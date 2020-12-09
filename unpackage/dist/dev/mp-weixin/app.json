@@ -15,6 +15,7 @@
     "pages/patient/patientmanager/listContact",
     "pages/patient/patientmanager/userInfo",
     "pages/patient/patientmanager/addUser",
+    "pages/aidiagnosis/selectdoctor",
     "pages/doctor/patientsListCard",
     "pages/doctor/doctor_mine",
     "pages/patient/home/articledetail"

@@ -1,12 +1,22 @@
 <template>
 	<view class="questionClass" :class="{unSelected: itemCheck.answerCheck.checkValue == null && itemError == true}">
 		<view class="question-title">
-			<view class="red-tag">*</view>{{itemCheck.number}}.{{itemCheck.title}}
+			<view class="red-tag">*</view>{{itemIndex + 1}}. {{itemCheck.subject}}
 		</view>
+		<view class="attention-text">
+			注：请拖动滑块，表示您的程度<br>
+			{{itemCheck.eyeOptionsList[0].score}} 表示 "{{itemCheck.eyeOptionsList[0].option}}";  {{itemCheck.eyeOptionsList[1].score}} 表示 "{{itemCheck.eyeOptionsList[1].option}}"
+		</view>
+		<view class="user-selected"><label class="text">当前选择:  </label> {{sliderValue}}</view>
 		<view class="answer-list">
-			<slider min="0" max="5" step="1" show-value="true"></slider>
+			<view class="min-number">{{itemCheck.eyeOptionsList[0].score}}</view>
+			<slider class="slider-center" @change="changeValue" @changing="sliderValueChanging"
+			min="0" max="5" step="1" block-size="16" ></slider>
+			<view class="max-number">{{itemCheck.eyeOptionsList[1].score}}</view>
 		</view>
+		<view style="clear: both;"></view>
 		<view class="un-active-alert" v-show="itemCheck.answerCheck.checkValue == null && itemError == true">请选择选项</view>
+		<view style="clear: both;"></view>
 	</view>
 </template>
 
@@ -27,6 +37,7 @@
 				radioHeight: [], //答案的radio高度
 				answerList: [],
 				itemError: this.showError, //是否点击了提交
+				sliderValue: 0
 			}
 		},
 		watch: {
@@ -47,14 +58,20 @@
 			}).exec()
 		},
 		methods: {
-			checkBoxSelected(index) {
-				this.itemError = false
-				this.$set(this.itemCheck.answerList[index], 'checkValue', !this.itemCheck.answerList[index].checkValue)
+			//拖拽过程
+			sliderValueChanging(e){
+				this.sliderValue = e.detail.value
+			},
 
-				this.$emit('checkboxSelected', {
+			// 完成一次拖动后触发的事件
+			changeValue(e) {
+				this.sliderValue = e.detail.value
+				this.$emit('sliderChangeValue', {
 					index: this.itemIndex,
-					value: this.itemCheck.answerList
+					answer: e.detail.value,
+					id: this.item.id
 				})
+
 			}
 		}
 	}
@@ -92,6 +109,28 @@
 		font-size: 16px;
 		font-weight: 600;
 	}
+	
+	.attention-text{
+		color: #027e7e;
+		font-size: 12px;
+		margin-left: 20px;
+		margin-top: 10px;
+	}
+	
+	.user-selected{
+		text-align: center;
+		font-size: 18px;
+		font-weight: 800;
+		margin-top: 10px;
+		margin-bottom: -10px;
+		
+		.text{
+			font-size: 14px;
+			color: gray;
+			font-weight: 400;
+			padding-right: 20px;
+		}
+	}
 
 
 	.answer-list {
@@ -99,23 +138,23 @@
 		margin: 15px 15px 15px 10px;
 		border-radius: 3px;
 
-		.aswer-item {
-			border-bottom: 1px solid #d4d4d4;
-
-			.answer-left {
-				float: left;
-				width: 30px;
-				height: 100%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-
-			.aswer-item-text {
-				float: left;
-				width: calc(100% - 40px);
-				padding: 5px 5px;
-			}
+		.min-number{
+			float: left;
+			font-size: 14px;
+			color: gray;
+			width: 10px;
+			margin-top: 8px;
+		}
+		.slider-center{
+			float: left;
+			width: calc(100% - 60px);
+		}
+		.max-number{
+			float: right;
+			font-size: 14px;
+			color: gray;
+			width: 10px;
+			margin-top: 8px;
 		}
 
 	}

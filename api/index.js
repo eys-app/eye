@@ -1,13 +1,12 @@
 
 import Request from '../commen/request.js'
 
-// let strUrl = "http://192.168.4.25:8090/"
-let strUrl = "http://192.168.4.195:8090/"
+let strUrl = ""
 
 //登录
 export function login_interface(param){
 	return Request({
-		url: strUrl + 'mobile/login',
+		url: 'mobile/login',
 		method: 'get',
 		data:param
 	})
@@ -16,16 +15,71 @@ export function login_interface(param){
 //增加问诊人
 export function addPatient(param){
 	return Request({
-		url: strUrl + 'mobile/savePatient',
+		url: 'mobile/savePatient',
+		method: 'get',
+		data: param
+	})
+}
+//获取问诊人列表
+export function gainPatientList_interface(param){
+	return Request({
+		url: 'mobile/getEyePatientList',
 		method: 'get',
 		data: param
 	})
 }
 
+//获取问卷题目
+export function gainDianosisList_interface(param){
+	return Request({
+		url: 'mobile/getNewTestPaper',
+		method: 'get',
+		data: param
+	})
+}
+
+//提交问卷答案
+export function postDianosisList_interface(param){
+	return Request({
+		url: 'mobile/submitQuestionnaire',
+		method: 'post',
+		data: param
+	})
+}
+
+//获取医生列表
+export function gainDoctorList_interface(param){
+	return Request({
+		url: 'mobile/findLessPopularDoctors',
+		method: 'get',
+		data: param
+	})
+}
+
+//获取医生列表
+export function gainDoctorListWithScan_interface(param){
+	return Request({
+		url: 'mobile/getDoctorDetail',
+		method: 'get',
+		data: param
+	})
+}
+
+//提交问卷结果
+export function submitQuestionnaire_interface(param){
+	return Request({
+		url: 'mobile/submitQuestionnaire',
+		method: 'post',
+		data: param
+	})
+}
+
+
+
 //获取问诊人列表
 export function getEyePatientList(param){
 	return Request({
-		url:strUrl+'mobile/getEyePatientList',
+		url:'mobile/getEyePatientList',
 		method:'get',
 		data:param
 	})
@@ -34,8 +88,8 @@ export function getEyePatientList(param){
 //获取医生角色下的患者列表
 export function getPatientsListByDoc(param){
 	return Request({
-		url:strUrl+'mobile/getSubmitQuestionList',
-		method:'get',
+		url:'mobile/getSubmitQuestionList',
+		method:'post',
 		data:param
 	})
 	

@@ -1,21 +1,14 @@
 <!-- 病人库管理页面的病人信息 card -->
 <template>
-	 <view class="root"> 
-		<view class="title_bar"> 
+	<view class="root">
 		
-				<ren-dropdown-filter :filterData='filterData' :defaultIndex='defaultIndex'
-						    @onSelected='onSelected' @dateChange='dateChange' @doc_mineClick='doc_mineClick'></ren-dropdown-filter> 
-			
-						
-					 	<!-- view class="mine">
-							 <image src="../../static/images/mine-ed.png" ></image> 
-						</view> -->
+		<view class="title_bar">
+			<ren-dropdown-filter :filterData='filterData' :defaultIndex='defaultIndex' @onSelected='onSelected' @dateChange='dateChange'
+			 @doc_mineClick='doc_mineClick'></ren-dropdown-filter>
 		</view>
-		
-		<button @click="getPatientsList">测试列表</button>
-			
- 	 	<view class="card-view">
-			<uni-card isShadow="true" v-for="item in patientList" :key="item.userId">
+
+		<view class="card-view">
+			<uni-card isShadow="true" v-for="item in patientList" :key="item.userId" @click="enterGuide(item)">
 				<view class="card">
 					<view class="one">
 						<view class="patientName">
@@ -33,10 +26,10 @@
 							</view>
 						</view>
 					</view>
-			
-					 <!-- <view class="two" v-for="items in perTagList"> -->
-						<view class="two">
-			
+
+					<!-- <view class="two" v-for="items in perTagList"> -->
+				<!-- 	<view class="two">
+
 						<view class="tag">
 							我是标签1
 						</view>
@@ -49,195 +42,212 @@
 						<view class="tag">
 							我是标签4
 						</view>
-						
-					 <!-- 	<view class="tag">
+
+						 	<view class="tag">
 							{{items}}
-						</view> --> 
-					</view>
-			
+						</view> 
+					</view> -->
+
 					<view class="three">
 						上次测评时间：{{item.eyePatient.createDate}}
 					</view>
-			
+
 				</view>
 			</uni-card>
-		</view>	 
-		
-		<view class="noResult" v-show="isShow">没有查询结果</view>
-		
+
+			<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
+		</view>
+
+		<view class="noResult" v-show="showNoResult">没有查询结果</view>
+
 	</view>
 </template>
 
 <script>
-	
 	import RenDropdownFilter from '@/components/ren-dropdown-filter/ren-dropdown-filter.vue'
-	import {getPatientsListByDoc} from '../../api/index.js'
-	
-	
+	import {
+		getPatientsListByDoc
+	} from '../../api/index.js'
+
+
 	export default {
-		components:{RenDropdownFilter},
-		
+		components: {
+			RenDropdownFilter
+		},
+
 		data() {
 			return {
-				patientList:[],
-				/* patientList:[{
-					id:1,
-					name:'小龙女',
-					sex:'女',
-					old:'18',
-					zhidao:true,
-					tagList:['标签1','标签2','标签1','标签2','标签1','标签2'],
-					time:'2020-09-20'
-				
-				},{
-					id:2,
-					name:'杨过',
-					sex:'男',
-					old:'20',
-					zhidao:true,
-					tagList:['标签1','标签2','标签3'],
-					time:'2020-11-26'
-				},{
-					id:3,
-					name:'黄蓉',
-					sex:'女',
-					old:'20',
-					zhidao:true,
-					tagList:['标签1','标签2','标签3'],
-					time:'2020-11-26'
-				},{
-					id:4,
-					name:'郭靖',
-					sex:'男',
-					old:'22',
-					zhidao:true,
-					tagList:['标签1','标签2','标签3'],
-					time:'2020-11-26'
-				},{
-					id:5,
-					name:'李小龙',
-					sex:'男',
-					old:'25',
-					zhidao:true,
-					tagList:['标签1','标签2','标签3'],
-					time:'2020-11-29'
-				},{
-					id:5,
-					name:'孙悟空',
-					sex:'男',
-					old:'28',
-					zhidao:true,
-					tagList:['标签1','标签2','标签3'],
-					time:'2020-11-21'
-				}], */
-				filterData:[
-				    [{ text: '全部症状', value: '' }, { text: '非常严重', value: 1 }, { text: '严重', value: 2 }, { text: '轻微', value: 3 }],
-				    [{ text: '无论指导', value: '' }, { text: '指导', value: 1 }, { text: '未指导', value: 2 }]
+				DPageNumber: 1, //列表分页-当前页码
+				patientList: [], //列表数据
+				filterData: [
+					[{
+						text: '全部症状',
+						value: ''
+					}, {
+						text: '非常严重',
+						value: 1
+					}, {
+						text: '严重',
+						value: 2
+					}, {
+						text: '轻微',
+						value: 3
+					}],
+					[{
+						text: '无论指导',
+						value: ''
+					}, {
+						text: '未指导',
+						value: 0
+					}, {
+						text: '已指导',
+						value: 1
+					}, {
+						text: '用户已阅',
+						value: 2
+					}]
 				],
-				defaultIndex:[0,0],
-				selectTime:"",
-				
-				perTagList:['标签1','标签2','标签1','标签2','标签1','标签2'],
-				isShow:false,
-				doctorId:'1008611'
-				
+				defaultIndex: [0, 0],
+				selectTime: "",
+
+				perTagList: ['标签1', '标签2', '标签1', '标签2', '标签1', '标签2'], //病人的标签
+				showNoResult: false, //显示无结果
+				doctorId: '1008611',
+				showLoadMore: false,
+				loadMoreText: "加载中...",
+				stateTag: '',
+				isLoadMore:true
+
 			}
-			
+
 		},
 		mounted() {
-			// this.getPatientsList()
+			this.getPatientsList()
 		},
 		methods: {
-			
-			    onSelected(res){
-			        console.log(res)
-					console.log(res[0])
-					
-			    },
-			    dateChange(d){
-			       // uni.showToast({
-			       //     icon:'none',
-			       //     title:d
-			       // })
-				  
-				   this.selectTime=d
-				   
-				    console.log('选择日期是=='+this.selectTime)
-			    },
-				doc_mineClick(){
-					console.log('点击了===医生个人中心=')
-					uni.navigateTo({
-						url:'/pages/doctor/doctor_mine'
-					})
-				},
-				getPatientsList(){
-					console.log('选择日期是=++++='+this.selectTime)
-					
-					if(this.selectTime == ""){
-						console.log("选择日期进去了====")
-					}
-					
-					getPatientsListByDoc({
-						doctorId:this.doctorId,
-						stateTag:this.selectTime
-						
-					}).then(res => {
-						console.log(res)
-						if(res.status=='SUCCESS'){
-							console.log("已经进来")
-							this.patientList=res.data.list
-							if(this.patientList ==undefined||this.patientList.length <= 0){
-								console.log("是为空")
-								this.isShow=true
-							}
-							console.log(this.patientList)
-						}
-					})
-				},
-				getPatientSex(param){
-					if(param=='1'){
-						return '男'
-					}else{
-						return '女'
-					}
+
+			//下拉刷新
+			onPullDownRefresh() {
+				this.DPageNumber = 1;
+				this.patientList = [];
+				this.showLoadMore = false;
+				console.log('refresh')
+				this.getPatientsList()
+			},
+
+			//加载更多
+			onReachBottom() {
+				if(this.isLoadMore){
+					console.log('loadMore')
+					this.DPageNumber += 1;
+					this.getPatientsList()
 				}
-				
-				// 	getPatientsListByDoc({
-				// 		// loginName: this.phoneNum,
-				// 		// password: this.password
-				// 		doctorId:'1008611'
-				// 	}).then(res => {
-				// 		console.log("医生返回结果=="+res)
-				// }
+			},
+
+			//选择症状、是否知道
+			onSelected(res) {
+				console.log(res)
+				console.log(res[0])
+
+			},
+
+			//选择测试日期
+			dateChange(d) {
+				this.selectTime = d
+				console.log('选择日期是==' + this.selectTime)
+			},
+
+			//点击医生的个人中心
+			doc_mineClick() {
+				uni.navigateTo({
+					url: '/pages/doctor/doctor_mine'
+				})
+			},
+
+			// 获取医生端的问诊人列表
+			getPatientsList() {
+				console.log('頁碼===='+this.DPageNumber)
+				getPatientsListByDoc({
+					doctorId: this.doctorId,
+					// testStartTime:this.selectTime,
+					stateTag: this.stateTag,
+					pageNo: this.DPageNumber,
+					pageSize: '15'
+
+				}).then(res => {
+					console.log(res)
+					if (res.status == 'SUCCESS') {
+						uni.stopPullDownRefresh()
+						let tempArray = this.patientList.concat(res.data.list)
+						this.patientList = tempArray
+
+						if (this.patientList == undefined || this.patientList.length <= 0) {
+							this.showNoResult = true
+						}
+
+						if (res.data.list.length < 15) {
+							this.loadMoreText = "没有更多了"
+							this.isLoadMore=false
+							this.showLoadMore=true
+						}
+						console.log(this.patientList)
+					}
+				})
+			},
+			
+			//点击病人item 进入医生诊断指导页面
+			enterGuide(param){
+				console.log('进入点击' +param)
+				uni.navigateTo({
+					url:'/pages/doctor/guidePatients'
+				})
+			},
+
+
+
+			getPatientSex(param) {
+				if (param == '1') {
+					return '男'
+				} else {
+					return '女'
+				}
+			}
+
+			// 	getPatientsListByDoc({
+			// 		// loginName: this.phoneNum,
+			// 		// password: this.password
+			// 		doctorId:'1008611'
+			// 	}).then(res => {
+			// 		console.log("医生返回结果=="+res)
+			// }
 		}
-		
+
 	}
-	
 </script>
 
 <style lang="scss">
-	
-	.card-view{
+	.card-view {
 		// margin-top: 300rpx;
 	}
-	
-	.title_bar{
+
+	.title_bar {
 		display: flex;
 	}
 
-.mine{
-	width: 100rpx;
-	height: 100rpx;
-	margin-right: 20rpx;
-	// display: flex;
-	background-color: #67C23A;
-	justify-content: center;
-	align-items: center;
-	image{
-		width: 80rpx;
-		height: 80rpx;
+	.mine {
+		width: 100rpx;
+		height: 100rpx;
+		margin-right: 20rpx;
+		// display: flex;
+		background-color: #67C23A;
+		justify-content: center;
+		align-items: center;
+
+		image {
+			width: 80rpx;
+			height: 80rpx;
+		}
 	}
-}
 
 	.card {
 		padding-top: 20rpx;
@@ -246,12 +256,13 @@
 
 	.one {
 		display: flex;
-	}	
+	}
 
 	.two {
 		margin-top: 15rpx;
 		display: flex;
 		flex-flow: wrap;
+
 		// flex-direction: row;
 		.tag {
 			// display: flex;
@@ -266,8 +277,8 @@
 			padding-right: 25rpx;
 		}
 	}
-	
-	.three{
+
+	.three {
 		display: flex;
 		justify-content: flex-end;
 		font-size: 30rpx;
@@ -297,13 +308,23 @@
 		font-size: 30rpx;
 		color: #6E6E6E;
 	}
-	
-	.noResult{
+
+	.noResult {
 		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		color:  #8b9aae;
+		color: #8b9aae;
 		margin-top: 30rpx;
+	}
+
+	/* loadmore */
+	.uni-loadmore {
+		height: 80rpx;
+		line-height: 80rpx;
+		text-align: center;
+		padding-bottom: 30rpx;
+		font-size: 12px;
+		color: gray;
 	}
 </style>

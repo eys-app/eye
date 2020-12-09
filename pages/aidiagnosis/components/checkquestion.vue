@@ -1,25 +1,26 @@
 <template>
-	<view class="questionClass" :class="{unSelected: itemCheck.answerCheck.checkValue == null && itemError == true}">
+	<view class="questionClass" :class="{unSelected: checkValueError == true && itemError == true}">
 		<view class="question-title">
-			<view class="red-tag">*</view>{{itemCheck.number}}.{{itemCheck.title}}
+			<view class="red-tag">*</view>
+			<view class="question-type">[多选]</view>{{itemIndex + 1}}. {{itemCheck.subject}}
 		</view>
 		<view class="answer-list">
-			<template v-for="(citem, index) in itemCheck.answerList">
-				<view @click="checkBoxSelected(index,itemCheck.number)" class="aswer-item" :style="{height: radioHeight[index]}">
+			<template v-for="(citem, index) in itemCheck.eyeOptionsList">
+				<view @click="checkBoxSelected(index,citem)" class="aswer-item" :style="{height: radioHeight[index]}">
 					<view class="answer-left " :style="{height: radioHeight[index]}">
 						<custom-check-box :value="citem.checkValue"></custom-check-box>
 					</view>
 
-					<view class="aswer-item-text" ref="answerText">{{citem.value}}</view>
+					<view class="aswer-item-text" ref="answerText">{{citem.option}}</view>
 				</view>
 
 				<view style="clear: both;"></view>
 			</template>
 		</view>
-		<view class="un-active-alert" v-show="itemCheck.answerCheck.checkValue == null && itemError == true">请选择选项</view>
-		
-		
-		
+		<view class="un-active-alert" v-show="checkValueError == true && itemError == true ">请选择选项</view>
+
+
+
 	</view>
 </template>
 
@@ -39,17 +40,38 @@
 				itemCheck: this.item,
 				radioHeight: [], //答案的radio高度
 				answerList: [],
+				checkValueError: false,
 				itemError: this.showError, //是否点击了提交
 			}
 		},
 		watch: {
 			showError: {
 				handler(n) {
+					console.log('8888888===', this.itemCheck.answerCheck.checkValue)
+
+					if (this.itemCheck.answerCheck.checkValue != null) {
+						this.checkValueError = false
+					}
 					this.itemError = n
-				}
+				},
+				deep: true
+			},
+			item: {
+				handler(n) {
+					if (n.answerCheck.checkValue == null || n.answerCheck.checkValue == undefined) {
+						this.checkValueError = true
+						this.itemError = true
+					}
+					this.itemCheck = n;
+				},
+				deep: true
 			},
 		},
 		mounted() {
+
+			if (this.itemCheck.answerCheck.checkValue == null || this.itemCheck.answerCheck.checkValue == undefined) {
+				this.checkValueError = true
+			}
 
 			uni.createSelectorQuery().in(this).selectAll('.aswer-item-text').boundingClientRect(data => {
 				for (var i = 0; i < data.length; i++) {
@@ -60,14 +82,32 @@
 			}).exec()
 		},
 		methods: {
-			checkBoxSelected(index) {
-				this.itemError = false
-				this.$set(this.itemCheck.answerList[index], 'checkValue', !this.itemCheck.answerList[index].checkValue)
+			checkBoxSelected(index, answer) {
 
-				this.$emit('checkboxSelected', {
-					index: this.itemIndex,
-					value: this.itemCheck.answerList
-				})
+
+				this.itemError = false
+				this.$set(this.itemCheck.eyeOptionsList[index], 'checkValue', !this.itemCheck.eyeOptionsList[index].checkValue)
+
+				if (this.itemCheck.eyeOptionsList[index].checkValue == true) {
+					this.$emit('checkboxSelected', {
+						index: this.itemIndex,
+						questionId: answer.questionId,
+						answerId: answer.id,
+						type: 'add'
+					})
+				} else {
+					this.$emit('checkboxSelected', {
+						index: this.itemIndex,
+						questionId: answer.questionId,
+						answerId: answer.id,
+						type: 'remove'
+					})
+				}
+
+
+
+
+
 			}
 		}
 	}
@@ -100,6 +140,13 @@
 			color: red;
 			margin-top: 3px;
 			float: left;
+		}
+
+		.question-type {
+			font-weight: 400;
+			color: #027e7e;
+			float: left;
+			padding: 0 5px;
 		}
 
 		font-size: 16px;

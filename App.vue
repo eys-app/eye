@@ -1,4 +1,5 @@
 <script>
+	import {mapMutations} from 'vuex'
 	export default {
 
 		onLaunch: function() {
@@ -13,20 +14,22 @@
 					});
 				} else {
 					if (loginData.userType == null || loginData.userType == '' || loginData.userType == undefined) {
+						uni.switchTab({
+							url: "/pages/patient/tabbar/home"
+						});
+					} else {
+						
 						if(loginData.userType == '0'){//患者
+						
 							uni.switchTab({
 								url: "/pages/patient/tabbar/home"
 							});
 						}
 						if(loginData.userType == '1'){//医生
 							uni.redirectTo({
-								url: "/pages/patient/tabbar/home"
+								url: "/pages/doctor/patientsListCard"
 							});
 						}
-					} else {
-						uni.switchTab({
-							url: "/pages/patient/tabbar/home"
-						});
 					}
 
 				}
@@ -42,13 +45,24 @@
 		},
 		onShow: function() {
 			console.log('App Show');
+			
 		},
 		onHide: function() {
 			console.log('App Hide');
 		},
 		mounted() {
-			console.log('aaa');
+			console.log('mounted');
+			
+			try {
+				let loginData = uni.getStorageSync('loginData');
+				this.loginFunction(loginData)			
+			} catch (e) {
+			
+			}
 		},
+		methods:{
+			...mapMutations(['loginFunction'])
+		}
 
 	};
 </script>

@@ -1,16 +1,17 @@
 <template>
 	<view class="questionClass " :class="{unSelected: itemCheck.answerCheck.checkValue == null && itemError == true}">
 		<view class="question-title">
-			<view class="red-tag">*</view>{{item.number}}.{{item.title}}
+			<view class="red-tag">*</view>
+			<view class="question-type">[单选]</view>{{itemIndex + 1}}. {{item.subject}}
 		</view>
 		<view class="answer-list">
-			<template v-for="(aitem, index) in item.answerList">
-				<view @click="selectedRadio(index,item.number)" class="aswer-item" :style="{height: radioHeight[index]}">
+			<template v-for="(aitem, index) in item.eyeOptionsList">
+				<view @click="selectedRadio(index,aitem)" class="aswer-item" :style="{height: radioHeight[index]}">
 					<view class="answer-left " :style="{height: radioHeight[index]}">
 						<view class="radio-left" :class="{'radio-left-active': index == current}"></view>
 					</view>
 
-					<view class="aswer-item-text" ref="answerText">{{aitem.value}}</view>
+					<view class="aswer-item-text" ref="answerText">{{aitem.option}}</view>
 				</view>
 
 				<view style="clear: both;"></view>
@@ -63,16 +64,18 @@
 		},
 		mounted() {
 
-			/**
-			 * 设置每个radio的高度，让radio水平-垂直居中
-			 */
-			uni.createSelectorQuery().in(this).selectAll('.aswer-item-text').boundingClientRect(data => {
-				for (var i = 0; i < data.length; i++) {
-					this.radioHeight.push(
-						data[i].height + 'px'
-					)
-				}
-			}).exec()
+			setTimeout(()=>{
+				/**
+				 * 设置每个radio的高度，让radio水平-垂直居中
+				 */
+				uni.createSelectorQuery().in(this).selectAll('.aswer-item-text').boundingClientRect(data => {
+					for (var i = 0; i < data.length; i++) {
+						this.radioHeight.push(
+							data[i].height + 'px'
+						)
+					}
+				}).exec()
+			},100)
 
 		}
 	}
@@ -106,6 +109,12 @@
 			color: red;
 			margin-top: 3px;
 			float: left;
+		}
+		.question-type {
+			font-weight: 400;
+			color: #027e7e;
+			float: left;
+			padding: 0 5px;
 		}
 
 		font-size: 16px;
