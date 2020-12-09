@@ -100,10 +100,14 @@ __webpack_require__.r(__webpack_exports__);
 var components = {
   uniSteps: function() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 157))
 =======
     return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 165))
 >>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
+=======
+    return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 179))
+>>>>>>> 0caf78a2b406a2d54f305180ebcc52a5ad85065e
   }
 }
 var render = function() {

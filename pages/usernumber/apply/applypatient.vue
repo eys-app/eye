@@ -116,7 +116,6 @@
 			 * **/
 			submitClicked(){
 				
-				
 				if(!this.checkInputValue(this.name)){
 					uni.showToast({
 						title: "姓名不得为空",
@@ -176,9 +175,8 @@
 				}).then(res => {
 					console.log(res)
 					if(res.status == 'SUCCESS'){
-						uni.navigateBack({
-							
-						})
+						uni.$emit('updateParientList')
+						uni.navigateBack({})
 					}else{
 						uni.showToast({
 							icon: 'none',

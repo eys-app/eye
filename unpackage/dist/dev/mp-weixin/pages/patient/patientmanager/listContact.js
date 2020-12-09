@@ -150,10 +150,14 @@ __webpack_require__.r(__webpack_exports__);
 var components = {
   uniIcons: function() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 206))
 =======
     return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 214))
 >>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
+=======
+    return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 228))
+>>>>>>> 0caf78a2b406a2d54f305180ebcc52a5ad85065e
   }
 }
 var render = function() {
@@ -382,6 +386,14 @@ var _index = __webpack_require__(/*! ../../../api/index.js */ 13);function ownKe
   },
   mounted: function mounted() {
     this.gainPatientListDataWithPagenumber();
+    var that = this;
+    uni.$on('updateParientList', function (e) {
+      console.log('refresh');
+      that.DPageNumber = 1;
+      that.userList = [];
+      that.showLoadMore = false;
+      that.gainPatientListDataWithPagenumber();
+    });
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['loginData'])),
@@ -406,7 +418,7 @@ var _index = __webpack_require__(/*! ../../../api/index.js */ 13);function ownKe
 >>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
     addUser: function addUser() {
       uni.navigateTo({
-        url: "/pages/patient/patientmanager/addUser" });
+        url: "/pages/usernumber/apply/applypatient?type=A" });
 
     },
 <<<<<<< HEAD

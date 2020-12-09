@@ -44,11 +44,10 @@
 				itemError: this.showError, //是否点击了提交
 			}
 		},
+
 		watch: {
 			showError: {
 				handler(n) {
-					console.log('8888888===', this.itemCheck.answerCheck.checkValue)
-
 					if (this.itemCheck.answerCheck.checkValue != null) {
 						this.checkValueError = false
 					}
@@ -57,14 +56,24 @@
 				deep: true
 			},
 			item: {
-				handler(n) {
+				handler(n, old) {
+					// #ifdef APP-PLUS || H5
 					if (n.answerCheck.checkValue == null || n.answerCheck.checkValue == undefined) {
 						this.checkValueError = true
 						this.itemError = true
 					}
 					this.itemCheck = n;
+					// #endif
+					
+					// #ifdef MP-WEIXIN
+					this.itemError = false
+					// #endif
+					
+					
+
 				},
-				deep: true
+				deep: true,
+				// immediate: true
 			},
 		},
 		mounted() {
@@ -73,13 +82,18 @@
 				this.checkValueError = true
 			}
 
-			uni.createSelectorQuery().in(this).selectAll('.aswer-item-text').boundingClientRect(data => {
-				for (var i = 0; i < data.length; i++) {
-					this.radioHeight.push(
-						data[i].height + 'px'
-					)
-				}
-			}).exec()
+			const _this = this;
+			setTimeout(() => {
+				uni.createSelectorQuery().in(_this).selectAll('.aswer-item-text').boundingClientRect(data => {
+					for (var i = 0; i < data.length; i++) {
+						_this.radioHeight.push(
+							data[i].height + 'px'
+						)
+					}
+				}).exec()
+			}, 100)
+
+
 		},
 		methods: {
 			checkBoxSelected(index, answer) {
@@ -103,10 +117,6 @@
 						type: 'remove'
 					})
 				}
-
-
-
-
 
 			}
 		}

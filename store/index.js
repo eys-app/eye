@@ -14,6 +14,12 @@ const store = new Vuex.Store({
 			console.log('provider', provider)
 
 			state.activePatient = provider
+			
+			uni.setStorage({
+				key: "activePatient",
+				data: provider
+			})
+			
 		},
 		// ---- 
 		/**

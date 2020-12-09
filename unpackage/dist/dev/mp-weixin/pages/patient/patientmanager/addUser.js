@@ -207,10 +207,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var userSty = function userSty() {__webpack_require__.e(/*! require.ensure | pages/patient/patientmanager/components/userSty */ "pages/patient/patientmanager/components/userSty").then((function () {return resolve(__webpack_require__(/*! ./components/userSty.vue */ 214));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 =======
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var userSty = function userSty() {__webpack_require__.e(/*! require.ensure | pages/patient/patientmanager/components/userSty */ "pages/patient/patientmanager/components/userSty").then((function () {return resolve(__webpack_require__(/*! ./components/userSty.vue */ 222));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 >>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
+=======
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var userSty = function userSty() {__webpack_require__.e(/*! require.ensure | pages/patient/patientmanager/components/userSty */ "pages/patient/patientmanager/components/userSty").then((function () {return resolve(__webpack_require__(/*! ./components/userSty.vue */ 236));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+>>>>>>> 0caf78a2b406a2d54f305180ebcc52a5ad85065e
 
 
 

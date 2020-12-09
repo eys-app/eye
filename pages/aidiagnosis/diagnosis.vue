@@ -5,7 +5,7 @@
 		<view class="ai-diagnosis-class">
 			<template v-for="(item, index) in list">
 				<template v-if="item.type == '1'">
-					<radio-question :item="item" :itemIndex="index" @answerSelected="radioAnswerChange" ref="radioItem" :showError="submit"></radio-question>
+					<radio-question :item="item" :itemIndex="index" @answerSelected="radioAnswerChange" :showError="submit"></radio-question>
 				</template>
 				<template v-if="item.type == '2' ">
 					<check-question :item="item" :showError="submit" :itemIndex="index" @checkboxSelected="checkboxSelectedAnswer"></check-question>
@@ -95,8 +95,6 @@
 			//选择答案 ---- CheckBox
 			checkboxSelectedAnswer(value) {
 
-
-
 				let tempArray = []
 				tempArray = this.list[value.index].answerCheck.answerList
 				if (tempArray == undefined) {
@@ -108,7 +106,10 @@
 					this.list[value.index].answerCheck.checkValue = true
 					// 
 				}
+
 				if (value.type == 'remove') {
+
+					console.log('remove')
 
 					Array.prototype.indexOf = function(val) {
 						for (var i = 0; i < this.length; i++) {
@@ -127,16 +128,17 @@
 					tempArray.remove(value.answerId)
 
 				}
+				const that = this;
 				if (tempArray.length == 0) {
-					delete this.list[value.index].answerCheck.answerList;
-					delete this.list[value.index].answerCheck.id
-					delete this.list[value.index].answerCheck.checkValue
+					delete that.list[value.index].answerCheck.answerList;
+					delete that.list[value.index].answerCheck.id
+					delete that.list[value.index].answerCheck.checkValue
 				} else {
-					this.list[value.index].answerCheck.answerList = tempArray
+					that.list[value.index].answerCheck.answerList = tempArray
 				}
 
 
-				console.log('======', this.list[value.index].answerCheck.answerList)
+
 
 			},
 			//改变答案， ----- 滑块
@@ -214,12 +216,12 @@
 							let strAnswer = "";
 							for (var j = 0; j < tempObj.answerCheck.answerList.length; j++) {
 								let aObj = tempObj.answerCheck.answerList[j];
-								if(j == 0){
+								if (j == 0) {
 									strAnswer = aObj
-								}else{
-									strAnswer = aObj + ',' + strAnswer;
+								} else {
+									strAnswer = aObj + '_' + strAnswer;
 								}
-								
+
 							}
 							answerTotal.push({
 								id: tempObj.answerCheck.id,
@@ -228,7 +230,7 @@
 
 						}
 					}
-					
+
 					if (this.activePatient == null) {
 						uni.showToast({
 							title: "请选择问诊人",
@@ -236,32 +238,23 @@
 						})
 						return;
 					}
-					
-					
+
+
 					let postParam = {
 						userId: this.loginData.id,
 						patientId: this.activePatient.id,
 						testPaperId: this.list[0].testPaperId,
 						eyeQuestionsList: answerTotal
 					}
-					
-					console.log('post-param ==',postParam)
-					
-					uni.$emit('postWJParam',postParam)
-					
+
+					console.log('post-param ==', postParam)
+
+					uni.$emit('postWJParam', postParam)
+
 					uni.navigateTo({
 						url: "/pages/aidiagnosis/selectdoctor"
 					})
-					
-
 				}
-
-
-				
-
-
-
-
 			}
 
 		}

@@ -69,7 +69,26 @@ export function gainDoctorListWithScan_interface(param){
 export function submitQuestionnaire_interface(param){
 	return Request({
 		url: 'mobile/submitQuestionnaire',
-		method: 'post',
+		method: 'POST',
+		data: param,
+		header: {'content-type': 'application/json'}
+	})
+}
+
+//获取医生小讲堂列表
+export function getForumList_interface(param){
+	return Request({
+		url: 'mobile/getForumList',
+		method: 'GET',
+		data: param
+	})
+}
+
+//患获取问卷提交记录
+export function getSubmitQuestionList_interface(param){
+	return Request({
+		url: 'mobile/getSubmitQuestionList',
+		method: 'GET',
 		data: param
 	})
 }

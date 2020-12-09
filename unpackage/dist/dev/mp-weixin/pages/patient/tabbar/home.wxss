@@ -95,13 +95,13 @@
   color: gray;
 }
 .home-view-back .home-view .class-list .class-list-content {
-  height: 95px;
+  height: 75px;
   margin-top: 10px;
   border-bottom: 1px solid #F1F1F1;
 }
 .home-view-back .home-view .class-list .class-list-content image {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   margin-top: 5px;
   -webkit-border-radius: 5px;
           border-radius: 5px;
@@ -116,10 +116,12 @@
   font-size: 14px;
   font-weight: 600;
   padding-top: 5px;
-  height: 20px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  height: 40px;
   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .home-view-back .home-view .class-list .class-list-content .right-content .sub-title {
   color: gray;
@@ -137,6 +139,5 @@
   color: #b4b4b4;
   height: 18px;
   line-height: 18px;
-  margin-top: 7px;
 }
 

@@ -20,10 +20,10 @@
 				<text class="info-text">{{options.comment_count}}条评论</text>
 				<text class="info-text">{{options.datetime}}</text>
 			</view>
-			<view class="max-close-view" @click.stop="close">
+			<!-- <view class="max-close-view" @click.stop="close">
 				<view class="close-l close-h"></view>
 				<view class="close-l close-v"></view>
-			</view>
+			</view> -->
 		</view>
 		<view class="media-item-line" style="position: absolute;"></view>
 	</view>

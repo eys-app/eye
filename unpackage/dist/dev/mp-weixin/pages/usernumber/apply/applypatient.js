@@ -318,11 +318,14 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
         * **/
     submitClicked: function submitClicked() {
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 
 =======
 >>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
+=======
+>>>>>>> 0caf78a2b406a2d54f305180ebcc52a5ad85065e
       if (!this.checkInputValue(this.name)) {
         uni.showToast({
           title: "姓名不得为空",
@@ -389,9 +392,8 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
       then(function (res) {
         console.log(res);
         if (res.status == 'SUCCESS') {
+          uni.$emit('updateParientList');
           uni.navigateBack({});
-
-
         } else {
           uni.showToast({
             icon: 'none',
