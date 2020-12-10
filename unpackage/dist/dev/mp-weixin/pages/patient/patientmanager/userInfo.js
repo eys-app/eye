@@ -198,6 +198,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
   },
+  onUnload: function onUnload() {
+    uni.$off('itemPatient');
+  },
   mounted: function mounted() {
     uni.$on('itemPatient', function (data) {
       console.log('data==', data);

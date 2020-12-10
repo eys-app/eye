@@ -249,11 +249,17 @@
 
 					console.log('post-param ==', postParam)
 
-					uni.$emit('postWJParam', postParam)
-
-					uni.navigateTo({
-						url: "/pages/aidiagnosis/selectdoctor"
+					uni.setStorage({
+						key: 'params',
+						data: postParam,
+						success() {
+							uni.navigateTo({
+								url: "/pages/aidiagnosis/selectdoctor?"
+							})
+						}
 					})
+
+
 				}
 			}
 

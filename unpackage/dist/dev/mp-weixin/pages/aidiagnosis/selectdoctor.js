@@ -213,7 +213,10 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13); //
 //
 //
 var _default = { data: function data() {return { doctorList: [], //医生列表
-      pageNo: 1, currenindex: null, showNull: true, postParams: null };}, onLoad: function onLoad() {uni.$on('postWJParam', this.gainParams);}, onPullDownRefresh: function onPullDownRefresh() {this.pageNo = 1;this.doctorList = [];this.gainList();}, beforeMount: function beforeMount() {this.gainList();}, methods: { gainParams: function gainParams(e) {console.log(e);this.postParams = e;uni.setStorage({ key: "params", data: e });},
+      pageNo: 1, currenindex: null, showNull: true, postParams: null };}, onUnload: function onUnload() {uni.$off('postWJParam');}, onLoad: function onLoad() {uni.$on('postWJParam', this.gainParams);}, onPullDownRefresh: function onPullDownRefresh() {this.pageNo = 1;this.doctorList = [];this.gainList();}, beforeMount: function beforeMount() {this.gainList();}, methods: { gainParams: function gainParams(e) {console.log(e);this.postParams = e;uni.setStorage({ key: "params",
+        data: e });
+
+    },
     //获取医生列表
     gainList: function gainList() {var _this = this;
       (0, _index.gainDoctorList_interface)({
@@ -274,16 +277,6 @@ var _default = { data: function data() {return { doctorList: [], //医生列表
 
     //提交
     submitclicked: function submitclicked() {
-      var param = null;
-
-      uni.getStorage({
-        key: "params",
-        success: function success(res) {
-          param = res.data;
-        } });
-
-
-
 
       if (this.currenindex == null) {
         uni.showToast({
@@ -294,24 +287,30 @@ var _default = { data: function data() {return { doctorList: [], //医生列表
       }
 
       var that = this;
-      setTimeout(function () {
-        param['doctorId'] = that.doctorList[that.currenindex].id;
+      var param = null;
 
-        (0, _index.submitQuestionnaire_interface)(param).then(function (res) {
-          console.log('res ==', res);
-          if (res.status == 'SUCCESS') {
-            uni.$emit('patientReport', res.data.eyeDiagnosisConfig);
-            uni.navigateTo({
-              url: "/pages/report/patientreport" });
+      uni.getStorage({
+        key: "params",
+        success: function success(res) {
+          param = res.data;
+          param['doctorId'] = that.doctorList[that.currenindex].id;
 
-          } else {
-            uni.showToast({
-              title: "问卷提交失败，请重新提交！",
-              icon: "none" });
+          (0, _index.submitQuestionnaire_interface)(param).then(function (res) {
+            console.log('res ==', res);
+            if (res.status == 'SUCCESS') {
+              //uni.$emit('patientReport',res.data.eyeDiagnosisConfig)
+              uni.navigateTo({
+                url: "/pages/report/patientreport?option=" + encodeURIComponent(JSON.stringify(res.data.eyeDiagnosisConfig)) });
 
-          }
-        });
-      }, 100);
+            } else {
+              uni.showToast({
+                title: "问卷提交失败，请重新提交！",
+                icon: "none" });
+
+            }
+          });
+        } });
+
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

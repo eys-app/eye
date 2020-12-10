@@ -164,13 +164,40 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _index = __webpack_require__(/*! ../../api/index.js */ 13);
 
 
-var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var patientModelView = function patientModelView() {__webpack_require__.e(/*! require.ensure | components/patientchange/index */ "components/patientchange/index").then((function () {return resolve(__webpack_require__(/*! ../../components/patientchange/index.vue */ 221));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
 
 
 {
+  components: {
+    patientModelView: patientModelView },
+
   onBackPress: function onBackPress() {
     uni.switchTab({
       url: "/pages/patient/tabbar/home" });
@@ -180,13 +207,25 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
   data: function data() {
     return {
       pageNo: 1,
-      reportList: [] //数据
-    };
+      reportList: [], //数据
+      loadMoreText: '正在加载数据...',
+      bolLoadMore: true,
+      showMore: false };
+
   },
+
   mounted: function mounted() {
     this.pageNo = 1;
     this.reportList = [];
-    this.getListData();
+    this.getListData('refresh');
+
+    var that = this;
+    uni.$on('updatePatient', function () {
+      console.log('改变问诊人');
+      that.pageNo = 1;
+      that.reportList = [];
+      that.getListData('refresh');
+    });
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(["loginData", "activePatient"])),
@@ -195,24 +234,57 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
     console.log('refresh');
     this.pageNo = 1;
     this.reportList = [];
-    this.getListData();
+    this.bolLoadMore = true;
+    this.getListData('refresh');
+  },
+  onReachBottom: function onReachBottom() {
+    if (this.bolLoadMore) {
+      this.pageNo += 1;
+      this.getListData('more');
+    }
   },
   methods: {
-    getListData: function getListData() {var _this = this;
+    //获取报告列表数据
+    getListData: function getListData(type) {var _this = this;
       (0, _index.getSubmitQuestionList_interface)({
         userId: this.loginData.id,
         patientId: this.activePatient.id,
-        pageNo: '1',
-        pageSize: '15' }).
+        pageNo: this.pageNo,
+        pageSize: '10' }).
       then(function (res) {
         uni.stopPullDownRefresh();
         if (res.status == "SUCCESS") {
-          _this.reportList = res.data.list;
-        } else {
+          if (type == 'refresh') {
+            _this.reportList = res.data.list;
+          }
+          if (type == 'more') {
+            _this.reportList = _this.reportList.concat(res.data.list);
+          }
+          if (_this.reportList.length == 0) {
+            _this.loadMoreText = '暂无数据';
+            _this.showMore = true;
+          } else {
+            _this.showMore = true;
+            if (res.data.count > _this.reportList.length) {
+              _this.bolLoadMore = true;
+              _this.loadMoreText = '正在加载更多...';
+            }
+            if (res.data.count == _this.reportList.length) {
+              _this.bolLoadMore = false;
+              _this.loadMoreText = '没有更多了';
+            }
+          }
 
         }
-        console.log();
       });
+    },
+
+    //进入报告详情页面
+    nativagtoReportDetail: function nativagtoReportDetail(item) {
+      uni.navigateTo({
+        url: "/pages/report/reportfromlist?testPaperId=" + item.id });
+
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

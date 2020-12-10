@@ -36,6 +36,7 @@
 		margin: 10px;
 		font-size: 16px;
 		font-weight: 700;
+		text-align: center;
 	}
 	.artical-time{
 		margin: 10px;

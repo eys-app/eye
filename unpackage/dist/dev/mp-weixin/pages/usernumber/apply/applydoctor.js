@@ -92,11 +92,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components = {
-  uniSteps: function() {
-    return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 193))
-  }
-}
+var components
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -134,51 +130,313 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 193));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _index = __webpack_require__(/*! ../../../api/index.js */ 13);
+
+
+var _common = __webpack_require__(/*! ../../../commen/common.js */ 15);
+
+
+var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+
+
+
+
+
+
 {
+
   data: function data() {
     return {
-      stepsOptions: [{
-        "title": "第1步" },
+      sexList: ["男", "女"],
+      sexValue: '请选择', //性别
+      name: "", //姓名
+      idCard: "", //身份证号码
+      age: "", //年龄
+      phoneNumber: "", //手机号码
+      relation: "", //与患者关系
+      socialCard: "", //社保卡号
+      showType: true,
+      addOrChange: '', //判断是新增还是修改
+      doctorType: ['住院医师', '主治医师', '副主任医师', '主任医师'],
+      doctorTypeValue: '请选择',
+      imageList: [],
+      imageItemHeight: 0 };
 
-      {
-        "title": "第2步" },
-
-      {
-        "title": "第3步" },
-
-      {
-        "title": "第4步" }],
-
-
-      activeIndex: 0 };
 
   },
+  onLoad: function onLoad(option) {
+    this.addOrChange = option.type;
+    if (option.type == 'A') {
+      this.showType = false;
+    }
+    if (option.type == 'C') {
+      this.showType = false;
+
+      var item = JSON.parse(decodeURIComponent(option.item));
+      this.name = item.name;
+      this.idCard = item.idCard;
+      this.sexValue = (0, _common.sexnumberToValue)(item.sex);
+      this.age = item.age;
+      this.phoneNumber = item.phone;
+      this.relation = item.patientRelation;
+      this.socialCard = item.socialSecurityCard;
+    }
+
+
+
+  },
+  computed: _objectSpread({},
+  (0, _vuex.mapState)(['loginData'])),
+
+  mounted: function mounted() {
+    var _this = this;
+    setTimeout(function () {
+      uni.createSelectorQuery().in(_this).select('.image-item').boundingClientRect(function (data) {
+        console.log('data======', data);
+        _this.imageItemHeight = data.width + 'px';
+
+      }).exec();
+    }, 100);
+  },
   methods: {
-    nextSteps: function nextSteps() {
-      if (this.activeIndex != 3) {
-        this.activeIndex += 1;
-      } else {
-        this.activeIndex = 0;
+
+
+    //选择性别
+    showActionSex: function showActionSex() {
+      var that = this;
+      uni.showActionSheet({
+        itemList: ["男", "女"],
+        success: function success(res) {
+          that.sexValue = that.sexList[res.tapIndex];
+        },
+        fail: function fail() {
+
+        } });
+
+
+    },
+    //选择医师类型
+    showActionDoctorType: function showActionDoctorType() {
+      var that = this;
+      uni.showActionSheet({
+        itemList: this.doctorType,
+        success: function success(res) {
+          that.doctorTypeValue = that.doctorType[res.tapIndex];
+        } });
+
+    },
+
+    //跳转到首页
+    navgaitionToHomePage: function navgaitionToHomePage() {
+      uni.switchTab({
+        url: "/pages/patient/tabbar/home" });
+
+    },
+
+    /**
+        * 提交事件
+        * 1、判断各项是否为空
+        * **/
+    submitClicked: function submitClicked() {
+
+      if (!this.checkInputValue(this.name)) {
+        uni.showToast({
+          title: "姓名不得为空",
+          icon: "none" });
+
+        return;
+      }
+      if (!this.checkInputValue(this.idCard)) {
+        uni.showToast({
+          title: "身份证号码不得为空",
+          icon: "none" });
+
+        return;
+      }
+      if (!this.checkInputValue(this.sexValue)) {
+        uni.showToast({
+          title: "性别不得为空",
+          icon: "none" });
+
+        return;
+      }
+      if (!this.checkInputValue(this.age)) {
+        uni.showToast({
+          title: "年龄不得为空",
+          icon: "none" });
+
+        return;
+      }
+      if (!this.checkInputValue(this.phoneNumber)) {
+        uni.showToast({
+          title: "手机号码不得为空",
+          icon: "none" });
+
+        return;
+      }
+      if (!this.checkInputValue(this.relation)) {
+        uni.showToast({
+          title: "与患者关系不得为空",
+          icon: "none" });
+
+        return;
       }
 
 
+      var numberSex = (0, _common.sexValueToNumber)(this.sexValue);
+
+      if (this.addOrChange) {
+        var obj = {
+          userId: this.loginData.id,
+          name: this.name,
+          sex: numberSex,
+          age: this.age,
+          phone: this.phoneNumber,
+          idCard: this.idCard,
+          patientRelation: this.relation,
+          socialSecurityCard: this.socialCard };
+
+        console.log("====", obj);
+
+        (0, _index.addPatient)({
+          userId: this.loginData.id,
+          name: this.name,
+          sex: numberSex,
+          age: this.age,
+          phone: this.phoneNumber,
+          idCard: this.idCard,
+          patientRelation: this.relation,
+          socialSecurityCard: this.socialCard }).
+        then(function (res) {
+          console.log(res);
+          if (res.status == 'SUCCESS') {
+            uni.$emit('updateParientList');
+            uni.navigateBack({});
+          } else {
+            uni.showToast({
+              icon: 'none',
+              title: res.message });
+
+          }
+        });
+      }
+
+
+
+
+
+    },
+
+    //检查数据是否为空
+    checkInputValue: function checkInputValue(value) {
+
+      if (value == undefined || value == null || value == "" || value.length == 0) {
+        return false;
+      } else {
+        return true;
+      }
+
+    },
+
+    chooseImage: function () {var _chooseImage = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var that;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                that = this;
+                uni.chooseImage({
+                  count: 6, //默认9
+                  sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+
+                  success: function success(res) {
+                    console.log('ssssss===', that.imageList);
+                    console.log(JSON.stringify(res.tempFilePaths));
+                    for (var i = 0; i < res.tempFilePaths.length; i++) {
+                      that.imageList.push(res.tempFilePaths[i]);
+                    }
+
+                  } });case 2:case "end":return _context.stop();}}}, _callee, this);}));function chooseImage() {return _chooseImage.apply(this, arguments);}return chooseImage;}(),
+
+
+
+
+    previewImage: function previewImage(e) {
+      var current = e.target.dataset.src;
+      uni.previewImage({
+        current: current,
+        urls: this.imageList });
+
+    },
+
+    removeImageWithIndex: function removeImageWithIndex(index) {
+      console.log('index====', index);
+      this.imageList.splice(index, 1);
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

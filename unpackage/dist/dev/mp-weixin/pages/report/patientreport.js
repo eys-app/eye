@@ -173,32 +173,22 @@ var _common = __webpack_require__(/*! ../../commen/common.js */ 15);function own
   data: function data() {
     return {
       sexValue: '',
-      reportDetail: {
-        "minScore": "0",
-        "maxScore": "14",
-        "severity": "轻度",
-        "proposal": "建议您到医院进行干眼检查，合理诊疗，避免干眼症加重！",
-        "questionSocre": 8,
-        "createDate": "2020-11-19 17:08:04",
-        "delFlag": "0",
-        "id": "253737708973719552",
-        "sqlMap": {},
-        "isNewRecord": false } };
-
+      reportDetail: {} };
 
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['activePatient'])),
 
-  mounted: function mounted() {
-    // const that = this;
-    uni.$on('patientReport', function (e) {
-      this.reportDetail = e;
-    });
+  onUnload: function onUnload() {
+    uni.$off('patientReport');
+  },
+  onLoad: function onLoad(option) {
+
+    this.reportDetail = JSON.parse(option.option);
 
     this.sexValue = (0, _common.sexnumberToValue)(this.activePatient.sex);
-  },
-  methods: {} };exports.default = _default;
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

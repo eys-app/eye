@@ -24,32 +24,94 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.doctor-apply {
+.view-page {
+  padding: 10px;
+  background-color: #F0F0F0;
+  height: 100%;
+  width: calc(100% - 20px);
+  position: absolute;
+}
+.view-page .card-view {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+.view-page .card-view .input-fa-view {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #f4f5f6;
+}
+.view-page .card-view .input-fa-view .label-left {
+  float: left;
+  width: 100px;
+  height: 100%;
+  line-height: 40px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+.view-page .card-view .input-fa-view .label-left .tag-red {
+  float: left;
+  color: red;
+}
+.view-page .card-view .input-fa-view input {
+  float: right;
+  height: 40px;
+  text-align: right;
+  margin-right: 10px;
+  font-size: 14px;
+  width: calc(100% - 120px);
+}
+.view-page .card-view .input-fa-view .input-button {
+  float: right;
+  height: 40px;
+  line-height: 40px;
+  color: black;
+  text-align: right;
+  margin-right: 10px;
+  font-size: 14px;
+  width: calc(100% - 120px);
+}
+.view-page .card-view .upload-image {
+  width: calc(100% - 20px);
+  padding: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+          justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.view-page .card-view .upload-image .image-item {
+  width: calc((100% - 25px) / 3);
+  margin-bottom: 10px;
+  border: 1px solid #F2F6FC;
+  margin-right: 6px;
+}
+.view-page .card-view .upload-image .image-item .remove-image {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: calc((100% - 25px) / 3 - 33px);
+  background-color: #FF0000;
+  z-index: 9;
+}
+.view-page .card-view .upload-image .image-item image {
   width: 100%;
   height: 100%;
 }
-.doctor-apply .top-back {
-  width: 100%;
-  height: 200px;
-  background-color: #6a85f8;
+.view-page .card-view .upload-image .add-image {
+  border: 1px solid #d9d9d9;
+  text-align: center;
+  background-image: url(data:image/png;base64,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);
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;
 }
-.doctor-apply .top-back .enpty-class {
-  width: 100%;
-  height: 50px;
-  background-color: transpent;
-}
-.doctor-apply .content-view {
-  width: 90%;
-  height: 300px;
-  background-color: white;
-  margin-left: 5%;
-  -webkit-border-radius: 10px;
-          border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 30px #6a85f8;
-          box-shadow: 0px 0px 30px #6a85f8;
-  margin-top: -30px;
-}
-.doctor-apply button {
-  margin-top: 40px;
+.view-page .submit-button {
+  -webkit-border-radius: 20px;
+          border-radius: 20px;
+  margin-top: 30px;
 }
 

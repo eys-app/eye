@@ -128,9 +128,8 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
     enterListContact: function enterListContact() {
       uni.navigateTo({
         // url:'/pages/patient/patientmanager/listContact'
-        url: '/pages/doctor/patientsListCard'
-        // url:'/pages/doctor/test_shaixuan'
-      });
+        url: '/pages/doctor/patientsListCard' });
+
     },
     logoutClicked: function logoutClicked() {
       console.log('logout');

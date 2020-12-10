@@ -2,6 +2,7 @@
   "pages": [
     "pages/login/login",
     "pages/usernumber/register",
+    "pages/usernumber/repassword",
     "pages/usernumber/selecttype",
     "pages/usernumber/apply/applydoctor",
     "pages/usernumber/apply/applypatient",
@@ -21,6 +22,8 @@
     "pages/patient/home/articledetail",
     "pages/report/patientreport",
     "pages/report/reportlist",
+    "pages/report/reportfromlist",
+    "pages/report/historydetail",
     "pages/doctor/guidePatients"
   ],
   "subPackages": [],
@@ -56,6 +59,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap60.json"
+  "usingComponents": {}
 }

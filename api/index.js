@@ -8,6 +8,7 @@ export function login_interface(param){
 	return Request({
 		url: 'mobile/login',
 		method: 'get',
+		
 		data:param
 	})
 }
@@ -16,7 +17,8 @@ export function login_interface(param){
 export function addPatient(param){
 	return Request({
 		url: 'mobile/savePatient',
-		method: 'get',
+		method: 'POST',
+		header: {'content-type': 'application/json'},
 		data: param
 	})
 }
@@ -88,6 +90,53 @@ export function getForumList_interface(param){
 export function getSubmitQuestionList_interface(param){
 	return Request({
 		url: 'mobile/getSubmitQuestionList',
+		method: 'POST',
+		header: {'content-type': 'application/json'},
+		data: param
+	})
+}
+
+//患获取问卷详情--报告详情
+export function getSubmitQuestion_interface(param){
+	return Request({
+		url: 'mobile/getSubmitQuestion',
+		method: 'GET',
+		data: param
+	})
+}
+
+//获取短信验证码
+export function codeGenerate_interface(param){
+	return Request({
+		url: 'mobile/codeGenerate',
+		method: 'POST',
+		data: param,
+		header: {'content-type': 'application/json'}
+	})
+}
+
+//注册接口
+export function logon_interface(param){
+	return Request({
+		url: 'mobile/logon',
+		method: 'POST',
+		data: param,
+		header: {'content-type': 'application/json'}
+	})
+}
+//修改密码
+export function changePassword_interface(param){
+	return Request({
+		url: 'mobile/changePassword',
+		method: 'POST',
+		data: param,
+		header: {'content-type': 'application/json'}
+	})
+}
+//获取广告列表
+export function getAdvertisementList_interface(param){
+	return Request({
+		url: 'mobile/getAdvertisementList',
 		method: 'GET',
 		data: param
 	})

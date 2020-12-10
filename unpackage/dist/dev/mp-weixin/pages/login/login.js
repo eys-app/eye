@@ -195,53 +195,63 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
 
   (0, _vuex.mapMutations)(["loginFunction"])), {}, {
     //登录接口
-    loginClicked: function loginClicked() {
+    loginClicked: function loginClicked() {var _this = this;
 
 
-      /* if (!this.checkValue(this.phoneNum)) {
-                                           uni.showToast({
-                                           	icon: 'none',
-                                           	title: "请输入手机号码"
-                                           })
-                                           return;
-                                           }
-                                           if (!this.checkValue(this.password)) {
-                                           uni.showToast({
-                                           	icon: 'none',
-                                           	title: "请输入密码"
-                                           })
-                                           return;
-                                           }
-                                           if (!this.isPhoneNumber(this.phoneNum)) {
-                                           uni.showToast({
-                                           	icon: 'none',
-                                           	title: "请输入正确的手机号码"
-                                           })
-                                           return;
-                                           }
-                                           login_interface({
-                                           loginName: this.phoneNum,
-                                           password: this.password
-                                           }).then(res => {
-                                           console.log("登录返回结果=="+res)
-                                           if (res.status == 'SUCCESS') {
-                                           	this.loginFunction(res.data);
-                                           	this.enterPriPage();
-                                           } else {
-                                           	uni.showToast({
-                                           		icon: 'none',
-                                           		title: res.message,
-                                           	})
-                                           }
-                                           }) */
+      if (!this.checkValue(this.phoneNum)) {
+        uni.showToast({
+          icon: 'none',
+          title: "请输入手机号码" });
+
+        return;
+      }
+      if (!this.checkValue(this.password)) {
+        uni.showToast({
+          icon: 'none',
+          title: "请输入密码" });
+
+        return;
+      }
+      if (!this.isPhoneNumber(this.phoneNum)) {
+        uni.showToast({
+          icon: 'none',
+          title: "请输入正确的手机号码" });
+
+        return;
+      }
+
+      (0, _index.login_interface)({
+        loginName: this.phoneNum,
+        password: this.password }).
+      then(function (res) {
+        console.log("登录返回结果==" + res);
+        if (res.status == 'SUCCESS') {
+          _this.loginFunction(res.data);
+          // 0 - 患者端，  1 -- 医生端
+          if (res.data.userType == 0) {
+            uni.switchTab({
+              url: '/pages/patient/tabbar/home' });
+
+          }
+          if (res.data.userType == 1) {
+            uni.reLaunch({
+              url: '/pages/doctor/patientsListCard' });
+
+          }
+        } else {
+          uni.showToast({
+            icon: 'none',
+            title: res.message });
+
+        }
+      });
 
 
-
-      this.loginFunction({
-        username: 'zhangsan' });
-
-
-      this.enterPriPage();
+      /* this.loginFunction({
+          	username: 'zhangsan'
+          })
+          
+          this.enterPriPage() */
     },
 
     enterDocPage: function enterDocPage() {
@@ -258,6 +268,11 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
     navigateToRegisterPage: function navigateToRegisterPage() {
       uni.navigateTo({
         url: "/pages/usernumber/register" });
+
+    },
+    rePasswordClicked: function rePasswordClicked() {
+      uni.navigateTo({
+        url: "/pages/usernumber/repassword" });
 
     },
 

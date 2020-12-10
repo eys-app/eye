@@ -66,6 +66,9 @@
 				}
 			}
 		},
+		onUnload() {
+			uni.$off('itemPatient')
+		},
 		mounted() {
 			uni.$on('itemPatient',function(data){
 				console.log('data==',data)

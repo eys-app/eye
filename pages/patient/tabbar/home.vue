@@ -2,7 +2,14 @@
 	<view class="home-view-back">
 		<view class="home-view">
 			<view class="ids" :style="{height: idHeight + 'px'}">
-				<image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605611081019&di=044e91ee2faa631bbc6f31f0637b15a7&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180828%2Feb9101d0b4a74b009b64ed9030b5afda.jpeg"></image>
+				<swiper :style="{height: idHeight + 'px'}" indicator-dots indicator-color="#ffffff">
+					<template v-for="item in dataAdList">
+						<swiper-item @click="adClicked(item)">
+							<image :src="item.imageUrl"></image>
+						</swiper-item>
+					</template>
+				</swiper>
+				<!-- <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605611081019&di=044e91ee2faa631bbc6f31f0637b15a7&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180828%2Feb9101d0b4a74b009b64ed9030b5afda.jpeg"></image> -->
 			</view>
 
 			<view class="content-grid">
@@ -23,7 +30,10 @@
 			<view class="class-list">
 				<view class="class-list-title">
 					<view class="title">医生小讲堂</view>
-					<view class="sub-title">了解眼睛知识，保护自身健康</view>
+					<view class="sub-title">
+						<label>了解眼睛知识，保护自身健康</label>
+						<label @click="navigateToClassPage" style="float: right;">查看更多 》</label>
+					</view>
 				</view>
 
 				<template v-for="item in listData">
@@ -47,49 +57,15 @@
 
 <script>
 	import {
-		getForumList_interface
+		getForumList_interface,
+		getAdvertisementList_interface
 	} from '../../../api/index.js'
 	export default {
 		data() {
 			return {
 				idHeight: 0,
-				listData: [{
-						image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-						title: '近视手术后多久可以用眼？',
-						detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-						time: '2020-11-17 09:18'
-					},
-					{
-						image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-						title: '高血压患者为什么要定期检查眼底？',
-						detail: '我们都知道高血压对血管的影响最大，眼部亦有血管，而高血压会导致动脉硬化。',
-						time: '2020-11-14 05:43'
-					},
-					{
-						image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-						title: '眼科检查这一项“没必要”就错了！',
-						detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-						time: '2020-12-17 09:18'
-					},
-					{
-						image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-						title: '眼科检查这一项“没必要”就错了！',
-						detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-						time: '2020-12-17 09:18'
-					},
-					{
-						image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-						title: '眼科检查这一项“没必要”就错了！',
-						detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-						time: '2020-12-17 09:18'
-					},
-					{
-						image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605610299248&di=b9807d14070f6563a2610ae1684ff4ae&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Ftranslate%2F17%2Fw1080h537%2F20180410%2FPERp-fyzeyqa0605359.jpg',
-						title: '眼科检查这一项“没必要”就错了！',
-						detail: '绿色是自然界常见的颜色之一，是令人伤心悦目的颜色之一，大家都知道绿色可保护眼睛',
-						time: '2020-12-17 09:18'
-					}
-				]
+				listData: [],
+				dataAdList: []
 			}
 		},
 		mounted() {
@@ -98,9 +74,14 @@
 				uni.createSelectorQuery().in(_this).select('.ids').boundingClientRect(data => {
 					_this.idHeight = data.width * 0.67;
 				}).exec();
-			},100)
-			
+			}, 100)
+
+
+			this.dataAdList = [];
+			this.gainAdList()
+
 			this.gainDoctorClassList()
+
 
 		},
 		methods: {
@@ -111,17 +92,23 @@
 						url: "/pages/aidiagnosis/diagnosis"
 					})
 				}
+				if (type == 'report') {
+					uni.navigateTo({
+						url: '/pages/report/reportlist'
+					})
+				}
+				if(type == 'fuzhu'){
+					uni.navigateTo({
+						url: "/pages/usernumber/apply/applydoctor"
+					})
+				}
 			},
 			//医生小讲堂点击事件
 			articleClicked(item) {
-				console.log('item===' + encodeURIComponent(JSON.stringify(item)));
 				uni.navigateTo({
-					url: "/pages/patient/home/articledetail?item=" + encodeURIComponent(JSON.stringify(item)),
-					success() {
-						//uni.$emit('articleData',item)
-					}
+					url: "/pages/patient/home/articledetail?item=" + encodeURIComponent(JSON.stringify(item))
 				})
-				
+
 			},
 			//获取医生小讲堂列表数据
 			gainDoctorClassList() {
@@ -133,6 +120,30 @@
 					if (res.status == 'SUCCESS') {
 						this.listData = res.data.list
 					}
+				})
+			},
+			//查看更多-- 跳转到医生小课堂 tabbar
+			navigateToClassPage() {
+				uni.switchTab({
+					url: "/pages/patient/tabbar/classdoc"
+				})
+			},
+
+			//获取广告信息
+			gainAdList() {
+				getAdvertisementList_interface({
+					pageNo: 1,
+					pageSize: 3
+				})
+				.then(res => {
+					if (res.status == 'SUCCESS') {
+						this.dataAdList = res.data.list
+					}
+				})
+			},
+			adClicked(item){
+				uni.navigateTo({
+					url: "/pages/patient/home/articledetail?item=" + encodeURIComponent(JSON.stringify(item))
 				})
 			}
 		}
@@ -150,14 +161,13 @@
 
 			.ids {
 				width: 100%;
-				background-color: #c7eeff;
-				border-radius: 10px;
+				// border-radius: 10px;
 				box-shadow: 2px 5px 5px #a7a7a7;
 
 				image {
 					width: 100%;
 					height: 100%;
-					border-radius: 10px;
+					// border-radius: 10px;
 				}
 			}
 

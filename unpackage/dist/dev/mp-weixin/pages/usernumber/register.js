@@ -130,43 +130,51 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _index = __webpack_require__(/*! ../../api/index.js */ 13);
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+
+
 {
   data: function data() {
     return {
@@ -179,15 +187,17 @@ var _default =
     };
   },
 
-  methods: {
+  methods: _objectSpread(_objectSpread({},
+
+  (0, _vuex.mapMutations)(['loginFunction'])), {}, {
 
     /**
-              * 获取验证码
-              * 1、判断手机号码是否输入正确--格式
-              * 2、判断手机号码是否注册过
-              * 3、多少秒后可重新获取**/
+                                                      * 获取验证码
+                                                      * 1、判断手机号码是否输入正确--格式
+                                                      * 2、判断手机号码是否注册过
+                                                      * 3、多少秒后可重新获取**/
 
-    codeButtonClicked: function codeButtonClicked() {
+    codeButtonClicked: function codeButtonClicked() {var _this = this;
 
       if (!this.codeStatus) {
 
@@ -201,24 +211,39 @@ var _default =
 
         var bolPhone = this.isPhoneNumber(this.phoneNumber);
         if (bolPhone) {
-          uni.showToast({
-            title: "一条包含验证码的短信已发送到您的手机，请注意查收！",
-            icon: "none" });
+
+          (0, _index.codeGenerate_interface)({
+            mobileNumber: this.phoneNumber }).
+          then(function (res) {
+            console.log('获取验证码====', res);
+            if (res == 'SUCCESS') {
+              uni.showToast({
+                title: "一条包含验证码的短信已发送到您的手机，请注意查收！",
+                icon: "none" });
 
 
-          this.codeStatus = true;
-          var that = this;
-          var timeNumber = 12;
-          var interval = setInterval(function () {
-            if (timeNumber == 0) {
-              clearInterval(interval);
-              that.codeStatus = false;
-              that.codeTitle = "获取验证码";
+              _this.codeStatus = true;
+              var that = _this;
+              var timeNumber = 12;
+              var interval = setInterval(function () {
+                if (timeNumber == 0) {
+                  clearInterval(interval);
+                  that.codeStatus = false;
+                  that.codeTitle = "获取验证码";
+                } else {
+                  that.codeTitle = timeNumber + "s后获取";
+                }
+                timeNumber--;
+              }, 1000);
             } else {
-              that.codeTitle = timeNumber + "s后获取";
+              uni.showToast({
+                title: res.message,
+                icon: "none" });
+
             }
-            timeNumber--;
-          }, 1000);
+          });
+
+
         } else {
           uni.showToast({
             title: "手机号码输入错误，请检查号码",
@@ -239,7 +264,7 @@ var _default =
         * 3、判断密码是否输入
         * 4、判断两次输入的密码是否一样***/
 
-    registerSubmitClicked: function registerSubmitClicked() {
+    registerSubmitClicked: function registerSubmitClicked() {var _this2 = this;
       if (!this.checkValue(this.phoneNumber)) {
         uni.showToast({
           title: "请输入手机号码",
@@ -278,16 +303,57 @@ var _default =
         return;
       }
 
-      uni.showToast({
-        title: "注册成功",
-        icon: "none" });
+      (0, _index.logon_interface)({
+        loginName: this.phoneNumber,
+        password: this.passwordText,
+        newPassword: this.passwordTextRepeat,
+        code: this.codeText }).
+      then(function (res) {
+        if (res.status == "SUCCESS") {
 
 
-      uni.navigateTo({
-        url: "/pages/usernumber/selecttype" });
+
+          uni.showToast({
+            title: "注册成功",
+            icon: "none" });
+
+          var that = _this2;
+          setTimeout(function () {
+            that.autoLogin({
+              loginName: res.data.loginName,
+              password: _this2.passwordText });
+
+          }, 100);
 
 
 
+        } else {
+          uni.showToast({
+            title: res.message,
+            icon: "none" });
+
+        }
+      });
+
+    },
+
+    autoLogin: function autoLogin(params) {var _this3 = this;
+      (0, _index.login_interface)(params).then(function (res) {
+        if (res.status == 'SUCCESS') {
+          _this3.loginFunction(res.data);
+
+          uni.navigateTo({
+            url: "/pages/usernumber/selecttype" });
+
+
+
+        } else {
+          uni.showToast({
+            icon: 'none',
+            title: res.message });
+
+        }
+      });
     },
 
     //检查输入是否为空
@@ -328,7 +394,7 @@ var _default =
 
       var reg = /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
       return reg.test(phoneNum);
-    } } };exports.default = _default;
+    } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

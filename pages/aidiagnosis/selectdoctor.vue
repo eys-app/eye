@@ -52,6 +52,9 @@
 				postParams: null
 			}
 		},
+		onUnload() {
+			uni.$off('postWJParam')
+		},
 		onLoad() {
 
 			uni.$on('postWJParam', this.gainParams)
@@ -135,16 +138,6 @@
 
 			//提交
 			submitclicked() {
-				let param = null
-
-				uni.getStorage({
-					key: "params",
-					success: function(res) {
-						param = res.data
-					}
-				})
-
-
 
 				if (this.currenindex == null) {
 					uni.showToast({
@@ -155,24 +148,30 @@
 				}
 				
 				const that = this;
-				setTimeout(()=>{
-					param['doctorId'] = that.doctorList[that.currenindex].id;
-					
-					submitQuestionnaire_interface(param).then(res => {
-						console.log('res ==', res)
-						if(res.status == 'SUCCESS'){
-							uni.$emit('patientReport',res.data.eyeDiagnosisConfig)
-							uni.navigateTo({
-								url: "/pages/report/patientreport"
-							})
-						}else{
-							uni.showToast({
-								title: "问卷提交失败，请重新提交！",
-								icon: "none"
-							})
-						}
-					})
-				},100)
+				let param = null
+				
+				uni.getStorage({
+					key: "params",
+					success: function(res) {
+						param = res.data
+						param['doctorId'] = that.doctorList[that.currenindex].id;
+						
+						submitQuestionnaire_interface(param).then(res => {
+							console.log('res ==', res)
+							if(res.status == 'SUCCESS'){
+								//uni.$emit('patientReport',res.data.eyeDiagnosisConfig)
+								uni.navigateTo({
+									url: "/pages/report/patientreport?option=" + encodeURIComponent(JSON.stringify(res.data.eyeDiagnosisConfig))
+								})
+							}else{
+								uni.showToast({
+									title: "问卷提交失败，请重新提交！",
+									icon: "none"
+								})
+							}
+						})
+					}
+				})
 				
 			}
 		}

@@ -193,8 +193,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _index = __webpack_require__(/*! ../../../api/index.js */ 13);
+
+
 var _common = __webpack_require__(/*! ../../../commen/common.js */ 15);
+
+
 var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+
+
+
+
+
 {
 
   data: function data() {
@@ -207,13 +216,30 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
       phoneNumber: "", //手机号码
       relation: "", //与患者关系
       socialCard: "", //社保卡号
-      showType: true };
-
+      showType: true,
+      addOrChange: '' //判断是新增还是修改
+    };
   },
   onLoad: function onLoad(option) {
+    this.addOrChange = option.type;
     if (option.type == 'A') {
       this.showType = false;
     }
+    if (option.type == 'C') {
+      this.showType = false;
+
+      var item = JSON.parse(decodeURIComponent(option.item));
+      this.name = item.name;
+      this.idCard = item.idCard;
+      this.sexValue = (0, _common.sexnumberToValue)(item.sex);
+      this.age = item.age;
+      this.phoneNumber = item.phone;
+      this.relation = item.patientRelation;
+      this.socialCard = item.socialSecurityCard;
+    }
+
+
+
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['loginData'])),
@@ -294,28 +320,44 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
 
       var numberSex = (0, _common.sexValueToNumber)(this.sexValue);
 
+      if (this.addOrChange) {
+        var obj = {
+          userId: this.loginData.id,
+          name: this.name,
+          sex: numberSex,
+          age: this.age,
+          phone: this.phoneNumber,
+          idCard: this.idCard,
+          patientRelation: this.relation,
+          socialSecurityCard: this.socialCard };
 
-      (0, _index.addPatient)({
-        userId: this.loginData.id,
-        name: this.name,
-        sex: numberSex,
-        age: this.age,
-        phone: this.phoneNumber,
-        idCard: this.idCard,
-        patientRelation: this.relation,
-        socialSecurityCard: this.socialCard }).
-      then(function (res) {
-        console.log(res);
-        if (res.status == 'SUCCESS') {
-          uni.$emit('updateParientList');
-          uni.navigateBack({});
-        } else {
-          uni.showToast({
-            icon: 'none',
-            title: res.message });
+        console.log("====", obj);
 
-        }
-      });
+        (0, _index.addPatient)({
+          userId: this.loginData.id,
+          name: this.name,
+          sex: numberSex,
+          age: this.age,
+          phone: this.phoneNumber,
+          idCard: this.idCard,
+          patientRelation: this.relation,
+          socialSecurityCard: this.socialCard }).
+        then(function (res) {
+          console.log(res);
+          if (res.status == 'SUCCESS') {
+            uni.$emit('updateParientList');
+            uni.navigateBack({});
+          } else {
+            uni.showToast({
+              icon: 'none',
+              title: res.message });
+
+          }
+        });
+      }
+
+
+
 
 
     },

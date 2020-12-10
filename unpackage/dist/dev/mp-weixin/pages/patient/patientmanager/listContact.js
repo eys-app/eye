@@ -174,8 +174,12 @@ var _index = __webpack_require__(/*! ../../../api/index.js */ 13);function ownKe
       DPageNumber: 0, //列表分页-当前页码
       userList: [], //列表数据
       loadMoreText: "加载中...",
-      showLoadMore: true };
+      showLoadMore: true,
+      bolBackTo: false };
 
+  },
+  onUnload: function onUnload() {
+    uni.$off('updateParientList');
   },
   mounted: function mounted() {
     this.gainPatientListDataWithPagenumber();
@@ -204,6 +208,13 @@ var _index = __webpack_require__(/*! ../../../api/index.js */ 13);function ownKe
     this.DPageNumber += 1;
     this.gainPatientListDataWithPagenumber();
   },
+  onLoad: function onLoad(option) {
+    console.log('option===', option);
+    if (option.type == 'Y') {
+      this.bolBackTo = true;
+    }
+
+  },
 
   methods: _objectSpread(_objectSpread({},
   (0, _vuex.mapMutations)(['changePatient'])), {}, {
@@ -216,16 +227,21 @@ var _index = __webpack_require__(/*! ../../../api/index.js */ 13);function ownKe
     //编辑问诊人
     enterUserInfo: function enterUserInfo(user) {
       console.log(user);
-      uni.$emit('itemPatient', user);
-      uni.navigateTo({
-        url: "/pages/usernumber/apply/applypatient?type=A" });
-
+      //uni.$emit('itemPatient', user)
+      //type -  A:增加  C:修改  F:第一次进来的时候增加
+      // uni.navigateTo({
+      // 	url: "/pages/usernumber/apply/applypatient?type=C&item=" + encodeURIComponent(JSON.stringify(user))
+      // })
     },
     //选中问诊人
     itemClicked: function itemClicked(value) {
-      this.changePatient(value);
-      uni.navigateBack({
-        delta: 1 });
+      console.log('back or no ----', this.bolBackTo);
+      if (this.bolBackTo == true) {
+        this.changePatient(value);
+        uni.navigateBack({
+          delta: 1 });
+
+      }
 
     },
 

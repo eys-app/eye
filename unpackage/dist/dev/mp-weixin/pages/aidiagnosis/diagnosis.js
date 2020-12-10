@@ -381,10 +381,16 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
 
         console.log('post-param ==', postParam);
 
-        uni.$emit('postWJParam', postParam);
+        uni.setStorage({
+          key: 'params',
+          data: postParam,
+          success: function success() {
+            uni.navigateTo({
+              url: "/pages/aidiagnosis/selectdoctor?" });
 
-        uni.navigateTo({
-          url: "/pages/aidiagnosis/selectdoctor" });
+          } });
+
+
 
       }
     } }) };exports.default = _default;
