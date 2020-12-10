@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "病人库管理",
-  "enablePullDownRefresh": false,
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "ren-dropdown-filter": "/components/ren-dropdown-filter/ren-dropdown-filter",
     "uni-card": "/components/uni-card/uni-card"

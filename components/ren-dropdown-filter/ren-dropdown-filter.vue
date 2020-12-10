@@ -22,7 +22,6 @@
 					<image src="https://i.loli.net/2020/07/15/xjVSvzWcH9NO7al.png" mode="" class="icon-triangle" v-else></image>
 				</view>
 				
-				<!-- <view class="my"> 我是筛选</view> -->
 				
 				<view class="mine" @click="doc_mineClick">
 					<image src="../../static/images/mine-ed.png" ></image>
@@ -127,7 +126,7 @@
 					let sel = item.filter(child => child.select);
 					data.push(sel);
 				});
-				console.log(data);
+				// console.log(data);
 				this.$emit('onSelected', data);
 			},
 			dateClick() {
@@ -164,6 +163,10 @@
 	width: 100rpx;
 	height: 100rpx;
 	background-color: #FFFFFF;
+	image{
+		width: 100rpx;
+		height: 100rpx;
+	}
 }
 
 	.c-flex-align {

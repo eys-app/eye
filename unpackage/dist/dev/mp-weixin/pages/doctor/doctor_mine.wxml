@@ -1,1 +1,1 @@
-<view>医生的个人中心</view>
+<view class="view-page"><view class="back-ground"><view class="clear-view"></view></view><view class="image-view"></view><view class="center-view"><view class="content-item"><image src="../../static/images/check_box.svg"></image><view class="content-text-view">医生认证</view><view class="right-text">›</view></view><view class="content-item"><image src="../../static/images/check_box.svg"></image><view class="content-text-view">医生认证</view><view class="right-text">›</view></view></view></view>

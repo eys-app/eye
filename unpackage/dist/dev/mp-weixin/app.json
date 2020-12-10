@@ -20,7 +20,8 @@
     "pages/doctor/doctor_mine",
     "pages/patient/home/articledetail",
     "pages/report/patientreport",
-    "pages/report/reportlist"
+    "pages/report/reportlist",
+    "pages/doctor/guidePatients"
   ],
   "subPackages": [],
   "window": {
@@ -55,5 +56,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap60.json"
 }

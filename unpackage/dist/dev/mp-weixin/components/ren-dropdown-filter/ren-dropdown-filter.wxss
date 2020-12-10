@@ -41,6 +41,10 @@ page.data-v-c53c40ec {
   height: 100rpx;
   background-color: #FFFFFF;
 }
+.mine image.data-v-c53c40ec {
+  width: 100rpx;
+  height: 100rpx;
+}
 .c-flex-align.data-v-c53c40ec {
   display: -webkit-box;
   display: -webkit-flex;
