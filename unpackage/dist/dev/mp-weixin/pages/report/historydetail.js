@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/report/historydetail"],{
 
 /***/ 205:
@@ -421,3 +422,6 @@ __webpack_require__.r(__webpack_exports__);
 
 },[[205,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/report/historydetail.js.map
+=======
+Component({})
+>>>>>>> 6707d554d147c6f3155412aa5bcefdacce15659a

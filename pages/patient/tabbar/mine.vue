@@ -61,7 +61,6 @@
 			enterListContact() {
 				uni.navigateTo({
 					url: '/pages/patient/patientmanager/listContact'
-					// url:'/pages/doctor/patientsListCard'
 
 				})
 			},

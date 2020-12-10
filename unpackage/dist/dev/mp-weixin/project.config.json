@@ -10,6 +10,8 @@
   "libVersion": "",
   "appid": "touristappid",
   "projectname": "eyeSystemApp",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
       "current": -1,

@@ -8942,45 +8942,95 @@ var render = function() {
                           },
                           [_vm._v(_vm._$g("7-" + $30, "t0-0"))]
                         ),
-                        _c(
-                          "v-uni-view",
-                          {
-                            staticClass: _vm._$g("8-" + $30, "sc"),
-                            attrs: { _i: "8-" + $30 }
-                          },
-                          [_vm._v(_vm._$g("8-" + $30, "t0-0"))]
-                        ),
-                        _c(
-                          "v-uni-view",
-                          {
-                            staticClass: _vm._$g("9-" + $30, "sc"),
-                            attrs: { _i: "9-" + $30 }
-                          },
-                          [_vm._v(_vm._$g("9-" + $30, "t0-0") + "岁")]
-                        ),
+                        _vm._$g("8-" + $30, "i")
+                          ? _c(
+                              "v-uni-view",
+                              {
+                                staticClass: _vm._$g("8-" + $30, "sc"),
+                                attrs: { _i: "8-" + $30 }
+                              },
+                              [_vm._v("男")]
+                            )
+                          : _vm._e(),
+                        _vm._$g("9-" + $30, "i")
+                          ? _c(
+                              "v-uni-view",
+                              {
+                                staticClass: _vm._$g("9-" + $30, "sc"),
+                                attrs: { _i: "9-" + $30 }
+                              },
+                              [_vm._v("女")]
+                            )
+                          : _vm._e(),
                         _c(
                           "v-uni-view",
                           {
                             staticClass: _vm._$g("10-" + $30, "sc"),
                             attrs: { _i: "10-" + $30 }
                           },
-                          [
-                            _c("v-uni-view", { attrs: { _i: "11-" + $30 } }, [
-                              _vm._v(_vm._$g("11-" + $30, "t0-0"))
-                            ])
-                          ],
-                          1
-                        )
+                          [_vm._v(_vm._$g("10-" + $30, "t0-0") + "岁")]
+                        ),
+                        _vm._$g("11-" + $30, "i")
+                          ? _c(
+                              "v-uni-view",
+                              {
+                                staticClass: _vm._$g("11-" + $30, "sc"),
+                                attrs: { _i: "11-" + $30 }
+                              },
+                              [
+                                _c("v-uni-view", {
+                                  staticClass: _vm._$g("12-" + $30, "sc"),
+                                  attrs: { _i: "12-" + $30 }
+                                }),
+                                _vm._v("未指导")
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._$g("13-" + $30, "i")
+                          ? _c(
+                              "v-uni-view",
+                              {
+                                staticClass: _vm._$g("13-" + $30, "sc"),
+                                attrs: { _i: "13-" + $30 }
+                              },
+                              [
+                                _c("v-uni-view", {
+                                  staticClass: _vm._$g("14-" + $30, "sc"),
+                                  attrs: { _i: "14-" + $30 }
+                                }),
+                                _vm._v("已指导")
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._$g("15-" + $30, "i")
+                          ? _c(
+                              "v-uni-view",
+                              {
+                                staticClass: _vm._$g("15-" + $30, "sc"),
+                                attrs: { _i: "15-" + $30 }
+                              },
+                              [
+                                _c("v-uni-view", {
+                                  staticClass: _vm._$g("16-" + $30, "sc"),
+                                  attrs: { _i: "16-" + $30 }
+                                }),
+                                _vm._v("用户已阅")
+                              ],
+                              1
+                            )
+                          : _vm._e()
                       ],
                       1
                     ),
                     _c(
                       "v-uni-view",
                       {
-                        staticClass: _vm._$g("12-" + $30, "sc"),
-                        attrs: { _i: "12-" + $30 }
+                        staticClass: _vm._$g("17-" + $30, "sc"),
+                        attrs: { _i: "17-" + $30 }
                       },
-                      [_vm._v("上次测评时间：" + _vm._$g("12-" + $30, "t0-0"))]
+                      [_vm._v("上次测评时间：" + _vm._$g("17-" + $30, "t0-0"))]
                     )
                   ],
                   1
@@ -8989,31 +9039,15 @@ var render = function() {
               1
             )
           }),
-          _vm._$g(13, "i")
+          _vm._$g(18, "i")
             ? _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
-                [_vm._v(_vm._$g(13, "t0-0"))]
+                { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
+                [_vm._v(_vm._$g(18, "t0-0"))]
               )
             : _vm._e()
         ],
         2
-      ),
-      _c(
-        "v-uni-view",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm._$g(14, "v-show"),
-              expression: "_$g(14,'v-show')"
-            }
-          ],
-          staticClass: _vm._$g(14, "sc"),
-          attrs: { _i: 14 }
-        },
-        [_vm._v("没有查询结果")]
       )
     ],
     1
@@ -9470,7 +9504,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../soft/HBuilderX.2.9.8.20201110.full/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.title_bar {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\n}\n.mine {\r\n  width: 100rpx;\r\n  height: 100rpx;\r\n  margin-right: 20rpx;\r\n  background-color: #67C23A;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.mine uni-image {\r\n  width: 80rpx;\r\n  height: 80rpx;\n}\n.card {\r\n  padding-top: 20rpx;\r\n  padding-left: 20rpx;\n}\n.one {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\n}\n.two {\r\n  margin-top: 15rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-flex-flow: wrap;\r\n          flex-flow: wrap;\n}\n.two .tag {\r\n  font-size: 30rpx;\r\n  color: #FFFFFF;\r\n  background-color: #AAD1FF;\r\n  margin-right: 20rpx;\r\n  margin-top: 10rpx;\r\n  margin-bottom: 10rpx;\r\n  -webkit-border-radius: 30rpx;\r\n          border-radius: 30rpx;\r\n  padding-left: 25rpx;\r\n  padding-right: 25rpx;\n}\n.three {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n          justify-content: flex-end;\r\n  font-size: 30rpx;\r\n  margin-top: 20rpx;\n}\n.patientName {\r\n  font-size: 40rpx;\n}\n.patientSex {\r\n  margin-left: 40rpx;\r\n  color: #6E6E6E;\r\n  font-size: 34rpx;\n}\n.patientOld {\r\n  margin-left: 40rpx;\r\n  color: #6E6E6E;\r\n  font-size: 34rpx;\n}\n.zhidao {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n          justify-content: flex-end;\r\n  -webkit-box-flex: 1;\r\n  -webkit-flex: 1;\r\n          flex: 1;\r\n  font-size: 30rpx;\r\n  color: #6E6E6E;\n}\n.noResult {\r\n  height: 100%;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  color: #8b9aae;\r\n  margin-top: 30rpx;\n}\r\n/* loadmore */\n.uni-loadmore {\r\n  height: 80rpx;\r\n  line-height: 80rpx;\r\n  text-align: center;\r\n  padding-bottom: 30rpx;\r\n  font-size: 12px;\r\n  color: gray;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.title_bar {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\n}\n.mine {\r\n  width: 100rpx;\r\n  height: 100rpx;\r\n  margin-right: 20rpx;\r\n  background-color: #67C23A;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.mine uni-image {\r\n  width: 80rpx;\r\n  height: 80rpx;\n}\n.card {\r\n  padding-top: 20rpx;\r\n  padding-left: 20rpx;\n}\n.one {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\n}\n.two {\r\n  margin-top: 15rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-flex-flow: wrap;\r\n          flex-flow: wrap;\n}\n.two .tag {\r\n  font-size: 30rpx;\r\n  color: #FFFFFF;\r\n  background-color: #AAD1FF;\r\n  margin-right: 20rpx;\r\n  margin-top: 10rpx;\r\n  margin-bottom: 10rpx;\r\n  -webkit-border-radius: 30rpx;\r\n          border-radius: 30rpx;\r\n  padding-left: 25rpx;\r\n  padding-right: 25rpx;\n}\n.three {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n          justify-content: flex-end;\r\n  font-size: 30rpx;\r\n  margin-top: 20rpx;\n}\n.patientName {\r\n  font-size: 40rpx;\n}\n.patientSex {\r\n  margin-left: 40rpx;\r\n  color: #6E6E6E;\r\n  font-size: 34rpx;\n}\n.patientOld {\r\n  margin-left: 40rpx;\r\n  color: #6E6E6E;\r\n  font-size: 34rpx;\n}\n.guide {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n          justify-content: flex-end;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  -webkit-box-flex: 1;\r\n  -webkit-flex: 1;\r\n          flex: 1;\r\n  font-size: 30rpx;\r\n  color: #6E6E6E;\n}\n.guide .point_noguide {\r\n  width: 10px;\r\n  height: 10px;\r\n  -webkit-border-radius: 50%;\r\n          border-radius: 50%;\r\n  background-color: #DD524D;\r\n  margin-right: 5px;\n}\n.guide .point_guide {\r\n  width: 10px;\r\n  height: 10px;\r\n  -webkit-border-radius: 50%;\r\n          border-radius: 50%;\r\n  background-color: #67C23A;\r\n  margin-right: 5px;\n}\n.guide .point_read {\r\n  width: 10px;\r\n  height: 10px;\r\n  -webkit-border-radius: 50%;\r\n          border-radius: 50%;\r\n  background-color: #6A85F8;\r\n  margin-right: 5px;\n}\r\n/* loadmore */\n.uni-loadmore {\r\n  height: 80rpx;\r\n  line-height: 80rpx;\r\n  text-align: center;\r\n  padding-bottom: 30rpx;\r\n  font-size: 12px;\r\n  color: gray;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 

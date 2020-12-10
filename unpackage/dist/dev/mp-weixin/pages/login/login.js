@@ -197,7 +197,6 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
     //登录接口
     loginClicked: function loginClicked() {var _this = this;
 
-      ///*
       if (!this.checkValue(this.phoneNum)) {
         uni.showToast({
           icon: 'none',
@@ -224,7 +223,6 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
         loginName: this.phoneNum,
         password: this.password }).
       then(function (res) {
-        console.log("登录返回结果==" + res);
         if (res.status == 'SUCCESS') {
           _this.loginFunction(res.data);
           // 0 - 患者端，  1 -- 医生端
@@ -244,14 +242,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
             title: res.message });
 
         }
-      }); //*/
-
-
-      // this.loginFunction({
-      // 	username: 'zhangsan'
-      // })
-
-      // this.enterPriPage() 
+      });
     },
 
     enterDocPage: function enterDocPage() {
@@ -291,14 +282,14 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
     isPhoneNumber: function isPhoneNumber(phoneNum) {
       // let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
       /*
-       * 移动号码包括的号段：134/135/136/137,138,139；
+        * 移动号码包括的号段：134/135/136/137,138,139；
       *                     147/148(物联卡号)；
       *                     150/151/152/157/158/159；
       *                     165（虚拟运营商）；
       *                     1703/1705/1706（虚拟运营商）、178；
       *                     182/183/184/187/188
       *                     198
-      	
+      		
       * 联通号段包括：130/131
       *               145
       *               155/156

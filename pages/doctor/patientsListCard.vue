@@ -1,7 +1,7 @@
 <!-- 病人库管理页面的病人信息 card -->
 <template>
 	<view class="root">
-		
+
 		<view class="title_bar">
 			<ren-dropdown-filter :filterData='filterData' :defaultIndex='defaultIndex' @onSelected='onSelected' @dateChange='dateChange'
 			 @doc_mineClick='doc_mineClick'></ren-dropdown-filter>
@@ -11,24 +11,35 @@
 			<uni-card isShadow="true" v-for="item in patientList"  @click="enterGuide(item)">
 				<view class="card">
 					<view class="one">
+
 						<view class="patientName">
 							{{item.eyePatient.name}}
 						</view>
-						<view class="patientSex">
-							{{item.eyePatient.sex}}
+
+						<view class="patientSex" v-if="item.eyePatient.sex == '1' ">
+							男
 						</view>
+						<view class="patientSex" v-if="item.eyePatient.sex == '2' ">
+							女
+						</view>
+
 						<view class="patientOld">
 							{{item.eyePatient.age}}岁
 						</view>
-						<view class="zhidao">
-							<view>
-								{{item.eyePatient.stateTag}}
-							</view>
+
+						<view class="guide" v-if="item.stateTag == '0' ">
+							<view class="point_noguide"></view>未指导
+						</view>
+						<view class="guide" v-if="item.stateTag == '1' ">
+							<view class="point_guide"></view>已指导
+						</view>
+						<view class="guide" v-if="item.stateTag == '2' ">
+							<view class="point_read"></view>用户已阅
 						</view>
 					</view>
 
 					<!-- <view class="two" v-for="items in perTagList"> -->
-				<!-- 	<view class="two">
+					<!-- 	<view class="two">
 
 						<view class="tag">
 							我是标签1
@@ -49,7 +60,7 @@
 					</view> -->
 
 					<view class="three">
-						上次测评时间：{{item.eyePatient.createDate}}
+						上次测评时间：{{item.createDate}}
 					</view>
 
 				</view>
@@ -57,8 +68,6 @@
 
 			<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
 		</view>
-
-		<view class="noResult" v-show="showNoResult">没有查询结果</view>
 
 	</view>
 </template>
@@ -81,7 +90,7 @@
 				patientList: [], //列表数据
 				filterData: [
 					[{
-						text: '全部症状',
+						text: '症状程度',
 						value: ''
 					}, {
 						text: '非常严重',
@@ -94,7 +103,7 @@
 						value: 3
 					}],
 					[{
-						text: '无论指导',
+						text: '问卷状态',
 						value: ''
 					}, {
 						text: '未指导',
@@ -112,11 +121,12 @@
 
 				perTagList: ['标签1', '标签2', '标签1', '标签2', '标签1', '标签2'], //病人的标签
 				showNoResult: false, //显示无结果
+
 				doctorId: '251586078291525632',
 				showLoadMore: false,
 				loadMoreText: "加载中...",
-				stateTag: '',
-				isLoadMore:true
+				stateTag: '', //用户调查问卷的状态（未指导、已指导、已阅读）
+				isLoadMore: true
 
 			}
 
@@ -129,6 +139,7 @@
 			//下拉刷新
 			onPullDownRefresh() {
 				this.DPageNumber = 1;
+				this.stateTag = "";
 				this.patientList = [];
 				this.showLoadMore = false;
 				console.log('refresh')
@@ -137,7 +148,7 @@
 
 			//加载更多
 			onReachBottom() {
-				if(this.isLoadMore){
+				if (this.isLoadMore) {
 					console.log('loadMore')
 					this.DPageNumber += 1;
 					this.getPatientsList()
@@ -146,15 +157,18 @@
 
 			//选择症状、是否知道
 			onSelected(res) {
-				console.log(res)
-				console.log(res[0])
-
+				this.stateTag = res[1][0].value
+				this.DPageNumber = 1;
+				this.patientList = [];
+				this.getPatientsList()
 			},
 
 			//选择测试日期
 			dateChange(d) {
-				this.selectTime = d
-				console.log('选择日期是==' + this.selectTime)
+				this.selectTime = d + ' 00:00:00'
+				this.DPageNumber = 1;
+				this.patientList = [];
+				this.getPatientsList()
 			},
 
 			//点击医生的个人中心
@@ -166,51 +180,35 @@
 
 			// 获取医生端的问诊人列表
 			getPatientsList() {
-				console.log('頁碼===='+this.DPageNumber)
 				getPatientsListByDoc({
 					doctorId: this.doctorId,
-					// testStartTime:this.selectTime,
+					testStartTime: this.selectTime,
 					stateTag: this.stateTag,
 					pageNo: this.DPageNumber,
 					pageSize: '15'
 
 				}).then(res => {
-					console.log(res)
 					if (res.status == 'SUCCESS') {
 						uni.stopPullDownRefresh()
 						let tempArray = this.patientList.concat(res.data.list)
 						this.patientList = tempArray
 
-						if (this.patientList == undefined || this.patientList.length <= 0) {
-							this.showNoResult = true
-						}
-
 						if (res.data.list.length < 15) {
 							this.loadMoreText = "没有更多了"
-							this.isLoadMore=false
-							this.showLoadMore=true
+							this.isLoadMore = false
+							this.showLoadMore = true
 						}
-						console.log(this.patientList)
 					}
 				})
 			},
-			
+
 			//点击病人item 进入医生诊断指导页面
+
 			enterGuide(param){
 				console.log('进入点击' , param)
 				uni.navigateTo({
 					url:'/pages/doctor/guidePatients?paId=' + param.id
 				})
-			},
-
-
-
-			getPatientSex(param) {
-				if (param == '1') {
-					return '男'
-				} else {
-					return '女'
-				}
 			}
 
 			// 	getPatientsListByDoc({
@@ -226,10 +224,6 @@
 </script>
 
 <style lang="scss">
-	.card-view {
-		// margin-top: 300rpx;
-	}
-
 	.title_bar {
 		display: flex;
 	}
@@ -301,21 +295,37 @@
 		font-size: 34rpx;
 	}
 
-	.zhidao {
+	.guide {
 		display: flex;
 		justify-content: flex-end;
+		align-items: center;
 		flex: 1;
 		font-size: 30rpx;
 		color: #6E6E6E;
-	}
 
-	.noResult {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: #8b9aae;
-		margin-top: 30rpx;
+		.point_noguide {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: #DD524D;
+			margin-right: 5px;
+		}
+
+		.point_guide {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: #67C23A;
+			margin-right: 5px;
+		}
+
+		.point_read {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: #6A85F8;
+			margin-right: 5px;
+		}
 	}
 
 	/* loadmore */

@@ -152,9 +152,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
-//
 
 // import { getCurDateTime } from '@/libs/utils.js';
 var _default2 = {
@@ -243,7 +240,7 @@ var _default2 = {
         var sel = item.filter(function (child) {return child.select;});
         data.push(sel);
       });
-      console.log(data);
+      // console.log(data);
       this.$emit('onSelected', data);
     },
     dateClick: function dateClick() {

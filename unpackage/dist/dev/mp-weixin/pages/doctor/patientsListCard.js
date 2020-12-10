@@ -204,6 +204,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
 var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFilter = function RenDropdownFilter() {__webpack_require__.e(/*! require.ensure | components/ren-dropdown-filter/ren-dropdown-filter */ "components/ren-dropdown-filter/ren-dropdown-filter").then((function () {return resolve(__webpack_require__(/*! @/components/ren-dropdown-filter/ren-dropdown-filter.vue */ 283));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
@@ -220,7 +229,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFi
       patientList: [], //列表数据
       filterData: [
       [{
-        text: '全部症状',
+        text: '症状程度',
         value: '' },
       {
         text: '非常严重',
@@ -233,7 +242,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFi
         value: 3 }],
 
       [{
-        text: '无论指导',
+        text: '问卷状态',
         value: '' },
       {
         text: '未指导',
@@ -251,10 +260,11 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFi
 
       perTagList: ['标签1', '标签2', '标签1', '标签2', '标签1', '标签2'], //病人的标签
       showNoResult: false, //显示无结果
+
       doctorId: '251586078291525632',
       showLoadMore: false,
       loadMoreText: "加载中...",
-      stateTag: '',
+      stateTag: '', //用户调查问卷的状态（未指导、已指导、已阅读）
       isLoadMore: true };
 
 
@@ -268,6 +278,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFi
     //下拉刷新
     onPullDownRefresh: function onPullDownRefresh() {
       this.DPageNumber = 1;
+      this.stateTag = "";
       this.patientList = [];
       this.showLoadMore = false;
       console.log('refresh');
@@ -285,15 +296,18 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFi
 
     //选择症状、是否知道
     onSelected: function onSelected(res) {
-      console.log(res);
-      console.log(res[0]);
-
+      this.stateTag = res[1][0].value;
+      this.DPageNumber = 1;
+      this.patientList = [];
+      this.getPatientsList();
     },
 
     //选择测试日期
     dateChange: function dateChange(d) {
-      this.selectTime = d;
-      console.log('选择日期是==' + this.selectTime);
+      this.selectTime = d + ' 00:00:00';
+      this.DPageNumber = 1;
+      this.patientList = [];
+      this.getPatientsList();
     },
 
     //点击医生的个人中心
@@ -305,51 +319,35 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFi
 
     // 获取医生端的问诊人列表
     getPatientsList: function getPatientsList() {var _this = this;
-      console.log('頁碼====' + this.DPageNumber);
       (0, _index.getPatientsListByDoc)({
         doctorId: this.doctorId,
-        // testStartTime:this.selectTime,
+        testStartTime: this.selectTime,
         stateTag: this.stateTag,
         pageNo: this.DPageNumber,
         pageSize: '15' }).
 
       then(function (res) {
-        console.log(res);
         if (res.status == 'SUCCESS') {
           uni.stopPullDownRefresh();
           var tempArray = _this.patientList.concat(res.data.list);
           _this.patientList = tempArray;
-
-          if (_this.patientList == undefined || _this.patientList.length <= 0) {
-            _this.showNoResult = true;
-          }
 
           if (res.data.list.length < 15) {
             _this.loadMoreText = "没有更多了";
             _this.isLoadMore = false;
             _this.showLoadMore = true;
           }
-          console.log(_this.patientList);
         }
       });
     },
 
     //点击病人item 进入医生诊断指导页面
+
     enterGuide: function enterGuide(param) {
       console.log('进入点击', param);
       uni.navigateTo({
         url: '/pages/doctor/guidePatients?paId=' + param.id });
 
-    },
-
-
-
-    getPatientSex: function getPatientSex(param) {
-      if (param == '1') {
-        return '男';
-      } else {
-        return '女';
-      }
     }
 
     // 	getPatientsListByDoc({
