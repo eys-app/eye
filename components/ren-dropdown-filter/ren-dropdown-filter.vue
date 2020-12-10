@@ -4,8 +4,8 @@
 		<view class="inner-wrapper">
 			<view class="mask" :class="showMask ? 'show' : 'hide'" @tap="tapMask"></view>
 			<view class="navs">
-				
-				
+
+
 				<view class="date-wrapper">
 					<picker mode="date" @change="handleDate">
 						<view class="date c-flex-align" :style="{ height: height + 'rpx' }" @click="dateClick">
@@ -21,14 +21,14 @@
 					<image src="https://i.loli.net/2020/07/15/QsHxlr1gbSImvWt.png" mode="" class="icon-triangle" v-if="index === actNav"></image>
 					<image src="https://i.loli.net/2020/07/15/xjVSvzWcH9NO7al.png" mode="" class="icon-triangle" v-else></image>
 				</view>
-				
+
 				<!-- <view class="my"> 我是筛选</view> -->
-				
+
 				<view class="mine" @click="doc_mineClick">
-					<image src="../../static/images/mine-ed.png" ></image>
+					<image src="../../static/images/mine-ed.png"></image>
 				</view>
 			</view>
-			
+
 			<scroll-view scroll-y="true" class="popup" :class="popupShow ? 'popupShow' : ''">
 				<view class="item-opt c-flex-align" :class="item.select ? 'actOpt' : ''" v-for="(item, index) in navData[actNav]"
 				 :key="index" @click="handleOpt(index)">
@@ -144,10 +144,10 @@
 				this.$emit('dateChange', d);
 			},
 			discard() {},
-			doc_mineClick(){
+			doc_mineClick() {
 				this.$emit('doc_mineClick', '');
 			}
-			
+
 		}
 	};
 </script>
@@ -157,14 +157,20 @@
 		font-size: 28rpx;
 	}
 
-.mine{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100rpx;
-	height: 100rpx;
-	background-color: #FFFFFF;
-}
+	.mine {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px!important;
+		margin-right: 10px;
+		background-color: #FFFFFF;
+		
+		image{
+			width: 100%;
+			height: 100%;
+		}
+	}
 
 	.c-flex-align {
 		display: flex;

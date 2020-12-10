@@ -81,7 +81,8 @@ export function submitQuestionnaire_interface(param){
 export function getForumList_interface(param){
 	return Request({
 		url: 'mobile/getForumList',
-		method: 'GET',
+		method: 'POST',
+		header: {'content-type': 'application/json'},
 		data: param
 	})
 }
@@ -161,6 +162,45 @@ export function getPatientsListByDoc(param){
 		data:param
 	})
 	
+}
+
+//获取问卷指导模板
+export function getSchemeTemplateList_interface(param){
+	return Request({
+		url:'mobile/getSchemeTemplateList',
+		method:'POST',
+		data:param
+	})
+	
+}
+
+//问卷调查结果指导
+export function saveProposal_interface(param){
+	return Request({
+		url: 'mobile/saveProposal',
+		method: 'POST',
+		data: param,
+		header: {'content-type': 'application/json'}
+	})
+}
+
+//获取小讲堂Tag列表
+export function getForumTagList_interface(param){
+	return Request({
+		url: 'mobile/getForumTagList',
+		method: 'GET',
+		data: param
+	})
+}
+
+//医生身份认证
+export function doctorCertification_interface(param){
+	return Request({
+		url: 'mobile/doctorCertification',
+		method: 'POST',
+		data: param,
+		header: {'content-type': 'application/json'}
+	})
 }
 
 

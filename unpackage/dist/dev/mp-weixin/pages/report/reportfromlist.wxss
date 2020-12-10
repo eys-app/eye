@@ -133,9 +133,12 @@
   font-size: 14px;
   line-height: 20px;
   font-weight: 800;
+  margin-top: 5px;
 }
 .report-doctor .report-doctor-detail .content {
   font-size: 14px;
   line-height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 

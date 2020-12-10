@@ -7,7 +7,6 @@
 </template>
 
 <script>
-	import HTMLParser from '@/static/js/html-parser.js'
 	export default {
 		data() {
 			return {

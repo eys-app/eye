@@ -178,11 +178,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-<<<<<<< HEAD
-var _vuex = __webpack_require__(/*! vuex */ 12);
-=======
 var _vuex = __webpack_require__(/*! vuex */ 8);
->>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
 
 
 var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
@@ -199,58 +195,9 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
 
   (0, _vuex.mapMutations)(["loginFunction"])), {}, {
     //登录接口
-<<<<<<< HEAD
-    loginClicked: function loginClicked() {
-
-
-      /* if (!this.checkValue(this.phoneNum)) {
-                                           uni.showToast({
-                                           	icon: 'none',
-                                           	title: "请输入手机号码"
-                                           })
-                                           return;
-                                           }
-                                           if (!this.checkValue(this.password)) {
-                                           uni.showToast({
-                                           	icon: 'none',
-                                           	title: "请输入密码"
-                                           })
-                                           return;
-                                           }
-                                           if (!this.isPhoneNumber(this.phoneNum)) {
-                                           uni.showToast({
-                                           	icon: 'none',
-                                           	title: "请输入正确的手机号码"
-                                           })
-                                           return;
-                                           }
-                                           login_interface({
-                                           loginName: this.phoneNum,
-                                           password: this.password
-                                           }).then(res => {
-                                           console.log("登录返回结果=="+res)
-                                           if (res.status == 'SUCCESS') {
-                                           	this.loginFunction(res.data);
-                                           	this.enterPriPage();
-                                           } else {
-                                           	uni.showToast({
-                                           		icon: 'none',
-                                           		title: res.message,
-                                           	})
-                                           }
-                                           }) */
-
-
-
-      this.loginFunction({
-        username: 'zhangsan' });
-
-
-      this.enterPriPage();
-=======
     loginClicked: function loginClicked() {var _this = this;
 
-
+      ///*
       if (!this.checkValue(this.phoneNum)) {
         uni.showToast({
           icon: 'none',
@@ -277,7 +224,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
         loginName: this.phoneNum,
         password: this.password }).
       then(function (res) {
-        console.log(res);
+        console.log("登录返回结果==" + res);
         if (res.status == 'SUCCESS') {
           _this.loginFunction(res.data);
           // 0 - 患者端，  1 -- 医生端
@@ -297,15 +244,14 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
             title: res.message });
 
         }
-      });
+      }); //*/
 
 
-      /* this.loginFunction({
-          	username: 'zhangsan'
-          })
-          
-          this.enterPriPage() */
->>>>>>> 8f277b6d2bfdd45b733b9bdfe4bdba42ddde4ce6
+      // this.loginFunction({
+      // 	username: 'zhangsan'
+      // })
+
+      // this.enterPriPage() 
     },
 
     enterDocPage: function enterDocPage() {

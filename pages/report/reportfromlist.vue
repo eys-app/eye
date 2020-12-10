@@ -49,6 +49,7 @@
 						<view class="time">{{item.createDate}}</view>
 						<view class="title">{{item.eyeSchemeTemplate.title}}</view>
 						<view class="content">{{item.eyeSchemeTemplate.proposal}}</view>
+						<view class="content" v-if="item.proposal != undefined">{{item.proposal}}</view>
 					</view>
 				</template>
 				<template v-if="item.eyeSchemeTemplate == undefined">
@@ -281,10 +282,13 @@
 				font-size: 14px;
 				line-height: 20px;
 				font-weight: 800;
+				margin-top: 5px;
 			}
 			.content{
 				font-size: 14px;
 				line-height: 20px;
+				margin-bottom: 5px;
+				margin-top: 5px;
 			}
 		}
 	}

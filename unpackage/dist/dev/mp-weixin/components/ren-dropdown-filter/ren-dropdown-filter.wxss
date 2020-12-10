@@ -37,9 +37,14 @@ page.data-v-c53c40ec {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
-  width: 100rpx;
-  height: 100rpx;
+  width: 30px;
+  height: 30px !important;
+  margin-right: 10px;
   background-color: #FFFFFF;
+}
+.mine image.data-v-c53c40ec {
+  width: 100%;
+  height: 100%;
 }
 .c-flex-align.data-v-c53c40ec {
   display: -webkit-box;

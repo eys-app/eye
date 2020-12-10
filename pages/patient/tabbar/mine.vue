@@ -1,38 +1,46 @@
 <template>
 	<view class="view-page">
-
+		<!-- 
 		<view class="back-ground">
+			
+			
+			
 			<view class="clear-view"></view>
 
 		</view>
-		<view class="image-view"></view>
-		
+		<view class="image-view"></view> -->
+
 		<view class="content-view">
 			<view class="content-item" @click="enterListContact">
-				<image src="../../../static/images/check_box.svg"></image>
+				<!-- <image src="../../../static/images/check_box.svg"></image> -->
 				<view class="content-text-view">问诊人管理</view>
 				<view class="right-text">›</view>
 			</view>
-			<view class="content-item">
-				<image src="../../../static/images/check_box.svg"></image>
-				<view class="content-text-view">切换问诊人</view>
+			<view class="content-item" @click="changeActivePatient">
+				<!-- <image src="../../../static/images/check_box.svg"></image> -->
+				<view class="content-text-view">当前问诊人</view>
 				<view class="right-text">›</view>
+				<view class="active-patient" v-if="activePatient != null">{{activePatient.name}}</view>
+				<view class="active-patient" v-if="activePatient == null">去选择</view>
 			</view>
-			<view class="content-item">
-				<image src="../../../static/images/check_box.svg"></image>
+			<view class="content-item" @click="mineClickedToReport">
+				<!-- <image src="../../../static/images/check_box.svg"></image> -->
 				<view class="content-text-view">诊断报告</view>
 				<view class="right-text">›</view>
 			</view>
-			<view class="content-item" style="border: none;"></view>
+			<view class="content-item" style="text-align: center;color: #6A85F8;font-weight: 800;" @click="logoutClicked">
+				退出登录
+			</view>
 		</view>
 
-		<button type="default" class="logout-button" @click="logoutClicked">退出登录</button>
+		<!-- <button type="default" class="logout-button" @click="logoutClicked">退出登录</button> -->
 	</view>
 </template>
 
 <script>
 	import {
-		mapState, mapMutations
+		mapState,
+		mapMutations
 	} from "vuex"
 	export default {
 		computed: {
@@ -52,14 +60,9 @@
 			},
 			enterListContact() {
 				uni.navigateTo({
-<<<<<<< HEAD
-					url:'/pages/patient/patientmanager/listContact'
+					url: '/pages/patient/patientmanager/listContact'
 					// url:'/pages/doctor/patientsListCard'
-=======
-					// url:'/pages/patient/patientmanager/listContact'
-					url:'/pages/doctor/patientsListCard'
-					// url:'/pages/doctor/test_shaixuan'
->>>>>>> 41867ffe5b6c2dac541be8d2ed11f73ccef64a11
+
 				})
 			},
 			logoutClicked() {
@@ -67,9 +70,19 @@
 				const that = this;
 				uni.redirectTo({
 					url: "../../login/login",
-					success:function(){
+					success: function() {
 						that.logoutFunction()
 					}
+				})
+			},
+			mineClickedToReport() {
+				uni.navigateTo({
+					url: "/pages/report/reportlist"
+				})
+			},
+			changeActivePatient(){
+				uni.navigateTo({
+					url: "../patientmanager/listContact?type=Y"
 				})
 			}
 		}
@@ -78,6 +91,11 @@
 
 <style lang="scss">
 	.view-page {
+
+		position: absolute;
+		background-color: #f4f4f4;
+		width: 100%;
+		height: 100%;
 
 
 
@@ -103,43 +121,53 @@
 			margin-left: calc((100% - 100px) / 2);
 			box-shadow: 0 0 10px #cccccc;
 		}
-		
-		.content-view{
-			width: calc(90% - 20px);
-			margin-left: 5%;
+
+		.content-view {
+			width: 100%;
 			box-shadow: 0 0 10px #e3e3e3;
 			border-radius: 5px;
-			margin-top: 20px;
-			padding: 0 10px;
-			
-			.content-item{
+
+			.content-item {
 				width: 100%;
 				height: 40px;
 				line-height: 40px;
-				border-bottom: 1px solid #efefef;
-				
-				image{
+				margin-bottom: 10px;
+				background-color: #FFFFFF;
+				// border-bottom: 1px solid #efefef;
+
+				image {
 					float: left;
 					width: 20px;
 					height: 20px;
 					margin: 10px;
 				}
-				
-				.content-text-view{
+
+				.content-text-view {
 					float: left;
 					line-height: 40px;
+					margin-left: 10px;
 				}
-				.right-text{
+
+				.right-text {
 					float: right;
 					font-size: 28px;
 					margin-right: 10px;
 					color: #cecece;
+					margin-top: -2px;
 				}
-				
+
+				.active-patient {
+					float: right;
+					margin-right: 10px;
+					font-size: 14px;
+					margin-top: 1px;
+					color: #6A85F8;
+				}
+
 			}
 		}
-		
-		.logout-button{
+
+		.logout-button {
 			width: 70%;
 			height: 35px;
 			margin-left: calc(15%);

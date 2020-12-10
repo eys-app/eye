@@ -55,8 +55,8 @@
 			//登录接口
 			loginClicked() {
 
-
-			 	/* if (!this.checkValue(this.phoneNum)) {
+				///*
+				if (!this.checkValue(this.phoneNum)) {
 					uni.showToast({
 						icon: 'none',
 						title: "请输入手机号码"
@@ -82,16 +82,16 @@
 					loginName: this.phoneNum,
 					password: this.password
 				}).then(res => {
-					console.log("登录返回结果=="+res)
+					console.log("登录返回结果==" + res)
 					if (res.status == 'SUCCESS') {
 						this.loginFunction(res.data);
 						// 0 - 患者端，  1 -- 医生端
-						if(res.data.userType == 0){
+						if (res.data.userType == 0) {
 							uni.switchTab({
 								url: '/pages/patient/tabbar/home'
 							})
 						}
-						if(res.data.userType == 1){
+						if (res.data.userType == 1) {
 							uni.reLaunch({
 								url: '/pages/doctor/patientsListCard'
 							})
@@ -102,14 +102,14 @@
 							title: res.message,
 						})
 					}
-				}) */
+				}) //*/
 
 
-				this.loginFunction({
-					username: 'zhangsan'
-				})
-				
-				this.enterPriPage() 
+				// this.loginFunction({
+				// 	username: 'zhangsan'
+				// })
+
+				// this.enterPriPage() 
 			},
 
 			enterDocPage() {
@@ -128,7 +128,7 @@
 					url: "/pages/usernumber/register"
 				})
 			},
-			rePasswordClicked(){
+			rePasswordClicked() {
 				uni.navigateTo({
 					url: "/pages/usernumber/repassword"
 				})

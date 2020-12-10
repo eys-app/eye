@@ -69,15 +69,11 @@
 		{
 			"path": "pages/patient/tabbar/docclass",
 			"style": {
-				"navigationBarTitleText": "医生小课堂"
+				"navigationBarTitleText": "医生小课堂",
+				"enablePullDownRefresh": true
 			} 
 		}, 
 		{
-			"path": "pages/patient/tabbar/classdoc",
-			"style": {
-				"navigationBarTitleText": "医生小课堂"
-			} 
-		},{
 			"path": "pages/patient/tabbar/mine",
 			"style": {
 				"navigationBarTitleText": "我的"
@@ -191,7 +187,7 @@
 				"selectedIconPath": "static/images/home-ed.png"
 			},
 			{
-				"pagePath": "pages/patient/tabbar/classdoc",
+				"pagePath": "pages/patient/tabbar/docclass",
 				"text": "医生小课堂",
 				"iconPath": "static/images/class.png",
 				"selectedIconPath": "static/images/class-ed.png"

@@ -8,9 +8,9 @@ else{
 
 const sendRequest = function(option){
 	var promise = new Promise(function(resolve, reject){
-		// uni.showLoading({
-		// 	title:"loading..."
-		// })
+		uni.showLoading({
+			title:"loading..."
+		})
 
 		uni.request({
 			url: strUrl + option.url,

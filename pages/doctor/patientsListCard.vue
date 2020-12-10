@@ -8,7 +8,7 @@
 		</view>
 
 		<view class="card-view">
-			<uni-card isShadow="true" v-for="item in patientList" :key="item.userId" @click="enterGuide(item)">
+			<uni-card isShadow="true" v-for="item in patientList"  @click="enterGuide(item)">
 				<view class="card">
 					<view class="one">
 						<view class="patientName">
@@ -112,7 +112,7 @@
 
 				perTagList: ['标签1', '标签2', '标签1', '标签2', '标签1', '标签2'], //病人的标签
 				showNoResult: false, //显示无结果
-				doctorId: '1008611',
+				doctorId: '251586078291525632',
 				showLoadMore: false,
 				loadMoreText: "加载中...",
 				stateTag: '',
@@ -197,9 +197,9 @@
 			
 			//点击病人item 进入医生诊断指导页面
 			enterGuide(param){
-				console.log('进入点击' +param)
+				console.log('进入点击' , param)
 				uni.navigateTo({
-					url:'/pages/doctor/guidePatients'
+					url:'/pages/doctor/guidePatients?paId=' + param.id
 				})
 			},
 

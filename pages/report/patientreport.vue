@@ -5,7 +5,7 @@
 				{{activePatient.name}}
 			</view>
 			<view class="patient-other">
-				<label>{{activePatient.age}}岁</label><label style="margin-left: 20px;">{{sexValue}}</label>
+				<label>{{activePatient.age}}岁</label><label style="margin-left: 20px;">{{sexValue}}</label>	
 			</view>
 		</view>
 		<view class="report-ai">

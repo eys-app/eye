@@ -10,7 +10,6 @@
     "pages/doctor/apply",
     "pages/patient/tabbar/home",
     "pages/patient/tabbar/docclass",
-    "pages/patient/tabbar/classdoc",
     "pages/patient/tabbar/mine",
     "pages/index/index",
     "pages/patient/patientmanager/listContact",
@@ -23,7 +22,8 @@
     "pages/report/patientreport",
     "pages/report/reportlist",
     "pages/report/reportfromlist",
-    "pages/report/historydetail"
+    "pages/report/historydetail",
+    "pages/doctor/guidePatients"
   ],
   "subPackages": [],
   "window": {
@@ -45,7 +45,7 @@
         "selectedIconPath": "static/images/home-ed.png"
       },
       {
-        "pagePath": "pages/patient/tabbar/classdoc",
+        "pagePath": "pages/patient/tabbar/docclass",
         "text": "医生小课堂",
         "iconPath": "static/images/class.png",
         "selectedIconPath": "static/images/class-ed.png"

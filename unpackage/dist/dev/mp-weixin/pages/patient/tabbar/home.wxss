@@ -25,15 +25,12 @@
 /* 透明度 */
 /* 文章场景相关 */
 .home-view-back .home-view {
-  margin: 10px;
   height: 100%;
-  width: calc(100% - 20px);
+  width: 100%;
   position: absolute;
 }
 .home-view-back .home-view .ids {
   width: 100%;
-  -webkit-box-shadow: 2px 5px 5px #a7a7a7;
-          box-shadow: 2px 5px 5px #a7a7a7;
 }
 .home-view-back .home-view .ids image {
   width: 100%;
@@ -48,6 +45,7 @@
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
+  border-bottom: 10px solid #F0F0F0;
 }
 .home-view-back .home-view .content-grid .cus-grid-item {
   width: calc(100% / 3);
@@ -74,9 +72,12 @@
 .home-view-back .home-view .content-grid .cus-grid-item label {
   font-size: 14px;
   color: gray;
+  margin-top: 8px;
 }
 .home-view-back .home-view .class-list {
-  width: 100%;
+  width: calc(100% - 20px);
+  margin-left: 10px;
+  padding-top: 10px;
 }
 .home-view-back .home-view .class-list .class-list-title .title {
   font-size: 16px;
@@ -105,7 +106,7 @@
 .home-view-back .home-view .class-list .class-list-content .right-content {
   float: left;
   width: calc(100% - 85px);
-  padding-left: 5px;
+  padding-left: 10px;
 }
 .home-view-back .home-view .class-list .class-list-content .right-content .title {
   font-size: 14px;

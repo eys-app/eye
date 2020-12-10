@@ -14,15 +14,15 @@
 
 			<view class="content-grid">
 				<view class="cus-grid-item" @click="gridClicked('ai')">
-					<image src="../../../static/images/class-ed.png"></image>
+					<image src="../../../static/images/home-img-1.svg"></image>
 					<label>AI诊断</label>
 				</view>
 				<view class="cus-grid-item" @click="gridClicked('fuzhu')">
-					<image src="../../../static/images/class-ed.png"></image>
+					<image src="../../../static/images/home-img-2.svg"></image>
 					<label>辅助诊断</label>
 				</view>
 				<view class="cus-grid-item" @click="gridClicked('report')">
-					<image src="../../../static/images/class-ed.png"></image>
+					<image src="../../../static/images/home-img-3.svg"></image>
 					<label>诊断报告</label>
 				</view>
 			</view>
@@ -58,7 +58,8 @@
 <script>
 	import {
 		getForumList_interface,
-		getAdvertisementList_interface
+		getAdvertisementList_interface,
+		getForumTagList_interface
 	} from '../../../api/index.js'
 	export default {
 		data() {
@@ -79,9 +80,8 @@
 
 			this.dataAdList = [];
 			this.gainAdList()
-
-			this.gainDoctorClassList()
-
+			
+			this.gainDoctorClassTags()
 
 		},
 		methods: {
@@ -110,10 +110,19 @@
 				})
 
 			},
+			//获取小讲堂tag列表
+			gainDoctorClassTags(){
+				getForumTagList_interface().then(res => {
+					if(res.status == 'SUCCESS'){
+						this.gainDoctorClassList(res.data[0].id)
+					}
+				})
+			},
 			//获取医生小讲堂列表数据
-			gainDoctorClassList() {
+			gainDoctorClassList(tagId) {
 				this.listData = []
 				getForumList_interface({
+					forumTagId: tagId,
 					pageNo: 1,
 					pageSize: 5
 				}).then(res => {
@@ -125,7 +134,7 @@
 			//查看更多-- 跳转到医生小课堂 tabbar
 			navigateToClassPage() {
 				uni.switchTab({
-					url: "/pages/patient/tabbar/classdoc"
+					url: "/pages/patient/tabbar/docclass"
 				})
 			},
 
@@ -154,15 +163,16 @@
 	.home-view-back {
 
 		.home-view {
-			margin: 10px;
+			// margin: 10px;
 			height: 100%;
-			width: calc(100% - 20px);
+			// width: calc(100% - 20px);
+			width: 100%;
 			position: absolute;
 
 			.ids {
 				width: 100%;
 				// border-radius: 10px;
-				box-shadow: 2px 5px 5px #a7a7a7;
+				// box-shadow: 2px 5px 5px #a7a7a7;
 
 				image {
 					width: 100%;
@@ -177,6 +187,9 @@
 				height: 100px;
 				display: flex;
 				justify-content: center;
+				
+				// border-top: 10px solid #F0F0F0;
+				border-bottom: 10px solid #F0F0F0;
 
 				.cus-grid-item {
 					width: calc(100% / 3);
@@ -195,6 +208,7 @@
 					label {
 						font-size: 14px;
 						color: gray;
+						margin-top: 8px;
 					}
 
 				}
@@ -202,7 +216,10 @@
 			}
 
 			.class-list {
-				width: 100%;
+				// width: 100%;
+				width: calc(100% - 20px);
+				margin-left: 10px;
+				padding-top: 10px;
 
 				.class-list-title {
 
@@ -237,7 +254,7 @@
 					.right-content {
 						float: left;
 						width: calc(100% - 85px);
-						padding-left: 5px;
+						padding-left: 10px;
 
 						.title {
 							font-size: 14px;
