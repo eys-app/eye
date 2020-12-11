@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "报告详情",
-  "enablePullDownRefresh": false
+  "enablePullDownRefresh": false,
+  "usingComponents": {}
 }

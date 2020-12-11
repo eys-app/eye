@@ -43,13 +43,8 @@ page.data-v-c53c40ec {
   background-color: #FFFFFF;
 }
 .mine image.data-v-c53c40ec {
-<<<<<<< HEAD
   width: 100%;
   height: 100%;
-=======
-  width: 100rpx;
-  height: 100rpx;
->>>>>>> 6707d554d147c6f3155412aa5bcefdacce15659a
 }
 .c-flex-align.data-v-c53c40ec {
   display: -webkit-box;

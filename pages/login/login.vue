@@ -78,94 +78,94 @@
 				}
 
 				login_interface({
-						loginName: this.phoneNum,
-						password: this.password
-					}).then(res => {
-						if (res.status == 'SUCCESS') {
-							this.loginFunction(res.data);
-							// 0 - 患者端，  1 -- 医生端
-							if (res.data.userType == 0) {
-								uni.switchTab({
-									url: '/pages/patient/tabbar/home'
-								})
-							}
-							if (res.data.userType == 1) {
-								uni.reLaunch({
-									url: '/pages/doctor/patientsListCard'
-								})
-							}
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: res.message,
+					loginName: this.phoneNum,
+					password: this.password
+				}).then(res => {
+					if (res.status == 'SUCCESS') {
+						this.loginFunction(res.data);
+						// 0 - 患者端，  1 -- 医生端
+						if (res.data.userType == 0) {
+							uni.switchTab({
+								url: '/pages/patient/tabbar/home'
 							})
-						} 
-					}) 
-	},
+						}
+						if (res.data.userType == 1) {
+							uni.reLaunch({
+								url: '/pages/doctor/patientsListCard'
+							})
+						}
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.message,
+						})
+					}
+				})
+			},
 
-	enterDocPage() {
-			uni.navigateTo({
-				url: "/pages/doctor/apply"
-			})
-		},
-		enterPriPage() {
-			console.log('进入患者页面')
-			uni.switchTab({
-				url: "/pages/patient/tabbar/home"
-			})
-		},
-		navigateToRegisterPage() {
-			uni.navigateTo({
-				url: "/pages/usernumber/register"
-			})
-		},
-		rePasswordClicked() {
-			uni.navigateTo({
-				url: "/pages/usernumber/repassword"
-			})
-		},
+			enterDocPage() {
+				uni.navigateTo({
+					url: "/pages/doctor/apply"
+				})
+			},
+			enterPriPage() {
+				console.log('进入患者页面')
+				uni.switchTab({
+					url: "/pages/patient/tabbar/home"
+				})
+			},
+			navigateToRegisterPage() {
+				uni.navigateTo({
+					url: "/pages/usernumber/register"
+				})
+			},
+			rePasswordClicked() {
+				uni.navigateTo({
+					url: "/pages/usernumber/repassword"
+				})
+			},
 
 
-		//检查输入是否为空
-		checkValue(text) {
-			if (text == null || text == undefined || text.length == 0 || text == '') {
-				return false;
-			} else {
-				return true;
+			//检查输入是否为空
+			checkValue(text) {
+				if (text == null || text == undefined || text.length == 0 || text == '') {
+					return false;
+				} else {
+					return true;
+				}
+			},
+
+
+			// 手机号校验
+			isPhoneNumber(phoneNum) {
+				// let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+				/*
+				  * 移动号码包括的号段：134/135/136/137,138,139；
+				*                     147/148(物联卡号)；
+				*                     150/151/152/157/158/159；
+				*                     165（虚拟运营商）；
+				*                     1703/1705/1706（虚拟运营商）、178；
+				*                     182/183/184/187/188
+				*                     198
+						
+				* 联通号段包括：130/131
+				*               145
+				*               155/156
+				*               166/167(虚拟运营商)
+				*               1704/1707/1708/1709、171
+				*               186/186
+				*
+				* 电信号段包括： 133
+				*                153
+				*                162(虚拟运营商)
+				*                1700/1701/1702(虚拟运营商)
+				*                180/181/189
+				*                191/199
+				* */
+				let reg = /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
+				return reg.test(phoneNum);
 			}
-		},
-
-
-		// 手机号校验
-		isPhoneNumber(phoneNum) {
-			// let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
-			/*
-			  * 移动号码包括的号段：134/135/136/137,138,139；
-			*                     147/148(物联卡号)；
-			*                     150/151/152/157/158/159；
-			*                     165（虚拟运营商）；
-			*                     1703/1705/1706（虚拟运营商）、178；
-			*                     182/183/184/187/188
-			*                     198
-					
-			* 联通号段包括：130/131
-			*               145
-			*               155/156
-			*               166/167(虚拟运营商)
-			*               1704/1707/1708/1709、171
-			*               186/186
-			*
-			* 电信号段包括： 133
-			*                153
-			*                162(虚拟运营商)
-			*                1700/1701/1702(虚拟运营商)
-			*                180/181/189
-			*                191/199
-			* */
-			let reg = /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
-			return reg.test(phoneNum);
 		}
-	}
 	}
 </script>
 

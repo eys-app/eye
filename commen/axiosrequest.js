@@ -4,6 +4,7 @@ import axios from '../js_sdk/gangdiedao-uni-axios/index.js'
 
 
 
+
 /**
  * 请求接口日志记录
  */
@@ -25,7 +26,7 @@ function _reslog(res) {
 
 // 创建自定义接口服务实例
 const http = axios.create({
-    baseURL: [baseURL],
+    baseURL: "http://192.168.4.195:8090/",
     timeout: 6000,
     // #ifdef H5
     withCredentials: true,

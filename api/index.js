@@ -203,6 +203,17 @@ export function doctorCertification_interface(param){
 	})
 }
 
+//获取医生职位列表
+export function getDoctorWorkList_interface(param){
+	return Request({
+		url: 'mobile/getDoctorWorkList',
+		method: 'POST',
+		data: param,
+		header: {'content-type': 'application/json'}
+	})
+}
+
+
 
 export function getTestRequest(){
 	 return Request({

@@ -1,11 +1,7 @@
 {
   "navigationBarTitleText": "诊断指导",
   "enablePullDownRefresh": false,
-<<<<<<< HEAD
   "usingComponents": {
     "uni-popup": "/components/uni-popup/uni-popup"
   }
-=======
-  "usingComponents": {}
->>>>>>> 6707d554d147c6f3155412aa5bcefdacce15659a
 }
