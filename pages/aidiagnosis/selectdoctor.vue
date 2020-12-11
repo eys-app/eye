@@ -101,14 +101,14 @@
 			//扫码
 			scanDoctorImage() {
 				const that = this
-				that.gainDoctorDetailWithScanCode('25158607829')
+				// that.gainDoctorDetailWithScanCode('25158607829')
 				// that.gainDoctorDetailWithScanCode('251586078291525632')
-				// uni.scanCode({
-				// 	success: function(res) {
-				// 		console.log('扫码结果: ', JSON.stringify(res));
-				// 		that.gainDoctorDetailWithScanCode(res.result)
-				// 	}
-				// })
+				uni.scanCode({
+					success: function(res) {
+						console.log('扫码结果: ', JSON.stringify(res));
+						that.gainDoctorDetailWithScanCode(res.result)
+					}
+				})
 			},
 			//根据扫码结果查询医生信息
 			gainDoctorDetailWithScanCode(code) {

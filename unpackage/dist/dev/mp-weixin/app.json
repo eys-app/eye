@@ -23,7 +23,9 @@
     "pages/report/reportlist",
     "pages/report/reportfromlist",
     "pages/report/historydetail",
-    "pages/doctor/guidePatients"
+    "pages/doctor/guidePatients",
+    "pages/doctor/doctorcodeimage",
+    "pages/usernumber/apply/demo"
   ],
   "subPackages": [],
   "window": {

@@ -37,6 +37,28 @@
 							<view class="point_read"></view>用户已阅
 						</view>
 					</view>
+					
+					<view class="ai-report">
+						<view class="ai-item">
+							<label class="ai-item-top">
+								AI 评分:
+							</label>
+							<label class="ai-item-result">
+								{{item.score}}
+							</label>
+						</view>
+						<view class="ai-item">
+							<label class="ai-item-top">
+								AI 结果:
+							</label>
+							<label class="ai-item-result" v-if="item.eyeDiagnosisConfig != undefined">
+								{{item.eyeDiagnosisConfig.severity}}
+							</label>
+							<label class="ai-item-result" v-if="item.eyeDiagnosisConfig == undefined">
+								--
+							</label>
+						</view>
+					</view>
 
 					<!-- <view class="two" v-for="items in perTagList"> -->
 					<!-- 	<view class="two">
@@ -60,7 +82,7 @@
 					</view> -->
 
 					<view class="three">
-						上次测评时间：{{item.createDate}}
+						测评时间：{{item.createDate}}
 					</view>
 
 				</view>
@@ -175,6 +197,7 @@
 			doc_mineClick() {
 				uni.navigateTo({
 					url: '/pages/doctor/doctor_mine'
+					// url: "/pages/usernumber/apply/demo"
 				})
 			},
 
@@ -251,6 +274,42 @@
 	.one {
 		display: flex;
 	}
+	
+	.ai-report{
+		width: 80%;
+		margin-left: 10%;
+		height: 25px;
+		margin-top: 10px;
+		
+
+		
+		.ai-item{
+			height: 20px;
+			background-color: #afd0f8;
+			margin-right: 10px;
+			float: left;
+			padding: 3px 10px;
+			border-radius: 20px;
+			
+			
+			.ai-item-top{
+				line-height: 20px;
+				font-size: 12px;
+				color: #FFFFFF;
+			}
+			
+			.ai-item-result{
+				line-height: 20px;
+				font-size: 16px;
+				color: #FFFFFF;
+				margin-left: 5px;
+				font-weight: 800;
+			}
+			
+		}
+		
+		
+	}
 
 	.two {
 		margin-top: 15rpx;
@@ -275,24 +334,28 @@
 	.three {
 		display: flex;
 		justify-content: flex-end;
-		font-size: 30rpx;
+		font-size: 12px;
+		color: #cccccc;
 		margin-top: 20rpx;
 	}
 
 	.patientName {
-		font-size: 40rpx;
+		font-size: 18px;
+		font-weight: 700;
 	}
 
 	.patientSex {
 		margin-left: 40rpx;
 		color: #6E6E6E;
-		font-size: 34rpx;
+		font-size: 14px;
+		padding-top: 3px;
 	}
 
 	.patientOld {
 		margin-left: 40rpx;
 		color: #6E6E6E;
-		font-size: 34rpx;
+		font-size: 14px;
+		padding-top: 3px;
 	}
 
 	.guide {

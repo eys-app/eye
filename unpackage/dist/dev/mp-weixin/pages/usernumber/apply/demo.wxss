@@ -1,0 +1,105 @@
+
+page {  
+    background-color: #2d355c;
+}
+.content {
+}
+.nav-top {  
+    color: #ffffff;  
+    font-size: 35rpx;  
+    text-align: center;  
+    margin: 20rpx 0;
+}
+.main {  
+    position: relative;  
+    width: 100%;  
+    margin-top: 50rpx;
+}
+.main .lay1 {  
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    right: 0;  
+    left: 0;  
+    z-index: 3000;
+}
+.main .lay1 .line {  
+    height: 100rpx;  
+    width: 100%;  
+    -webkit-border-radius: 50px;  
+            border-radius: 50px;  
+    background-color: #e28f0b;  
+    margin-top: 100rpx;
+}
+.lay2 {  
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    right: 0;  
+    left: 0;  
+    z-index: 4000;
+}
+.lay2 .qr {  
+    width: 70%;  
+    margin: 0 auto;  
+    height: 700rpx;  
+    background-color: #3958ab;
+}
+.qr-img {  
+    text-align: center;  
+    padding-top: 50%;
+}
+.qr-txt {  
+    color: #ffffff;  
+    text-align: center;  
+    margin-top: 50rpx;
+}
+.lay3 {  
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    right: 0;  
+    left: 0;  
+    z-index: 4000;  
+    text-align: center;
+}
+.lay3 .line {  
+    height: 100rpx;  
+    width: 85%;  
+    -webkit-border-radius: 50px;  
+            border-radius: 50px;  
+    background-color: #e28f0b;  
+    margin: 40rpx auto;  
+    -webkit-box-shadow: #cccccc 0px 3px 10px;  
+            box-shadow: #cccccc 0px 3px 10px;
+}
+.code-btn {  
+    width: 100%;  
+    color: #ffffff;  
+    height: 100%;  
+    text-align: center;
+}
+.line-btn {  
+    position: absolute;  
+    bottom: 200rpx;  
+    left: 0rpx;  
+    right: 0rpx;  
+    width: 100%;  
+    display: -webkit-box;  
+    display: -webkit-flex;  
+    display: flex;  
+    -webkit-box-pack: center;  
+    -webkit-justify-content: center;  
+            justify-content: center;
+}
+.btn {  
+    width: 400rpx;  
+    padding: 35rpx;  
+    background-color: #e28f0b;  
+    -webkit-border-radius: 50px;  
+            border-radius: 50px;
+}
+.btn:active{  
+    background-color: #FEC607;
+}  
+

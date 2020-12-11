@@ -24,56 +24,72 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.system-title {
+  position: absolute;
+  top: 50px;
+  left: 10%;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+.system-title .weclome {
+  font-size: 18px;
+}
+.system-title .system-title-text {
+  font-size: 26px;
+  margin-top: 10px;
+}
+.view-page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #F0F0F0;
+}
 .view-page .back-ground {
   width: 100%;
-  height: 120px;
+  height: 220px;
   background-color: #6a85f8;
+  text-align: center;
 }
 .view-page .back-ground .clear-view {
   width: 100%;
   height: 80px;
 }
-.view-page .image-view {
-  width: 100px;
-  height: 100px;
-  background-color: #FFFFFF;
-  -webkit-border-radius: 10px;
-          border-radius: 10px;
-  margin-top: -50px;
-  margin-left: calc((100% - 100px)/2);
-  -webkit-box-shadow: 0 0 10px #cccccc;
-          box-shadow: 0 0 10px #cccccc;
-}
-.view-page .center-view {
-  width: calc(90% - 20px);
+.view-page .back-ground .user-image {
+  width: 80px;
+  height: 80px;
+  margin-left: 20px;
   margin-top: 20px;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  border: 2px solid #F1F1F1;
+}
+.view-page .back-ground .user-message {
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 10px;
+  line-height: 30px;
+}
+.view-page .back-ground .user-message .vip-doc {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+.view-page .back-ground .user-message .doc-type {
+  padding: 3px 10px;
+  font-size: 12px;
+  background-color: #5dd9be;
+  color: #FFFFFF;
+  margin-left: 15px;
   -webkit-border-radius: 5px;
           border-radius: 5px;
-  margin-left: 5%;
-  padding: 0 10px;
-  -webkit-box-shadow: 10px 10px 10px #e3e3e3;
-          box-shadow: 10px 10px 10px #e3e3e3;
 }
-.view-page .center-view .content-item {
+.view-page .item-content {
+  margin-top: 10px;
   width: 100%;
   height: 40px;
   line-height: 40px;
-  border-bottom: 1px solid #efefef;
-}
-.view-page .center-view .content-item image {
-  float: left;
-  width: 20px;
-  height: 20px;
-  margin: 10px;
-}
-.view-page .center-view .content-item .content-text-view {
-  float: left;
-  line-height: 40px;
-}
-.view-page .center-view .content-item .right-text {
-  float: right;
-  font-size: 28px;
-  margin-right: 10px;
-  color: #cecece;
+  background-color: #FFFFFF;
 }
 

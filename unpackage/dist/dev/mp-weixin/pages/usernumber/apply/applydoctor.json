@@ -1,6 +1,4 @@
 {
   "navigationBarTitleText": "认证医生",
-  "usingComponents": {
-    "img-upload": "/components/poiuy-uImgUpload/imgUpload"
-  }
+  "usingComponents": {}
 }

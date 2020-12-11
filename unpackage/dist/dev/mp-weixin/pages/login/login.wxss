@@ -24,6 +24,20 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.system-title {
+  position: absolute;
+  top: 50px;
+  left: 10%;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+.system-title .weclome {
+  font-size: 18px;
+}
+.system-title .system-title-text {
+  font-size: 26px;
+  margin-top: 10px;
+}
 .login-back {
   background-color: #6a85f8;
   position: fixed;
@@ -32,6 +46,10 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;

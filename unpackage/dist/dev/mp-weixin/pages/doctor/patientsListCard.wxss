@@ -24,6 +24,20 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.system-title {
+  position: absolute;
+  top: 50px;
+  left: 10%;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+.system-title .weclome {
+  font-size: 18px;
+}
+.system-title .system-title-text {
+  font-size: 26px;
+  margin-top: 10px;
+}
 .title_bar {
   display: -webkit-box;
   display: -webkit-flex;
@@ -54,6 +68,33 @@
   display: -webkit-flex;
   display: flex;
 }
+.ai-report {
+  width: 80%;
+  margin-left: 10%;
+  height: 25px;
+  margin-top: 10px;
+}
+.ai-report .ai-item {
+  height: 20px;
+  background-color: #afd0f8;
+  margin-right: 10px;
+  float: left;
+  padding: 3px 10px;
+  -webkit-border-radius: 20px;
+          border-radius: 20px;
+}
+.ai-report .ai-item .ai-item-top {
+  line-height: 20px;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+.ai-report .ai-item .ai-item-result {
+  line-height: 20px;
+  font-size: 16px;
+  color: #FFFFFF;
+  margin-left: 5px;
+  font-weight: 800;
+}
 .two {
   margin-top: 15rpx;
   display: -webkit-box;
@@ -81,21 +122,25 @@
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
           justify-content: flex-end;
-  font-size: 30rpx;
+  font-size: 12px;
+  color: #cccccc;
   margin-top: 20rpx;
 }
 .patientName {
-  font-size: 40rpx;
+  font-size: 18px;
+  font-weight: 700;
 }
 .patientSex {
   margin-left: 40rpx;
   color: #6E6E6E;
-  font-size: 34rpx;
+  font-size: 14px;
+  padding-top: 3px;
 }
 .patientOld {
   margin-left: 40rpx;
   color: #6E6E6E;
-  font-size: 34rpx;
+  font-size: 14px;
+  padding-top: 3px;
 }
 .guide {
   display: -webkit-box;

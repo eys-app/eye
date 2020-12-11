@@ -53,7 +53,8 @@
 		{
 			"path": "pages/patient/tabbar/home",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "首页",
+				"navigationStyle":"custom"
 			}
 		},
 
@@ -62,7 +63,8 @@
 		{
 			"path": "pages/patient/tabbar/home",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "首页",
+				"navigationStyle":"custom"
 			}
 		},
 		// #endif
@@ -157,17 +159,30 @@
 				"navigationBarTitleText":"问卷详情",
 				"enablePullDownRefresh": false
 			}
-		}
-		
-	    ,{
+		},{
             "path" : "pages/doctor/guidePatients",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "诊断指导",
                 "enablePullDownRefresh": false
             }
-            
-        }
+        },{
+            "path" : "pages/doctor/doctorcodeimage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的二维码",
+                "enablePullDownRefresh": false
+            }
+        },
+		{
+		    "path" : "pages/usernumber/apply/demo",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "我的二维码",
+		        "enablePullDownRefresh": false,
+				"navigationStyle":"custom"
+		    }
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

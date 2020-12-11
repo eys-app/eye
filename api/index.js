@@ -1,7 +1,10 @@
 
 import Request from '../commen/request.js'
 
-let strUrl = ""
+
+
+let BaseUrl = "http://192.168.4.195:8090/"
+export {BaseUrl}
 
 //登录
 export function login_interface(param){
@@ -62,7 +65,7 @@ export function gainDoctorList_interface(param){
 export function gainDoctorListWithScan_interface(param){
 	return Request({
 		url: 'mobile/getDoctorDetail',
-		method: 'get',
+		method: 'POST',
 		data: param
 	})
 }

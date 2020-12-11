@@ -1,5 +1,11 @@
 <template>
 	<view class="view-page">
+		
+		<view class="apply-result">
+			<label>您的申请已提交，当前状态为:</label>
+			<label>已通过</label>
+		</view>
+		
 		<view class="card-view" style="margin-top: 0;">
 			<view class="input-fa-view">
 				<view class="label-left">
@@ -39,14 +45,14 @@
 
 			<view class="upload-image">
 
-				<template v-for="(item, index) in imageUser.path">
+				<template v-for="(item, index) in imageUser">
 					<view class="image-item" :style="{height: imageItemHeight}">
-						<view class="remove-image" @click="chooseImageimageuser(index)"></view>
+						<view class="remove-image" @click="removeImageUserWithIndex(index)"></view>
 						<image :src="item" :data-src="item" @tap="previewImage"></image>
 					</view>
 				</template>
 
-				<view class="image-item add-image" v-show="imageUser.path.length == 0" :style="{height: imageItemHeight}" @click="chooseImageUser"></view>
+				<view class="image-item add-image" v-show="imageUser.length == 0" :style="{height: imageItemHeight}" @click="chooseImageUser"></view>
 			</view>
 
 
@@ -60,7 +66,7 @@
 
 			<view class="upload-image">
 
-				<template v-for="(item, index) in imageList.path">
+				<template v-for="(item, index) in imageList">
 					<view class="image-item" :style="{height: imageItemHeight}">
 						<view class="remove-image" @click="removeImageWithIndex(index)"></view>
 						<image :src="item" :data-src="item" @tap="previewImage"></image>
@@ -69,10 +75,6 @@
 
 				<view class="image-item add-image" :style="{height: imageItemHeight}" @click="chooseImage"></view>
 			</view>
-
-			<imgUpload :imgArr="imgArray" imgCount="9" ref="imgUpload" url="http://192.168.4.195:8980/mobile/doctorCertification"></imgUpload>
-
-
 
 		</view>
 
@@ -85,7 +87,8 @@
 <script>
 	import {
 		doctorCertification_interface,
-		getDoctorWorkList_interface
+		getDoctorWorkList_interface,
+		BaseUrl
 	} from '../../../api/index.js'
 	import {
 		sexValueToNumber,
@@ -95,15 +98,8 @@
 		mapState
 	} from 'vuex'
 
-	import imgUpload from '../../../components/poiuy-uImgUpload/imgUpload.vue';
-
-	import http from '../../../commen/axiosrequest.js'
 
 	export default {
-		components: {
-			imgUpload
-		},
-
 		data() {
 			return {
 				sexList: ["男", "女"],
@@ -120,18 +116,10 @@
 				doctorTypeValue: {
 					work: '请选择'
 				}, //医师职称
-				imageList: {
-					path: [],
-					files: []
-				}, //上传的证件照片
+				imageList: [], //上传的证件照片
 				imageItemHeight: 0,
 				workPlace: '', //工作单位
-				imageUser: {
-					path: [],
-					files: []
-				},
-
-				imgArray: []
+				imageUser: [],
 
 
 
@@ -208,7 +196,7 @@
 				const that = this;
 				let dataList = []
 				for (var i = 0; i < this.doctorType.length; i++) {
-					dataList.push(this.doctorType[i].work) 
+					dataList.push(this.doctorType[i].work)
 				}
 				uni.showActionSheet({
 					itemList: dataList,
@@ -275,7 +263,43 @@
 					return;
 				}
 				
-					/*
+				let strCerFile = '';
+				for (var i = 0; i < this.imageList.length; i++) {
+					if(i == 0){
+						strCerFile = this.imageList[i]
+					}
+					else{
+						strCerFile = strCerFile + ',' + this.imageList[i] 
+					}
+					
+				}
+
+				let param = {
+					userId: this.loginData.id,
+					nickName: this.name,
+					phone: this.phoneNumber,
+					workAddr: this.workPlace,
+					workId: this.doctorTypeValue.id,
+					photoUrl: this.imageUser[0],
+					certificateUrl: strCerFile
+				}
+				
+				
+				doctorCertification_interface(param).then(res => {
+					if(res.status == 'SUCCESS'){
+						uni.showToast({
+							title: "您的认证申请已提交，正在等待审核...",
+							icon: 'none'
+						})
+						setTimeout(()=>{
+							uni.switchTab({
+								url: '/pages/patient/tabbar/home'
+							})
+						},500)
+					}
+				})
+
+				/*
 
 
 
@@ -312,9 +336,7 @@
 				// console.log('param====', param.key())
 
 
-				// doctorCertification_interface(JSON.stringify(param)).then(res => {
-				// 	console.log('aaaaaaaaaa======', res)
-				// })
+				
 
 
 
@@ -342,14 +364,24 @@
 				uni.chooseImage({
 					count: 9, //默认9
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-
 					success: function(res) {
-						console.log('ssssss===', res)
 						for (var i = 0; i < res.tempFilePaths.length; i++) {
-							that.imageList.path.push(res.tempFilePaths[i])
-						}
-						for (var i = 0; i < res.tempFiles.length; i++) {
-							that.imageList.files.push(res.tempFiles[i])
+							var imageSrc = res.tempFilePaths[i]
+							uni.uploadFile({
+								url: BaseUrl + 'mobile/fileUpload',
+								filePath: imageSrc,
+								name: 'multipartFile',
+								success: (res) => {
+									that.imageList.push(JSON.parse(res.data).data)
+								},
+								fail: (err) => {
+									console.log('uploadImage fail', err);
+									uni.showModal({
+										content: err.errMsg,
+										showCancel: false
+									});
+								}
+							});
 						}
 
 					}
@@ -366,64 +398,9 @@
 			},
 
 			removeImageWithIndex(index) {
-				this.imageList.path.splice(index, 1)
-				this.imageList.files.splice(index, 1)
+				this.imageList.splice(index, 1)
 			},
 
-			chooseImageimageuser: function() {
-				uni.chooseImage({
-					count: 1,
-					sizeType: ['compressed'],
-					sourceType: ['album'],
-					success: (res) => {
-						console.log('chooseImage success, temp path is', res.tempFilePaths[0])
-						var imageSrc = res.tempFilePaths[0]
-						uni.uploadFile({
-							url: 'https://unidemo.dcloud.net.cn/upload',
-							filePath: imageSrc,
-							fileType: 'image',
-							name: 'data',
-							success: (res) => {
-								console.log('uploadImage success, res is:', res)
-								uni.showToast({
-									title: '上传成功',
-									icon: 'success',
-									duration: 1000
-								})
-								this.imageSrc = imageSrc
-							},
-							fail: (err) => {
-								console.log('uploadImage fail', err);
-								uni.showModal({
-									content: err.errMsg,
-									showCancel: false
-								});
-							}
-						});
-					},
-					fail: (err) => {
-						console.log('chooseImage fail', err)
-						// #ifdef MP
-						uni.getSetting({
-							success: (res) => {
-								let authStatus = res.authSetting['scope.album'];
-								if (!authStatus) {
-									uni.showModal({
-										title: '授权失败',
-										content: 'Hello uni-app需要从您的相册获取图片，请在设置界面打开相关权限',
-										success: (res) => {
-											if (res.confirm) {
-												uni.openSetting()
-											}
-										}
-									})
-								}
-							}
-						})
-						// #endif
-					}
-				})
-			},
 
 
 			chooseImageUser() {
@@ -432,57 +409,30 @@
 					count: 1, //默认9
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: function(res) {
-						// for (var i = 0; i < res.tempFilePaths.length; i++) {
-						// 	that.imageUser.path.push(res.tempFilePaths[i])
-						// }
-						// for (var i = 0; i < res.tempFiles.length; i++) {
-						// 	that.imageUser.files.push(res.tempFiles[i])
-						// }
-
-						console.log('res==', res)
-
 
 						let files = res.tempFilePaths[0]
-						console.log('aaaa==', files)
-
 						uni.uploadFile({
-							url: 'http://192.168.4.195:8980/mobile/fileUpload', //仅为示例，非真实的接口地址
+							url: BaseUrl + 'mobile/fileUpload',
 							filePath: files,
 							name: 'multipartFile',
-							formData: {
-
-							},
 							success: (uploadFileRes) => {
-								console.log(uploadFileRes.data);
+								that.imageUser.push(JSON.parse(uploadFileRes.data).data)
+							},
+							fail: (err) => {
+								console.log('uploadImage fail', err);
+								uni.showModal({
+									content: '图片上传失败:' + err.errMsg,
+									showCancel: false
+								});
 							}
 						});
-
-
-						// uni.uploadFile({
-						// 	url: 'http://192.168.4.195:8980/mobile/uploadFile',
-						// 	filePath: res.tempFilePaths[0],
-						// 	name: 'file',
-						// 	formData: {
-						// 		'user': 'test'
-						// 	},
-						// 	success: (uploadFileRes) => {
-						// 		console.log('图片文件上传结果=====', uploadFileRes)
-						// 	}
-						// })
-
 
 					}
 				})
 			},
 			removeImageUserWithIndex(index) {
-				this.imageUser.path.splice(index, 1)
-				this.imageUser.files.splice(index, 1)
-			}
-
-
-
-
-
+				this.imageUser.splice(index, 1)
+			},
 
 		}
 	}

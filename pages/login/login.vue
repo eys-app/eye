@@ -1,6 +1,13 @@
 <template>
 
 	<view class="login-back">
+		
+		
+		<view class="system-title">
+			<view class="weclome">欢迎使用</view>
+			<view class="system-title-text">智慧干眼系统</view>
+		</view>
+		
 		<view class="login-content">
 
 			<view class="login-title">登录</view>
@@ -170,6 +177,8 @@
 </script>
 
 <style lang="scss">
+
+	
 	.login-back {
 		background-color: $backColor;
 		position: fixed;
@@ -177,8 +186,11 @@
 		height: 100vh;
 
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		
+		
 
 		.login-content {
 			width: 90%;

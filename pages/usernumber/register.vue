@@ -1,5 +1,11 @@
 <template>
 	<view class="register-view">
+		
+		<view class="system-title">
+			<view class="weclome">欢迎使用</view>
+			<view class="system-title-text">智慧干眼系统</view>
+		</view>
+		
 		<view class="register-content">
 			<view class="label-title">注册</view>
 			<view class="input-view">
@@ -271,6 +277,9 @@
 </script>
 
 <style lang="scss">
+	
+	
+	
 	.register-view {
 		width: 100%;
 		height: 100vh;

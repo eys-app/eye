@@ -24,5 +24,19 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.system-title {
+  position: absolute;
+  top: 50px;
+  left: 10%;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+.system-title .weclome {
+  font-size: 18px;
+}
+.system-title .system-title-text {
+  font-size: 26px;
+  margin-top: 10px;
+}
 /* 解决头条小程序组件内引入字体不生效的问题 */
 

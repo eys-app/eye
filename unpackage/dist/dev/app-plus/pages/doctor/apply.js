@@ -1379,6 +1379,13 @@ module.exports = {
     "top": 50,
     "left": 0,
     "transform": "translateY(50%)"
+  },
+  "system-title": {
+    "position": "absolute",
+    "top": "50",
+    "left": 10,
+    "fontWeight": "800",
+    "color": "#FFFFFF"
   }
 }
 

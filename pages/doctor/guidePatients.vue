@@ -169,7 +169,9 @@
 				})
 			},
 			navigateToHistoryPage() {
-				// #ifdef APP-PLUS || H5
+
+				
+				//#ifdef APP-PLUS || H5
 				uni.navigateTo({
 					// url: "/historydetail"
 					url: '/pages/report/historydetail?detail=' + encodeURIComponent(JSON.stringify(this.historyOption))
@@ -182,13 +184,14 @@
 					data: this.historyOption
 				})
 				uni.navigateTo({
-					url: './historydetail'
+					url: '/pages/report/historydetail'
 				})
 				// #endif
 
 			},
 
 			showReportPopup() {
+				
 				this.$refs.popup.open()
 			},
 
