@@ -55,14 +55,20 @@
 			
 			try {
 				let loginData = uni.getStorageSync('loginData');
-				this.loginFunction(loginData)			
+				if(loginData != ""){
+					this.loginFunction(loginData)	
+				}
+						
 			} catch (e) {
 			
 			}
 			
 			try {
 				let acp = uni.getStorageSync('activePatient');
-				this.changePatient(acp)			
+				if(acp != ""){
+					this.changePatient(acp)			
+				}
+				
 			} catch (e) {
 			
 			}

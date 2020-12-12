@@ -25,7 +25,8 @@
     "pages/report/historydetail",
     "pages/doctor/guidePatients",
     "pages/doctor/doctorcodeimage",
-    "pages/usernumber/apply/demo"
+    "pages/usernumber/apply/demo",
+    "pages/usernumber/apply/changeapplydoctor"
   ],
   "subPackages": [],
   "window": {

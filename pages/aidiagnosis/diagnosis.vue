@@ -196,13 +196,8 @@
 						}
 						tempAnswer.push(temoObjA)
 					}
-
-
 				}
-
-
 				if (tempAnswer.length == this.list.length) {
-					console.log('所有的问题都选择了答案:', this.list)
 					let answerTotal = []
 					for (var i = 0; i < this.list.length; i++) {
 						let tempObj = this.list[i];
@@ -230,7 +225,7 @@
 
 						}
 					}
-
+					
 					if (this.activePatient == null) {
 						uni.showToast({
 							title: "请选择问诊人",

@@ -11,23 +11,29 @@
 		<view class="back-view-class">
 
 			<view v-for="(item, index) in doctorList" class="doctor-item" @click="selectedDoctorItem(index)" :class="{'selected-doctor': index == currenindex}">
-				<image class="doctor-image"></image>
+				<image class="doctor-image" :src="item.photoUrl"></image>
+				<view class="apply-img">
+					<template v-if="item.qualificationCertification == '1'">
+						<image class="vip-doctor" src="../../static/images/vip-doc-color.png"></image>
+					</template>
+				</view>
 				<view class="detail-content">
 					<view class="doctor-name">{{item.nickName}}</view>
-					<template v-if="item.qualificationCertification == '1'">
-						<image class="vip-doctor" src="../../static/images/vip-doctor.svg"></image>
-					</template>
+
 					<!-- <template v-if="item.title == '1'"></template> -->
-					<uni-tag class="doctor-title" text="主任医师" size="small" type="success" circle="true"></uni-tag>
+					<uni-tag class="doctor-title" v-if="item.eyeDoctorWork != undefined" :text="item.eyeDoctorWork.work" size="small"
+					 type="success" circle="true"></uni-tag>
 
 					<view style="clear: both;"></view>
-					<view class="doctor-hospital">北京积水潭医院回龙观院区</view>
+					<view class="doctor-hospital" v-if="item.workAddr != undefined">{{item.workAddr}}</view>
 				</view>
 
 			</view>
 
 
 			<label class="doctor-null" v-show="showNull">没有查询到医生信息，请下拉刷新或点击下方的扫描医生二维码</label>
+			
+			
 
 		</view>
 
@@ -146,24 +152,31 @@
 					})
 					return;
 				}
-				
+
 				const that = this;
 				let param = null
-				
+
 				uni.getStorage({
 					key: "params",
 					success: function(res) {
 						param = res.data
 						param['doctorId'] = that.doctorList[that.currenindex].id;
-						
+
 						submitQuestionnaire_interface(param).then(res => {
 							console.log('res ==', res)
-							if(res.status == 'SUCCESS'){
-								//uni.$emit('patientReport',res.data.eyeDiagnosisConfig)
+							if (res.status == 'SUCCESS') {
+								// #ifdef APP-PLUS || H5
 								uni.navigateTo({
-									url: "/pages/report/patientreport?option=" + encodeURIComponent(JSON.stringify(res.data.eyeDiagnosisConfig))
+									url: "/pages/report/patientreport?reportId=" + res.data.id
 								})
-							}else{
+								// #endif
+								// #ifdef MP-WEIXIN
+								uni.reLaunch({
+									url: "/pages/report/patientreport?reportId=" + res.data.id
+								})
+								// #endif
+								
+							} else {
 								uni.showToast({
 									title: "问卷提交失败，请重新提交！",
 									icon: "none"
@@ -172,7 +185,7 @@
 						})
 					}
 				})
-				
+
 			}
 		}
 	}
@@ -184,7 +197,13 @@
 		width: calc(100% - 20px);
 		height: 100%;
 		background-color: #F1F1F1;
+		/* #ifdef APP-NVUE || H5 */
 		padding: 10px;
+		/* #endif */
+		
+		/* #ifdef MP-WEIXIN */
+		padding: 10px 10px 80px 10px;
+		/* #endif */
 	}
 
 	.bottom-bar {
@@ -238,6 +257,19 @@
 		color: #80828a;
 	}
 
+	.apply-img {
+		width: 40px;
+		height: 17px;
+		position: absolute;
+		left: 60px;
+		margin-top: 50px;
+	}
+
+	.vip-doctor {
+		width: 30px;
+		height: 10px;
+	}
+
 	.doctor-item {
 		width: 100%;
 		height: 80px;
@@ -250,7 +282,7 @@
 			height: 60px;
 			margin: 10px;
 			float: left;
-			background-color: #F0AD4E;
+			border-radius: 10px;
 		}
 
 		.detail-content {
@@ -266,13 +298,7 @@
 				float: left;
 			}
 
-			.vip-doctor {
-				float: left;
-				width: 20px;
-				height: 20px;
-				margin-top: 10px;
-				margin-left: -8px;
-			}
+
 
 			.doctor-title {
 				float: left;

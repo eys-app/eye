@@ -170,18 +170,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+var _index = __webpack_require__(/*! ../../../api/index.js */ 13);
+
+
 var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 
 
 
 {
+  data: function data() {
+    return {
+      applyAddOrChange: '' };
+
+  },
   computed: _objectSpread({},
-  (0, _vuex.mapState)(["activePatient"])),
+  (0, _vuex.mapState)(["activePatient", "loginData"])),
 
-  mounted: function mounted() {
-
-
-
+  mounted: function mounted() {},
+  onLoad: function onLoad() {
+    this.gainApplyStatus();
   },
   methods: _objectSpread(_objectSpread({},
   (0, _vuex.mapMutations)(['logoutFunction'])), {}, {
@@ -215,6 +226,31 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
       uni.navigateTo({
         url: "../patientmanager/listContact?type=Y" });
 
+    },
+    applyDoctor: function applyDoctor() {
+      if (this.applyAddOrChange == 'add') {
+        uni.navigateTo({
+          url: "/pages/usernumber/apply/applydoctor" });
+
+      }
+      if (this.applyAddOrChange == 'change') {
+        uni.navigateTo({
+          url: "../../usernumber/apply/changeapplydoctor" });
+
+      }
+
+    },
+    gainApplyStatus: function gainApplyStatus() {var _this = this;
+      (0, _index.getEyeDoctor_interface)({
+        userId: this.loginData.id }).
+      then(function (res) {
+        uni.stopPullDownRefresh();
+        if (res.status == 'SUCCESS') {
+          _this.applyAddOrChange = 'change';
+        } else {
+          _this.applyAddOrChange = 'add';
+        }
+      });
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

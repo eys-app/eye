@@ -28,6 +28,10 @@
 				<view class="content-text-view">诊断报告</view>
 				<view class="right-text">›</view>
 			</view>
+			<view class="content-item" @click="applyDoctor">
+				<view class="content-text-view">认证为医生</view>
+				<view class="right-text">›</view>
+			</view>
 			<view class="content-item" style="text-align: center;color: #6A85F8;font-weight: 800;" @click="logoutClicked">
 				退出登录
 			</view>
@@ -39,17 +43,24 @@
 
 <script>
 	import {
+		getEyeDoctor_interface
+	} from '../../../api/index.js'
+	import {
 		mapState,
 		mapMutations
 	} from "vuex"
 	export default {
-		computed: {
-			...mapState(["activePatient"])
+		data() {
+			return {
+				applyAddOrChange: ''
+			}
 		},
-		mounted() {
-
-
-
+		computed: {
+			...mapState(["activePatient", "loginData"])
+		},
+		mounted() {},
+		onLoad() {
+			this.gainApplyStatus()
 		},
 		methods: {
 			...mapMutations(['logoutFunction']),
@@ -79,11 +90,36 @@
 					url: "/pages/report/reportlist"
 				})
 			},
-			changeActivePatient(){
+			changeActivePatient() {
 				uni.navigateTo({
 					url: "../patientmanager/listContact?type=Y"
 				})
-			}
+			},
+			applyDoctor() {
+				if (this.applyAddOrChange == 'add') {
+					uni.navigateTo({
+						url: "/pages/usernumber/apply/applydoctor"
+					})
+				}
+				if (this.applyAddOrChange == 'change') {
+					uni.navigateTo({
+						url: "../../usernumber/apply/changeapplydoctor"
+					})
+				}
+
+			},
+			gainApplyStatus() {
+				getEyeDoctor_interface({
+					userId: this.loginData.id
+				}).then(res => {
+					uni.stopPullDownRefresh()
+					if (res.status == 'SUCCESS') {
+						this.applyAddOrChange = 'change'
+					} else {
+						this.applyAddOrChange = 'add'
+					}
+				})
+			},
 		}
 	}
 </script>

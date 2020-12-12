@@ -5,14 +5,20 @@
 		<view class="back-ground">
 
 
-			<image class="user-image" src="../../static/image-doctor.jpg"></image>
+			<image class="user-image" :src="loginData.eyeDoctor.photoUrl"></image>
 			<view class="user-message">
-				<label style="font-size: 18px;">{{loginData.eyeDoctor.nickName}}</label>
-				<label v-if="loginData.eyeDoctor.qualificationCertification != undefined && loginData.eyeDoctor.qualificationCertification == 1">
+				<view style="padding-top: 3px;line-height: 40px;">
+					<label style="font-size: 18px;">{{loginData.eyeDoctor.nickName}}</label>
+					<!-- <label v-if="loginData.eyeDoctor.qualificationCertification != undefined && loginData.eyeDoctor.qualificationCertification == 1"> -->
 					<image class="vip-doc" src="../../static/images/vip-doc.png"></image>
-				</label>
-				<label class="doc-type" v-if="loginData.eyeDoctor.eyeDoctorWork != undefined">{{loginData.eyeDoctor.eyeDoctorWork.work}}</label>
-				<view>{{loginData.eyeDoctor.workAddr}}</view>
+					<!-- </label> -->
+
+
+				</view>
+				<view>
+					<label class="doc-type" v-if="loginData.eyeDoctor.eyeDoctorWork != undefined">{{loginData.eyeDoctor.eyeDoctorWork.work}}</label>
+					{{loginData.eyeDoctor.workAddr}}
+				</view>
 
 			</view>
 
@@ -23,7 +29,7 @@
 				<uni-icons type="arrowright" style="float: right;" color="#d1d1d1"></uni-icons>
 			</view>
 		</view>
-		
+
 		<view class="item-content">
 			<view style="text-align: center;color: #6A85F8;font-weight: 800;" @click="logoutClicked">退出登录</view>
 		</view>
@@ -31,12 +37,15 @@
 </template>
 
 <script>
-	import {mapMutations, mapState} from 'vuex'
-	export default{
-		computed:{
+	import {
+		mapMutations,
+		mapState
+	} from 'vuex'
+	export default {
+		computed: {
 			...mapState(['loginData'])
 		},
-		methods:{
+		methods: {
 			...mapMutations(['logoutFunction']),
 			logoutClicked() {
 				const that = this;
@@ -47,7 +56,7 @@
 					}
 				})
 			},
-			doctorCodePage(){
+			doctorCodePage() {
 				uni.navigateTo({
 					url: '/pages/doctor/doctorcodeimage'
 				})
@@ -94,19 +103,21 @@
 				line-height: 30px;
 
 				.doc-name {}
-				.vip-doc{
-					width: 20px;
-					height: 20px;
+
+				.vip-doc {
+					width: 40px;
+					height: 17px;
 					margin-left: 10px;
 				}
-				
-				.doc-type{
+
+				.doc-type {
 					padding: 3px 10px;
 					font-size: 12px;
 					background-color: #5dd9be;
 					color: #FFFFFF;
 					margin-left: 15px;
 					border-radius: 5px;
+					margin-right: 10px;
 				}
 
 			}

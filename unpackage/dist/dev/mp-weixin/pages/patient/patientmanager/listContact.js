@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniIcons: function() {
-    return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 270))
+    return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 278))
   }
 }
 var render = function() {
@@ -135,6 +135,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
 
 
 
@@ -229,9 +232,9 @@ var _index = __webpack_require__(/*! ../../../api/index.js */ 13);function ownKe
       console.log(user);
       //uni.$emit('itemPatient', user)
       //type -  A:增加  C:修改  F:第一次进来的时候增加
-      // uni.navigateTo({
-      // 	url: "/pages/usernumber/apply/applypatient?type=C&item=" + encodeURIComponent(JSON.stringify(user))
-      // })
+      uni.navigateTo({
+        url: "/pages/usernumber/apply/applypatient?type=C&item=" + encodeURIComponent(JSON.stringify(user)) });
+
     },
     //选中问诊人
     itemClicked: function itemClicked(value) {

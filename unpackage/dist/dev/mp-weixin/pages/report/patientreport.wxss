@@ -56,6 +56,21 @@
   font-weight: 600;
   margin-top: 20px;
 }
+.showHistory {
+  width: 60%;
+  height: 40px;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 3px 3px 3px #dddddd;
+          box-shadow: 3px 3px 3px #dddddd;
+  margin-left: 20%;
+  margin-top: -20px;
+  -webkit-border-radius: 20px;
+          border-radius: 20px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+}
 .report-ai {
   padding: 20px;
 }
@@ -63,8 +78,111 @@
   font-size: 16px;
   font-weight: 700;
 }
+.report-ai .title .time {
+  font-size: 12px;
+  color: gray;
+  font-weight: 400;
+  margin-left: 20px;
+}
 .report-ai .socre-text {
   margin: 10px 0;
   font-size: 14px;
+}
+.report-doctor {
+  padding: 20px;
+}
+.report-doctor .report-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.report-doctor .detail-doctor {
+  margin: 15px;
+}
+.report-doctor .detail-doctor .doctor-image {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #F0AD4E;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  float: left;
+}
+.report-doctor .detail-doctor .doctor-content {
+  float: left;
+  height: 35px;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-top: 4px;
+}
+.report-doctor .detail-doctor .doctor-content .content-top {
+  height: 17.5px;
+  line-height: 17.5px;
+  margin: 0;
+  padding-bottom: 2px;
+}
+.report-doctor .detail-doctor .doctor-content .content-top .top-name {
+  float: left;
+  padding: 0 5px;
+}
+.report-doctor .detail-doctor .doctor-content .content-top .top-vip {
+  float: left;
+  margin-top: 2px;
+  margin-left: 10px;
+}
+.report-doctor .detail-doctor .doctor-content .content-top .top-vip image {
+  width: 40px;
+  height: 17px;
+}
+.report-doctor .detail-doctor .doctor-content .content-bottom {
+  height: 17.5px;
+  line-height: 17.5px;
+  margin: 0;
+  padding-top: 2px;
+}
+.report-doctor .detail-doctor .doctor-content .content-bottom .doc-type {
+  padding: 2px 6px;
+  font-size: 12px;
+  background-color: #5dd9be;
+  color: #FFFFFF;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  margin-right: 10px;
+}
+.report-doctor .report-doctor-detail {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  border: 1px solid #F0F0F0;
+  padding: 10px;
+}
+.report-doctor .report-doctor-detail .time {
+  font-size: 12px;
+  color: gray;
+  line-height: 20px;
+}
+.report-doctor .report-doctor-detail .title {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 800;
+  margin-top: 5px;
+}
+.report-doctor .report-doctor-detail .content {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.back-button {
+  position: absolute;
+  bottom: 5px;
+  width: calc(100% - 40px);
+  background-color: #6A85F8;
+  height: 35px;
+  margin-left: 20px;
+  line-height: 35px;
+  -webkit-border-radius: 20px;
+          border-radius: 20px;
+  text-align: center;
+  color: #FFFFFF;
 }
 

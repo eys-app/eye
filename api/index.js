@@ -216,6 +216,15 @@ export function getDoctorWorkList_interface(param){
 	})
 }
 
+//获取医生申请信息
+export function getEyeDoctor_interface(param){
+	return Request({
+		url: 'mobile/getEyeDoctor',
+		method: 'GET',
+		data: param
+	})
+}
+
 
 
 export function getTestRequest(){

@@ -10,6 +10,9 @@ const store = new Vuex.Store({
 	mutations: {
 		//改变问诊人
 		changePatient(state, provider) {
+			if(provider == ""){
+				state.activePatient = null;
+			}
 			state.activePatient = provider
 			uni.setStorage({
 				key: "activePatient",
@@ -32,7 +35,9 @@ const store = new Vuex.Store({
 		},
 
 		loginFunction(state, provider) {
-			console.log('login-data === ',provider)
+			if(provider == ""){
+				state.loginData = null;
+			}
 			state.loginData = provider;
 			uni.setStorage({
 				key: 'loginData',

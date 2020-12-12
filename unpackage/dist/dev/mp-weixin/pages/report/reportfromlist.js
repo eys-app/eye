@@ -199,6 +199,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 8);
 
 
@@ -218,7 +222,8 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
       testPaperId: '',
       dectorRL: [],
       doctorDetail: {},
-      historyOption: '' };
+      historyOption: '',
+      aiObject: {} };
 
   },
   computed: _objectSpread({},
@@ -255,6 +260,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
         userId: this.loginData.id }).
       then(function (res) {
         if (res.status == 'SUCCESS') {
+          _this.aiObject = res.data.submitQuestionnaire;
           _this.reportDetail = res.data.submitQuestionnaire.eyeDiagnosisConfig;
           _this.reportPatient = res.data.submitQuestionnaire.eyePatient;
           _this.sexValue = (0, _common.sexnumberToValue)(_this.reportPatient.sex);

@@ -133,12 +133,25 @@
 			"style":{
 				"navigationBarTitleText":"详情"
 			}
-		},{
+		},
+		// #ifdef APP-PLUS || H5
+		{
 			"path":"pages/report/patientreport",
 			"style":{
 				"navigationBarTitleText":"诊断报告"
 			}
 		},
+		// #endif
+		// #ifdef MP-WEIXIN
+		{
+			"path":"pages/report/patientreport",
+			"style":{
+				"navigationBarTitleText":"诊断报告",
+				"navigationStyle":"custom"
+			}
+		},
+		// #endif
+		
 		{
 			"path":"pages/report/reportlist",
 			"style":{
@@ -170,7 +183,7 @@
             "path" : "pages/doctor/doctorcodeimage",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "我的二维码",
+                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
         },
@@ -181,6 +194,14 @@
 		        "navigationBarTitleText": "我的二维码",
 		        "enablePullDownRefresh": false,
 				"navigationStyle":"custom"
+		    }
+		},
+		{
+		    "path" : "pages/usernumber/apply/changeapplydoctor",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "认证详情",
+				"enablePullDownRefresh": true
 		    }
 		}
     ],

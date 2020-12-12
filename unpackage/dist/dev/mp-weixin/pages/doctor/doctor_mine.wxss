@@ -72,8 +72,8 @@
   line-height: 30px;
 }
 .view-page .back-ground .user-message .vip-doc {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 17px;
   margin-left: 10px;
 }
 .view-page .back-ground .user-message .doc-type {
@@ -84,6 +84,7 @@
   margin-left: 15px;
   -webkit-border-radius: 5px;
           border-radius: 5px;
+  margin-right: 10px;
 }
 .view-page .item-content {
   margin-top: 10px;

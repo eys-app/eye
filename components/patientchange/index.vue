@@ -117,6 +117,8 @@
 		right: 0;
 		border-radius: 20px 0 0 20px;
 		box-shadow: 0 0 3px #FFB400;
+		padding-left: 5px;
+		font-size: 12px;
 
 		.pa-text-title {
 			font-size: 12px;

@@ -94,10 +94,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   renDropdownFilter: function() {
-    return __webpack_require__.e(/*! import() | components/ren-dropdown-filter/ren-dropdown-filter */ "components/ren-dropdown-filter/ren-dropdown-filter").then(__webpack_require__.bind(null, /*! @/components/ren-dropdown-filter/ren-dropdown-filter.vue */ 292))
+    return __webpack_require__.e(/*! import() | components/ren-dropdown-filter/ren-dropdown-filter */ "components/ren-dropdown-filter/ren-dropdown-filter").then(__webpack_require__.bind(null, /*! @/components/ren-dropdown-filter/ren-dropdown-filter.vue */ 300))
   },
   uniCard: function() {
-    return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 299))
+    return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 307))
   }
 }
 var render = function() {
@@ -235,7 +235,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFilter = function RenDropdownFilter() {__webpack_require__.e(/*! require.ensure | components/ren-dropdown-filter/ren-dropdown-filter */ "components/ren-dropdown-filter/ren-dropdown-filter").then((function () {return resolve(__webpack_require__(/*! @/components/ren-dropdown-filter/ren-dropdown-filter.vue */ 292));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 8);
+var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var RenDropdownFilter = function RenDropdownFilter() {__webpack_require__.e(/*! require.ensure | components/ren-dropdown-filter/ren-dropdown-filter */ "components/ren-dropdown-filter/ren-dropdown-filter").then((function () {return resolve(__webpack_require__(/*! @/components/ren-dropdown-filter/ren-dropdown-filter.vue */ 300));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -283,7 +284,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFi
       perTagList: ['标签1', '标签2', '标签1', '标签2', '标签1', '标签2'], //病人的标签
       showNoResult: false, //显示无结果
 
-      doctorId: '251586078291525632',
+      doctorId: '',
       showLoadMore: false,
       loadMoreText: "加载中...",
       stateTag: '', //用户调查问卷的状态（未指导、已指导、已阅读）
@@ -292,6 +293,9 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFi
 
 
   },
+  computed: _objectSpread({},
+  (0, _vuex.mapState)(["loginData"])),
+
   mounted: function mounted() {
     this.getPatientsList();
   },
@@ -343,7 +347,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);var RenDropdownFi
     // 获取医生端的问诊人列表
     getPatientsList: function getPatientsList() {var _this = this;
       (0, _index.getPatientsListByDoc)({
-        doctorId: this.doctorId,
+        doctorId: this.loginData.eyeDoctor.id,
         testStartTime: this.selectTime,
         stateTag: this.stateTag,
         pageNo: this.DPageNumber,

@@ -86,6 +86,7 @@
 				socialCard: "", //社保卡号
 				showType: true,
 				addOrChange: '', //判断是新增还是修改
+				changeId: ""
 			}
 		},
 		onLoad: function(option) {
@@ -97,6 +98,7 @@
 				this.showType = false
 
 				let item = JSON.parse(decodeURIComponent(option.item))
+				this.changeId = item.id
 				this.name = item.name;
 				this.idCard = item.idCard;
 				this.sexValue = sexnumberToValue(item.sex);
@@ -104,6 +106,10 @@
 				this.phoneNumber = item.phone;
 				this.relation = item.patientRelation;
 				this.socialCard = item.socialSecurityCard;
+			}
+			if (option.type == undefined) {
+				this.showType = true;
+
 			}
 
 
@@ -141,6 +147,9 @@
 			 * 1、判断各项是否为空
 			 * **/
 			submitClicked() {
+
+
+				console.log('mmmmm===', this.addOrChange)
 
 				if (!this.checkInputValue(this.name)) {
 					uni.showToast({
@@ -188,41 +197,42 @@
 
 				let numberSex = sexValueToNumber(this.sexValue)
 
-				if (this.addOrChange) {
-					let obj = {
-						userId: this.loginData.id,
-						name: this.name,
-						sex: numberSex,
-						age: this.age,
-						phone: this.phoneNumber,
-						idCard: this.idCard,
-						patientRelation: this.relation,
-						socialSecurityCard: this.socialCard
-					}
-					console.log("====",obj)
-					
-					addPatient({
-						userId: this.loginData.id,
-						name: this.name,
-						sex: numberSex,
-						age: this.age,
-						phone: this.phoneNumber,
-						idCard: this.idCard,
-						patientRelation: this.relation,
-						socialSecurityCard: this.socialCard
-					}).then(res => {
-						console.log(res)
-						if (res.status == 'SUCCESS') {
-							uni.$emit('updateParientList')
+				let obj = {
+					userId: this.loginData.id,
+					name: this.name,
+					sex: numberSex,
+					age: this.age,
+					phone: this.phoneNumber,
+					idCard: this.idCard,
+					patientRelation: this.relation,
+					socialSecurityCard: this.socialCard
+				}
+				
+				if (this.addOrChange == 'C') {
+				  obj.id = this.changeId
+				}
+				console.log('change====',this.addOrChange)
+				console.log("====", obj)
+				
+				addPatient(obj).then(res => {
+					if (res.status == 'SUCCESS') {
+						uni.$emit('updateParientList')
+						if (this.addOrChange != undefined) {
 							uni.navigateBack({})
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: res.message
+						}
+						if (this.addOrChange == undefined) {
+							uni.switchTab({
+								url: "../../patient/tabbar/home"
 							})
 						}
-					})
-				}
+
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.message
+						})
+					}
+				})
 
 
 

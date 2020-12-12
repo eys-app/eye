@@ -94,10 +94,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniIcons: function() {
-    return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 270))
+    return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 278))
   },
   uniTag: function() {
-    return __webpack_require__.e(/*! import() | components/uni-tag/uni-tag */ "components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/components/uni-tag/uni-tag.vue */ 285))
+    return __webpack_require__.e(/*! import() | components/uni-tag/uni-tag */ "components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/components/uni-tag/uni-tag.vue */ 293))
   }
 }
 var render = function() {
@@ -175,6 +175,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
 var _index = __webpack_require__(/*! ../../api/index.js */ 13); //
 //
 //
@@ -212,15 +218,15 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13); //
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var _default = { data: function data() {return { doctorList: [], //医生列表
-      pageNo: 1, currenindex: null, showNull: true, postParams: null };}, onUnload: function onUnload() {uni.$off('postWJParam');}, onLoad: function onLoad() {uni.$on('postWJParam', this.gainParams);}, onPullDownRefresh: function onPullDownRefresh() {this.pageNo = 1;this.doctorList = [];this.gainList();}, beforeMount: function beforeMount() {this.gainList();}, methods: { gainParams: function gainParams(e) {console.log(e);this.postParams = e;uni.setStorage({ key: "params",
-        data: e });
-
-    },
-    //获取医生列表
-    gainList: function gainList() {var _this = this;
-      (0, _index.gainDoctorList_interface)({
-        pageNo: this.pageNo,
+      pageNo: 1, currenindex: null, showNull: true, postParams: null };}, onUnload: function onUnload() {uni.$off('postWJParam');}, onLoad: function onLoad() {uni.$on('postWJParam', this.gainParams);}, onPullDownRefresh: function onPullDownRefresh() {this.pageNo = 1;this.doctorList = [];this.gainList();}, beforeMount: function beforeMount() {this.gainList();}, methods: { gainParams: function gainParams(e) {console.log(e);this.postParams = e;uni.setStorage({ key: "params", data: e });}, //获取医生列表
+    gainList: function gainList() {var _this = this;(0, _index.gainDoctorList_interface)({ pageNo: this.pageNo,
         pageSize: 15 }).
       then(function (res) {
         console.log(res);
@@ -298,9 +304,16 @@ var _default = { data: function data() {return { doctorList: [], //医生列表
           (0, _index.submitQuestionnaire_interface)(param).then(function (res) {
             console.log('res ==', res);
             if (res.status == 'SUCCESS') {
-              //uni.$emit('patientReport',res.data.eyeDiagnosisConfig)
-              uni.navigateTo({
-                url: "/pages/report/patientreport?option=" + encodeURIComponent(JSON.stringify(res.data.eyeDiagnosisConfig)) });
+
+
+
+
+
+
+              uni.reLaunch({
+                url: "/pages/report/patientreport?reportId=" + res.data.id });
+
+
 
             } else {
               uni.showToast({

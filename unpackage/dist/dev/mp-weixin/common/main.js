@@ -159,14 +159,20 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
 
     try {
       var loginData = uni.getStorageSync('loginData');
-      this.loginFunction(loginData);
+      if (loginData != "") {
+        this.loginFunction(loginData);
+      }
+
     } catch (e) {
 
     }
 
     try {
       var acp = uni.getStorageSync('activePatient');
-      this.changePatient(acp);
+      if (acp != "") {
+        this.changePatient(acp);
+      }
+
     } catch (e) {
 
     }

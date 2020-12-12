@@ -211,12 +211,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
 var _index = __webpack_require__(/*! ../../../api/index.js */ 13);
 
 
@@ -234,17 +228,9 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
 {
   data: function data() {
     return {
-      sexList: ["男", "女"],
-      sexValue: '请选择', //性别
       name: "", //姓名
-      idCard: "", //身份证号码
-      age: "", //年龄
       phoneNumber: "", //手机号码
-      relation: "", //与患者关系
-      socialCard: "", //社保卡号
-      showType: true,
-      addOrChange: '', //判断是新增还是修改
-      doctorType: ['住院医师', '主治医师', '副主任医师', '主任医师'],
+      doctorType: [],
       doctorTypeValue: {
         work: '请选择' },
       //医师职称
@@ -253,31 +239,9 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       workPlace: '', //工作单位
       imageUser: [] };
 
-
-
-
   },
   onLoad: function onLoad(option) {
-    this.addOrChange = option.type;
-    if (option.type == 'A') {
-      this.showType = false;
-    }
-    if (option.type == 'C') {
-      this.showType = false;
-
-      var item = JSON.parse(decodeURIComponent(option.item));
-      this.name = item.name;
-      this.idCard = item.idCard;
-      this.sexValue = (0, _common.sexnumberToValue)(item.sex);
-      this.age = item.age;
-      this.phoneNumber = item.phone;
-      this.relation = item.patientRelation;
-      this.socialCard = item.socialSecurityCard;
-    }
-
     this.gainDoctorType();
-
-
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['loginData'])),
@@ -308,21 +272,6 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       });
     },
 
-
-    //选择性别
-    showActionSex: function showActionSex() {
-      var that = this;
-      uni.showActionSheet({
-        itemList: ["男", "女"],
-        success: function success(res) {
-          that.sexValue = that.sexList[res.tapIndex];
-        },
-        fail: function fail() {
-
-        } });
-
-
-    },
     //选择医师类型
     showActionDoctorType: function showActionDoctorType() {
       var that = this;
@@ -339,12 +288,6 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
 
     },
 
-    //跳转到首页
-    navgaitionToHomePage: function navgaitionToHomePage() {
-      uni.switchTab({
-        url: "/pages/patient/tabbar/home" });
-
-    },
 
     /**
         * 提交事件
@@ -430,52 +373,6 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
           }, 500);
         }
       });
-
-      /*
-          			let param = new FormData();
-          	param.append('userId', this.loginData.id);
-          param.append('nickName', this.name);
-          param.append('phone', this.phoneNumber);
-          param.append('workAddr', this.workPlace)
-          param.append('workId', this.doctorTypeValue);
-          param.append('photoFile', this.imageUser.files[0]);
-          for (var i = 0; i < this.imageList.length; i++) {
-          	param.append('certificateFile', this.imageList.files[i]);
-          }
-          
-          
-          http.post('http://192.168.4.195:8980/mobile/doctorCertification',param).then(res =>{
-          	console.log('res===',res)
-          })
-          //*/
-
-
-
-
-
-      // uni.uploadFile({
-      // 	url: 'http://192.168.4.195:8980/mobile/doctorCertification', //仅为示例，非真实的接口地址
-      // 	filePath: tempFilePaths[0],
-      // 	name: 'file',
-      // 	formData: {
-      // 		'user': 'test'
-      // 	},
-      // 	success: (uploadFileRes) => {
-      // 		console.log(uploadFileRes.data);
-      // 	}
-      // });
-
-      // console.log('param====', param.key())
-
-
-
-
-
-
-
-
-
-
 
 
     },

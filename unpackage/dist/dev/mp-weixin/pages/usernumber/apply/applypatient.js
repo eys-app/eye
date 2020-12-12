@@ -217,8 +217,9 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
       relation: "", //与患者关系
       socialCard: "", //社保卡号
       showType: true,
-      addOrChange: '' //判断是新增还是修改
-    };
+      addOrChange: '', //判断是新增还是修改
+      changeId: "" };
+
   },
   onLoad: function onLoad(option) {
     this.addOrChange = option.type;
@@ -229,6 +230,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
       this.showType = false;
 
       var item = JSON.parse(decodeURIComponent(option.item));
+      this.changeId = item.id;
       this.name = item.name;
       this.idCard = item.idCard;
       this.sexValue = (0, _common.sexnumberToValue)(item.sex);
@@ -236,6 +238,10 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
       this.phoneNumber = item.phone;
       this.relation = item.patientRelation;
       this.socialCard = item.socialSecurityCard;
+    }
+    if (option.type == undefined) {
+      this.showType = true;
+
     }
 
 
@@ -272,7 +278,10 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
         * 提交事件
         * 1、判断各项是否为空
         * **/
-    submitClicked: function submitClicked() {
+    submitClicked: function submitClicked() {var _this = this;
+
+
+      console.log('mmmmm===', this.addOrChange);
 
       if (!this.checkInputValue(this.name)) {
         uni.showToast({
@@ -320,41 +329,42 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
 
       var numberSex = (0, _common.sexValueToNumber)(this.sexValue);
 
-      if (this.addOrChange) {
-        var obj = {
-          userId: this.loginData.id,
-          name: this.name,
-          sex: numberSex,
-          age: this.age,
-          phone: this.phoneNumber,
-          idCard: this.idCard,
-          patientRelation: this.relation,
-          socialSecurityCard: this.socialCard };
+      var obj = {
+        userId: this.loginData.id,
+        name: this.name,
+        sex: numberSex,
+        age: this.age,
+        phone: this.phoneNumber,
+        idCard: this.idCard,
+        patientRelation: this.relation,
+        socialSecurityCard: this.socialCard };
 
-        console.log("====", obj);
 
-        (0, _index.addPatient)({
-          userId: this.loginData.id,
-          name: this.name,
-          sex: numberSex,
-          age: this.age,
-          phone: this.phoneNumber,
-          idCard: this.idCard,
-          patientRelation: this.relation,
-          socialSecurityCard: this.socialCard }).
-        then(function (res) {
-          console.log(res);
-          if (res.status == 'SUCCESS') {
-            uni.$emit('updateParientList');
+      if (this.addOrChange == 'C') {
+        obj.id = this.changeId;
+      }
+      console.log('change====', this.addOrChange);
+      console.log("====", obj);
+
+      (0, _index.addPatient)(obj).then(function (res) {
+        if (res.status == 'SUCCESS') {
+          uni.$emit('updateParientList');
+          if (_this.addOrChange != undefined) {
             uni.navigateBack({});
-          } else {
-            uni.showToast({
-              icon: 'none',
-              title: res.message });
+          }
+          if (_this.addOrChange == undefined) {
+            uni.switchTab({
+              url: "../../patient/tabbar/home" });
 
           }
-        });
-      }
+
+        } else {
+          uni.showToast({
+            icon: 'none',
+            title: res.message });
+
+        }
+      });
 
 
 

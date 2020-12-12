@@ -10,7 +10,7 @@
 		</view>
 		<view class="showHistory" @click="navigateToHistoryPage">查看问卷详情 >></view>
 		<view class="report-ai">
-			<view class="title">AI诊断报告 <label class="time">{{reportDetail.createDate}}</label></view>
+			<view class="title">AI诊断报告 <label class="time">{{aiObject.createDate}}</label></view>
 			<view class="socre-text">
 				最终得分是:<label style="font-size: 18px;color: #F76260;padding: 0 10px;font-weight: 800;">{{reportDetail.questionSocre}}
 				</label> 分
@@ -29,14 +29,18 @@
 		<view class="report-doctor">
 			<view class="report-title">医生诊断报告</view>
 			<view class="detail-doctor">
-				<image src="../../static/image-doctor.jpg"></image>
+				<image class="doctor-image" :src="doctorDetail.photoUrl"></image>
 				<view class="doctor-content">
 					<view class="content-top">
 						<label class="top-name">{{doctorDetail.nickName}}</label>
-						<label class="top-name">vip</label>
-						<label style="padding: 0 5px;">副主任医师</label>
+						<view class="top-vip" v-if="doctorDetail.qualificationCertification == '1'">
+							<image src="../../static/images/vip-doc-color.png"></image>
+						</view>
 					</view>
-					<view class="content-bottom">北京积水潭医院回龙观院区</view>
+					<view class="content-bottom">
+						<label class="doc-type" v-if="doctorDetail.eyeDoctorWork != undefined">{{doctorDetail.eyeDoctorWork.work}}</label>
+						<label style="font-size: 12px;">{{doctorDetail.workAddr}}</label>
+					</view>
 				</view>
 			</view>
 			<view style="clear: both;"></view>
@@ -89,13 +93,28 @@
 			</view>
 		</uni-popup>
 
+
 		<uni-popup type="center" ref="modelPopup">
 			<view class="model-popup">
-				<view class="model-card" v-for="(item, index) in modelList" :class="{'model-popup-clicked': currentindex == index}"
-				 @click="clickedModelIndex(item,index)">
-					<view class="model-title">{{item.title}}</view>
-					<view class="model-content">{{item.proposal}}</view>
+				<view class="popup-title">请选择以下模板</view>
+				<view class="content-card">
+					<radio-group @change="clickedModelIndex">
+						<label v-for="(item, index) in modelList" :key="item.id">
+							<view style="float: left;margin-top: 10px;">
+								<radio :value="index.toString()" />
+							</view>
+							<view style="float: left;width: calc(100% - 30px);">
+								<view class="model-title">{{item.title}}</view>
+								<view class="model-content">{{item.proposal}}</view>
+							</view>
+							<view v-if="index != modelList.length - 1" style="clear: both;height: 1px;background-color: #d8d8d8;"></view>
+							<view v-if="index == modelList.length - 1" style="clear: both;height: 1px;background-color: #fff;"></view>
+						</label>
+
+					</radio-group>
+
 				</view>
+
 			</view>
 		</uni-popup>
 
@@ -119,6 +138,7 @@
 		data() {
 			return {
 				sexValue: '',
+				aiObject: {},
 				reportDetail: {},
 				reportPatient: {},
 				testPaperId: '',
@@ -128,18 +148,12 @@
 				modelList: [],
 				currentindex: null,
 				selectedModel: {},
-				textValue: ''
+				textValue: '',
+				
 			}
 		},
 		computed: {
 			...mapState(['activePatient', "loginData"])
-		},
-		watch: {
-			'activePatient': {
-				handler(n) {
-					console.log('nnnnnnnnnnnnnn===', n)
-				}
-			}
 		},
 		onLoad: function(option) {
 			this.testPaperId = option.paId;
@@ -158,6 +172,7 @@
 					id: this.testPaperId
 				}).then(res => {
 					if (res.status == 'SUCCESS') {
+						this.aiObject = res.data.submitQuestionnaire
 						this.reportDetail = res.data.submitQuestionnaire.eyeDiagnosisConfig
 						this.reportPatient = res.data.submitQuestionnaire.eyePatient
 						this.sexValue = sexnumberToValue(this.reportPatient.sex)
@@ -170,7 +185,7 @@
 			},
 			navigateToHistoryPage() {
 
-				
+
 				//#ifdef APP-PLUS || H5
 				uni.navigateTo({
 					// url: "/historydetail"
@@ -191,7 +206,7 @@
 			},
 
 			showReportPopup() {
-				
+
 				this.$refs.popup.open()
 			},
 
@@ -205,7 +220,6 @@
 					if (res.status == 'SUCCESS') {
 						this.modelList = res.data.list
 					}
-					console.log('model===', res)
 				})
 
 
@@ -217,9 +231,9 @@
 				this.$refs.modelPopup.open()
 				this.getReportModel()
 			},
-			clickedModelIndex(item, index) {
-				this.currentindex = index
-				this.selectedModel = item;
+			clickedModelIndex(e) {
+				console.log(e)
+				this.selectedModel = this.modelList[parseInt(e.detail.value)];
 				this.$refs.modelPopup.close()
 			},
 			submitReportParams() {
@@ -234,8 +248,10 @@
 					}
 				}
 				
+				
+
 				if (this.loginData.eyeDoctor.qualificationCertification == '0') {
-					if (this.selectedModel == {} || this.selectedModel == null) {
+					if (this.selectedModel == {} || this.selectedModel == null || Object.keys(this.selectedModel).length == 0) {
 						uni.showToast({
 							title: "请选择模板",
 							icon: 'none'
@@ -260,9 +276,9 @@
 							title: "诊断结果提交成功",
 							icon: "none"
 						})
-						
+
 						this.$refs.popup.close()
-						
+
 						this.getReportDetailData()
 					}
 				})
@@ -341,9 +357,9 @@
 		.detail-doctor {
 			margin: 15px;
 
-			image {
-				width: 30px;
-				height: 30px;
+			.doctor-image {
+				width: 50px;
+				height: 50px;
 				border: 1px solid #F0AD4E;
 				border-radius: 50%;
 				float: left;
@@ -353,9 +369,9 @@
 				float: left;
 
 				height: 35px;
-				font-size: 12px;
+				font-size: 16px;
 				margin-left: 10px;
-				margin-top: -2px;
+				margin-top: 4px;
 
 				.content-top {
 					height: 17.5px;
@@ -365,17 +381,37 @@
 
 					.top-name {
 						padding: 0 5px;
-						border-right: 1px solid #F1F1F1;
+						float: left;
+						// border-right: 1px solid #F1F1F1;
 					}
+
+					.top-vip {
+						float: left;
+						margin-left: 10px;
+						image {
+							width: 40px;
+							height: 17px;
+						}
+					}
+
+					
 
 				}
 
 				.content-bottom {
-					border-top: 1px solid #F0F0F0;
 					height: 17.5px;
 					line-height: 17.5px;
 					margin: 0;
 					padding-top: 2px;
+					
+					.doc-type {
+						padding: 2px 6px;
+						font-size: 12px;
+						background-color: #5dd9be;
+						color: #FFFFFF;
+						margin-right: 15px;
+						border-radius: 5px;
+					}
 				}
 
 			}
@@ -417,6 +453,7 @@
 		// height: 500px;
 		width: 100%;
 		background-color: #FFFFFF;
+		min-height: 400px;
 
 		.model-button {
 			width: 50%;
@@ -476,14 +513,29 @@
 
 	.model-popup {
 		width: 80vw;
-		max-height: 80vh;
+		height: 70vh;
+		// margin-left: 10%;
 		background-color: #FFFFFF;
 		border-radius: 5px;
 		overflow-y: auto;
+		// padding: 10px;
+	}
+
+	.popup-title {
+		position: absolute;
+		text-align: center;
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		font-weight: 700;
+		background-color: #F0F0F0;
+	}
+
+	.content-card {
 		padding: 10px;
-
-
-
+		margin-top: 20px;
 	}
 
 	.model-popup-clicked {
@@ -494,27 +546,29 @@
 		margin: 10px 10px 30px 10px;
 	}
 
+	.model-title {
+		font-size: 14px;
+		font-weight: 700;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	.model-content {
+		font-size: 14px;
+		line-height: 20px;
+		margin-bottom: 5px;
+	}
+
 	.model-card {
 		border-bottom: 1px solid #F2F2F2;
 
 
-		.model-title {
-			font-size: 14px;
-			font-weight: 700;
-			margin-top: 5px;
-			margin-bottom: 5px;
-		}
 
-		.model-content {
-			font-size: 14px;
-			line-height: 20px;
-			margin-bottom: 5px;
-		}
 
 	}
-	
-	
-	.doctor-add-report{
+
+
+	.doctor-add-report {
 		width: 80%;
 		height: 30px;
 		background-color: #09BB07;

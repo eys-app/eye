@@ -10,7 +10,7 @@
 		</view>
 		<view class="showHistory" @click="navigateToHistoryPage">查看问卷详情 >></view>
 		<view class="report-ai">
-			<view class="title">AI诊断报告 <label class="time">{{reportDetail.createDate}}</label></view>
+			<view class="title">AI诊断报告 <label class="time">{{aiObject.createDate}}</label></view>
 			<view class="socre-text">
 				您的最终得分是:<label style="font-size: 18px;color: #F76260;padding: 0 10px;font-weight: 800;">{{reportDetail.questionSocre}}
 				</label> 分
@@ -29,14 +29,18 @@
 		<view class="report-doctor">
 			<view class="report-title">医生诊断报告</view>
 			<view class="detail-doctor">
-				<image src="../../static/image-doctor.jpg"></image>
+				<image class="doctor-image" :src="doctorDetail.photoUrl"></image>
 				<view class="doctor-content">
 					<view class="content-top">
 						<label class="top-name">{{doctorDetail.nickName}}</label>
-						<label class="top-name">vip</label>
-						<label style="padding: 0 5px;">副主任医师</label>
+						<view class="top-vip" v-if="doctorDetail.qualificationCertification == '1'">
+							<image src="../../static/images/vip-doc-color.png"></image>
+						</view>
 					</view>
-					<view class="content-bottom">北京积水潭医院回龙观院区</view>
+					<view class="content-bottom">
+						<label class="doc-type" v-if="doctorDetail.eyeDoctorWork != undefined">{{doctorDetail.eyeDoctorWork.work}}</label>
+						<label style="font-size: 12px;">{{doctorDetail.workAddr}}</label>
+					</view>
 				</view>
 			</view>
 			<view style="clear: both;"></view>
@@ -77,7 +81,7 @@
 		getSubmitQuestion_interface
 	} from '../../api/index.js'
 	export default {
-		
+
 		data() {
 			return {
 				sexValue: '',
@@ -86,16 +90,17 @@
 				testPaperId: '',
 				dectorRL: [],
 				doctorDetail: {},
-				historyOption: ''
+				historyOption: '',
+				aiObject: {}
 			}
 		},
 		computed: {
 			...mapState(['activePatient', "loginData"])
 		},
-		watch:{
-			'activePatient':{
-				handler(n){
-					console.log('nnnnnnnnnnnnnn===',n)
+		watch: {
+			'activePatient': {
+				handler(n) {
+					console.log('nnnnnnnnnnnnnn===', n)
 				}
 			}
 		},
@@ -105,11 +110,11 @@
 			// 	this.reportPatient = obj.eyePatient;
 			// 	this.sexValue = sexnumberToValue(this.reportPatient.sex)
 			// 	this.reportDetail = obj.eyeDiagnosisConfig;
-			
-			
+
+
 
 		},
-		
+
 		onUnload() {
 			uni.$off('updatePatient')
 		},
@@ -123,6 +128,7 @@
 					userId: this.loginData.id
 				}).then(res => {
 					if (res.status == 'SUCCESS') {
+						this.aiObject = res.data.submitQuestionnaire
 						this.reportDetail = res.data.submitQuestionnaire.eyeDiagnosisConfig
 						this.reportPatient = res.data.submitQuestionnaire.eyePatient
 						this.sexValue = sexnumberToValue(this.reportPatient.sex)
@@ -133,13 +139,13 @@
 					}
 				})
 			},
-			navigateToHistoryPage(){
+			navigateToHistoryPage() {
 				// #ifdef APP-PLUS || H5
 				uni.navigateTo({
 					url: './historydetail?detail=' + encodeURIComponent(JSON.stringify(this.historyOption))
 				})
 				// #endif
-				
+
 				// #ifdef MP-WEIXIN
 				uni.setStorage({
 					key: 'historyWJ',
@@ -149,7 +155,7 @@
 					url: './historydetail'
 				})
 				// #endif
-				
+
 			}
 		}
 	}
@@ -177,8 +183,8 @@
 		}
 
 	}
-	
-	.showHistory{
+
+	.showHistory {
 		width: 60%;
 		height: 40px;
 		background-color: #FFFFFF;
@@ -225,9 +231,9 @@
 		.detail-doctor {
 			margin: 15px;
 
-			image {
-				width: 30px;
-				height: 30px;
+			.doctor-image {
+				width: 50px;
+				height: 50px;
 				border: 1px solid #F0AD4E;
 				border-radius: 50%;
 				float: left;
@@ -237,9 +243,9 @@
 				float: left;
 
 				height: 35px;
-				font-size: 12px;
+				font-size: 16px;
 				margin-left: 10px;
-				margin-top: -2px;
+				margin-top: 4px;
 
 				.content-top {
 					height: 17.5px;
@@ -248,18 +254,40 @@
 					padding-bottom: 2px;
 
 					.top-name {
+						float: left;
 						padding: 0 5px;
-						border-right: 1px solid #F1F1F1;
+						// border-right: 1px solid #F1F1F1;
 					}
+
+					.top-vip {
+						float: left;
+						margin-top: 2px;
+						margin-left: 10px;
+						image {
+							width: 40px;
+							height: 17px;
+						}
+					}
+
+					
 
 				}
 
 				.content-bottom {
-					border-top: 1px solid #F0F0F0;
+					// border-top: 1px solid #F0F0F0;
 					height: 17.5px;
 					line-height: 17.5px;
 					margin: 0;
 					padding-top: 2px;
+					
+					.doc-type {
+						padding: 2px 6px;
+						font-size: 12px;
+						background-color: #5dd9be;
+						color: #FFFFFF;
+						border-radius: 5px;
+						margin-right: 10px;
+					}
 				}
 
 			}
@@ -273,18 +301,21 @@
 			border-radius: 5px;
 			border: 1px solid #F0F0F0;
 			padding: 10px;
-			.time{
+
+			.time {
 				font-size: 12px;
 				color: gray;
 				line-height: 20px;
 			}
+
 			.title {
 				font-size: 14px;
 				line-height: 20px;
 				font-weight: 800;
 				margin-top: 5px;
 			}
-			.content{
+
+			.content {
 				font-size: 14px;
 				line-height: 20px;
 				margin-bottom: 5px;

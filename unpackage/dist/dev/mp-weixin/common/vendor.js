@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1955,6 +1955,9 @@ var store = new _vuex.default.Store({
   mutations: {
     //改变问诊人
     changePatient: function changePatient(state, provider) {
+      if (provider == "") {
+        state.activePatient = null;
+      }
       state.activePatient = provider;
       uni.setStorage({
         key: "activePatient",
@@ -1977,7 +1980,9 @@ var store = new _vuex.default.Store({
     },
 
     loginFunction: function loginFunction(state, provider) {
-      console.log('login-data === ', provider);
+      if (provider == "") {
+        state.loginData = null;
+      }
       state.loginData = provider;
       uni.setStorage({
         key: 'loginData',
@@ -2004,7 +2009,7 @@ store;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.login_interface = login_interface;exports.addPatient = addPatient;exports.gainPatientList_interface = gainPatientList_interface;exports.gainDianosisList_interface = gainDianosisList_interface;exports.postDianosisList_interface = postDianosisList_interface;exports.gainDoctorList_interface = gainDoctorList_interface;exports.gainDoctorListWithScan_interface = gainDoctorListWithScan_interface;exports.submitQuestionnaire_interface = submitQuestionnaire_interface;exports.getForumList_interface = getForumList_interface;exports.getSubmitQuestionList_interface = getSubmitQuestionList_interface;exports.getSubmitQuestion_interface = getSubmitQuestion_interface;exports.codeGenerate_interface = codeGenerate_interface;exports.logon_interface = logon_interface;exports.changePassword_interface = changePassword_interface;exports.getAdvertisementList_interface = getAdvertisementList_interface;exports.getEyePatientList = getEyePatientList;exports.getPatientsListByDoc = getPatientsListByDoc;exports.getSchemeTemplateList_interface = getSchemeTemplateList_interface;exports.saveProposal_interface = saveProposal_interface;exports.getForumTagList_interface = getForumTagList_interface;exports.doctorCertification_interface = doctorCertification_interface;exports.getDoctorWorkList_interface = getDoctorWorkList_interface;exports.getTestRequest = getTestRequest;exports.BaseUrl = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });exports.login_interface = login_interface;exports.addPatient = addPatient;exports.gainPatientList_interface = gainPatientList_interface;exports.gainDianosisList_interface = gainDianosisList_interface;exports.postDianosisList_interface = postDianosisList_interface;exports.gainDoctorList_interface = gainDoctorList_interface;exports.gainDoctorListWithScan_interface = gainDoctorListWithScan_interface;exports.submitQuestionnaire_interface = submitQuestionnaire_interface;exports.getForumList_interface = getForumList_interface;exports.getSubmitQuestionList_interface = getSubmitQuestionList_interface;exports.getSubmitQuestion_interface = getSubmitQuestion_interface;exports.codeGenerate_interface = codeGenerate_interface;exports.logon_interface = logon_interface;exports.changePassword_interface = changePassword_interface;exports.getAdvertisementList_interface = getAdvertisementList_interface;exports.getEyePatientList = getEyePatientList;exports.getPatientsListByDoc = getPatientsListByDoc;exports.getSchemeTemplateList_interface = getSchemeTemplateList_interface;exports.saveProposal_interface = saveProposal_interface;exports.getForumTagList_interface = getForumTagList_interface;exports.doctorCertification_interface = doctorCertification_interface;exports.getDoctorWorkList_interface = getDoctorWorkList_interface;exports.getEyeDoctor_interface = getEyeDoctor_interface;exports.getTestRequest = getTestRequest;exports.BaseUrl = void 0;
 var _request = _interopRequireDefault(__webpack_require__(/*! ../commen/request.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 
@@ -2219,6 +2224,15 @@ function getDoctorWorkList_interface(param) {
     method: 'POST',
     data: param,
     header: { 'content-type': 'application/json' } });
+
+}
+
+//获取医生申请信息
+function getEyeDoctor_interface(param) {
+  return (0, _request.default)({
+    url: 'mobile/getEyeDoctor',
+    method: 'GET',
+    data: param });
 
 }
 
@@ -8180,7 +8194,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8201,14 +8215,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8294,7 +8308,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9489,7 +9503,7 @@ module.exports = QRCode;
 
 /***/ }),
 
-/***/ 275:
+/***/ 283:
 /*!******************************************************!*\
   !*** C:/work/code/eye/components/uni-icons/icons.js ***!
   \******************************************************/
@@ -9662,7 +9676,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 311:
+/***/ 319:
 /*!*************************************************************!*\
   !*** C:/work/code/eye/components/u-parse/libs/html2json.js ***!
   \*************************************************************/
@@ -9684,8 +9698,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 312));
-var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 313));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
+var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 320));
+var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 321));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
                                                                                                                                                                  * html2Json 改造来自: https://github.com/Jxck/html2json
                                                                                                                                                                  *
                                                                                                                                                                  *
@@ -9934,7 +9948,7 @@ html2json;exports.default = _default;
 
 /***/ }),
 
-/***/ 312:
+/***/ 320:
 /*!*************************************************************!*\
   !*** C:/work/code/eye/components/u-parse/libs/wxDiscode.js ***!
   \*************************************************************/
@@ -10139,7 +10153,7 @@ function urlToHttpUrl(url, domain) {
 
 /***/ }),
 
-/***/ 313:
+/***/ 321:
 /*!**************************************************************!*\
   !*** C:/work/code/eye/components/u-parse/libs/htmlparser.js ***!
   \**************************************************************/
@@ -10306,7 +10320,7 @@ HTMLParser;exports.default = _default;
 
 /***/ }),
 
-/***/ 340:
+/***/ 348:
 /*!******************************************************!*\
   !*** C:/work/code/eye/components/uni-popup/popup.js ***!
   \******************************************************/
@@ -10314,7 +10328,7 @@ HTMLParser;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 341));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 349));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -10341,7 +10355,7 @@ var config = {
 
 /***/ }),
 
-/***/ 341:
+/***/ 349:
 /*!********************************************************!*\
   !*** C:/work/code/eye/components/uni-popup/message.js ***!
   \********************************************************/

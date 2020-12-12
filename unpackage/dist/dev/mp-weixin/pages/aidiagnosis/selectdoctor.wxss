@@ -43,7 +43,7 @@
   width: calc(100% - 20px);
   height: 100%;
   background-color: #F1F1F1;
-  padding: 10px;
+  padding: 10px 10px 80px 10px;
 }
 .bottom-bar {
   position: fixed;
@@ -86,6 +86,17 @@
   font-size: 14px;
   color: #80828a;
 }
+.apply-img {
+  width: 40px;
+  height: 17px;
+  position: absolute;
+  left: 60px;
+  margin-top: 50px;
+}
+.vip-doctor {
+  width: 30px;
+  height: 10px;
+}
 .doctor-item {
   width: 100%;
   height: 80px;
@@ -99,7 +110,8 @@
   height: 60px;
   margin: 10px;
   float: left;
-  background-color: #F0AD4E;
+  -webkit-border-radius: 10px;
+          border-radius: 10px;
 }
 .doctor-item .detail-content {
   float: left;
@@ -111,13 +123,6 @@
   font-size: 16px;
   font-weight: 600;
   float: left;
-}
-.doctor-item .detail-content .vip-doctor {
-  float: left;
-  width: 20px;
-  height: 20px;
-  margin-top: 10px;
-  margin-left: -8px;
 }
 .doctor-item .detail-content .doctor-title {
   float: left;

@@ -96,6 +96,7 @@
 
 <script>
 	import RenDropdownFilter from '@/components/ren-dropdown-filter/ren-dropdown-filter.vue'
+	import {mapState} from 'vuex'
 	import {
 		getPatientsListByDoc
 	} from '../../api/index.js'
@@ -144,7 +145,7 @@
 				perTagList: ['标签1', '标签2', '标签1', '标签2', '标签1', '标签2'], //病人的标签
 				showNoResult: false, //显示无结果
 
-				doctorId: '251586078291525632',
+				doctorId: '',
 				showLoadMore: false,
 				loadMoreText: "加载中...",
 				stateTag: '', //用户调查问卷的状态（未指导、已指导、已阅读）
@@ -152,6 +153,9 @@
 
 			}
 
+		},
+		computed:{
+			...mapState(["loginData"])
 		},
 		mounted() {
 			this.getPatientsList()
@@ -204,7 +208,7 @@
 			// 获取医生端的问诊人列表
 			getPatientsList() {
 				getPatientsListByDoc({
-					doctorId: this.doctorId,
+					doctorId: this.loginData.eyeDoctor.id,
 					testStartTime: this.selectTime,
 					stateTag: this.stateTag,
 					pageNo: this.DPageNumber,

@@ -94,13 +94,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniPopup: function() {
-    return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 335))
+    return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 343))
   }
 }
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.modelList, function(item, index) {
+    var $orig = _vm.__get_orig(item)
+
+    var g0 = index.toString()
+    return {
+      $orig: $orig,
+      g0: g0
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -239,6 +257,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 8);
 
 
@@ -255,6 +292,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
   data: function data() {
     return {
       sexValue: '',
+      aiObject: {},
       reportDetail: {},
       reportPatient: {},
       testPaperId: '',
@@ -266,16 +304,10 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
       selectedModel: {},
       textValue: '' };
 
+
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['activePatient', "loginData"])),
-
-  watch: {
-    'activePatient': {
-      handler: function handler(n) {
-        console.log('nnnnnnnnnnnnnn===', n);
-      } } },
-
 
   onLoad: function onLoad(option) {
     this.testPaperId = option.paId;
@@ -294,6 +326,7 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
         id: this.testPaperId }).
       then(function (res) {
         if (res.status == 'SUCCESS') {
+          _this.aiObject = res.data.submitQuestionnaire;
           _this.reportDetail = res.data.submitQuestionnaire.eyeDiagnosisConfig;
           _this.reportPatient = res.data.submitQuestionnaire.eyePatient;
           _this.sexValue = (0, _common.sexnumberToValue)(_this.reportPatient.sex);
@@ -341,7 +374,6 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
         if (res.status == 'SUCCESS') {
           _this2.modelList = res.data.list;
         }
-        console.log('model===', res);
       });
 
 
@@ -353,9 +385,9 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
       this.$refs.modelPopup.open();
       this.getReportModel();
     },
-    clickedModelIndex: function clickedModelIndex(item, index) {
-      this.currentindex = index;
-      this.selectedModel = item;
+    clickedModelIndex: function clickedModelIndex(e) {
+      console.log(e);
+      this.selectedModel = this.modelList[parseInt(e.detail.value)];
       this.$refs.modelPopup.close();
     },
     submitReportParams: function submitReportParams() {var _this3 = this;
@@ -370,8 +402,10 @@ var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(
         }
       }
 
+
+
       if (this.loginData.eyeDoctor.qualificationCertification == '0') {
-        if (this.selectedModel == {} || this.selectedModel == null) {
+        if (this.selectedModel == {} || this.selectedModel == null || Object.keys(this.selectedModel).length == 0) {
           uni.showToast({
             title: "请选择模板",
             icon: 'none' });

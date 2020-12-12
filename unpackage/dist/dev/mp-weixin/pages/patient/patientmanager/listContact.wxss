@@ -58,9 +58,18 @@
 .back-view-class .container .item-list .user-name {
   float: left;
   margin-left: 10px;
-  width: 100px;
+  width: 200px;
   color: #55aa7f;
   font-weight: 600;
+}
+.back-view-class .container .item-list .user-name .relation-label {
+  padding: 3px 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  font-size: 12px;
+  background-color: #09BB07;
+  margin-left: 10px;
+  color: #FFFFFF;
 }
 .back-view-class .container .item-list .user-phone {
   float: left;

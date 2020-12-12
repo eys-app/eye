@@ -3,14 +3,18 @@
 		<view class="title">欢迎使用智能干眼系统</view>
 		<view class="doc-message">
 			<view class="msg-content">
-				<image></image>
+				<image class="user-logo" :src="loginData.eyeDoctor.photoUrl"></image>
 				<view class="doc-mes-content">
 					<view style="height: 40px;line-height: 40px;">
-						<label>{{loginData.eyeDoctor.nickName}}</label>
-						<label class="doc-type">{{loginData.eyeDoctor.eyeDoctorWork.work}}</label>
+						<label style="float: left;">{{loginData.eyeDoctor.nickName}}</label>
+						<view class="user-type">
+							<image src="../../static/images/vip-doc.png"></image>
+						</view>
+						
 					</view>
 					<view style="height: 40px;">
-						<label>{{loginData.eyeDoctor.workAddr}}</label>
+						<label class="doc-type">{{loginData.eyeDoctor.eyeDoctorWork.work}}</label>
+						<label style="font-size: 12px;">{{loginData.eyeDoctor.workAddr}}</label>
 					</view>
 				</view>
 			</view>
@@ -76,7 +80,7 @@
 
 		.title {
 			text-align: center;
-			font-size: 18px;
+			font-size:24px;
 			padding: 20px;
 			color: #F0F0F0;
 		}
@@ -95,7 +99,7 @@
 
 
 
-				image {
+				.user-logo {
 					width: 80px;
 					height: 78px;
 					border-radius: 50%;
@@ -116,8 +120,23 @@
 						font-size: 12px;
 						background-color: #5dd9be;
 						color: #FFFFFF;
-						margin-left: 15px;
+						margin-right: 15px;
 						border-radius: 5px;
+					}
+					
+					
+					
+					.user-type{
+						width: 40px;
+						height: 17px;
+						margin-top: 3px;
+						float: left;
+						margin-left: 20px;
+						
+						image{
+							width: 40px;
+							height: 17px;
+						}
 					}
 
 				}

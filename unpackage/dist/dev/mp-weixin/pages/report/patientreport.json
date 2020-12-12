@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "诊断报告",
+  "navigationStyle": "custom",
   "usingComponents": {}
 }

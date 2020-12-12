@@ -157,14 +157,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 8);
 
 
-var _common = __webpack_require__(/*! ../../commen/common.js */ 15);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+var _common = __webpack_require__(/*! ../../commen/common.js */ 15);
+
+
+var _index = __webpack_require__(/*! ../../api/index.js */ 13);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 
 
 {
   onBackPress: function onBackPress() {
+    console.log('aaaaaaaaaaaaaaa,backaaaaaaaaaaaaaaa,backaaaaaaaaaaaaaaa,backaaaaaaaaaaaaaaa,back');
     uni.navigateTo({
       url: "/pages/report/reportlist" });
 
@@ -173,22 +188,83 @@ var _common = __webpack_require__(/*! ../../commen/common.js */ 15);function own
   data: function data() {
     return {
       sexValue: '',
-      reportDetail: {} };
+      reportDetail: {},
+      reportPatient: {},
+      reportId: '',
+      dectorRL: [],
+      doctorDetail: {},
+      historyOption: '',
+      aiObject: {} };
 
   },
   computed: _objectSpread({},
-  (0, _vuex.mapState)(['activePatient'])),
+  (0, _vuex.mapState)(['activePatient', "loginData"])),
+
+  watch: {
+    'activePatient': {
+      handler: function handler(n) {
+        console.log('nnnnnnnnnnnnnn===', n);
+      } } },
+
+
+  onLoad: function onLoad(option) {
+    this.reportId = option.reportId;
+    // 	let obj = JSON.parse(decodeURIComponent(option.item))
+    // 	this.reportPatient = obj.eyePatient;
+    // 	this.sexValue = sexnumberToValue(this.reportPatient.sex)
+    // 	this.reportDetail = obj.eyeDiagnosisConfig;
+
+
+
+  },
 
   onUnload: function onUnload() {
-    uni.$off('patientReport');
+    uni.$off('updatePatient');
   },
-  onLoad: function onLoad(option) {
+  mounted: function mounted() {
+    this.getReportDetailData();
+  },
+  methods: {
+    getReportDetailData: function getReportDetailData() {var _this = this;
+      (0, _index.getSubmitQuestion_interface)({
+        id: this.reportId,
+        userId: this.loginData.id }).
+      then(function (res) {
+        if (res.status == 'SUCCESS') {
+          _this.aiObject = res.data.submitQuestionnaire;
+          _this.reportDetail = res.data.submitQuestionnaire.eyeDiagnosisConfig;
+          _this.reportPatient = res.data.submitQuestionnaire.eyePatient;
+          _this.sexValue = (0, _common.sexnumberToValue)(_this.reportPatient.sex);
 
-    this.reportDetail = JSON.parse(option.option);
+          _this.dectorRL = res.data.schemeProposalList;
+          _this.doctorDetail = res.data.submitQuestionnaire.eyeDoctor;
+          _this.historyOption = res.data.submitQuestionnaire.questionnaire;
+        }
+      });
+    },
+    navigateToHistoryPage: function navigateToHistoryPage() {
 
-    this.sexValue = (0, _common.sexnumberToValue)(this.activePatient.sex);
 
-  } };exports.default = _default;
+
+
+
+
+
+      uni.setStorage({
+        key: 'historyWJ',
+        data: this.historyOption });
+
+      uni.navigateTo({
+        url: './historydetail' });
+
+
+
+    },
+    backToHome: function backToHome() {
+      uni.switchTab({
+        url: "/pages/patient/tabbar/home" });
+
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

@@ -98,9 +98,9 @@
 .report-doctor .detail-doctor {
   margin: 15px;
 }
-.report-doctor .detail-doctor image {
-  width: 30px;
-  height: 30px;
+.report-doctor .detail-doctor .doctor-image {
+  width: 50px;
+  height: 50px;
   border: 1px solid #F0AD4E;
   -webkit-border-radius: 50%;
           border-radius: 50%;
@@ -109,9 +109,9 @@
 .report-doctor .detail-doctor .doctor-content {
   float: left;
   height: 35px;
-  font-size: 12px;
+  font-size: 16px;
   margin-left: 10px;
-  margin-top: -2px;
+  margin-top: 4px;
 }
 .report-doctor .detail-doctor .doctor-content .content-top {
   height: 17.5px;
@@ -120,15 +120,32 @@
   padding-bottom: 2px;
 }
 .report-doctor .detail-doctor .doctor-content .content-top .top-name {
+  float: left;
   padding: 0 5px;
-  border-right: 1px solid #F1F1F1;
+}
+.report-doctor .detail-doctor .doctor-content .content-top .top-vip {
+  float: left;
+  margin-top: 2px;
+  margin-left: 10px;
+}
+.report-doctor .detail-doctor .doctor-content .content-top .top-vip image {
+  width: 40px;
+  height: 17px;
 }
 .report-doctor .detail-doctor .doctor-content .content-bottom {
-  border-top: 1px solid #F0F0F0;
   height: 17.5px;
   line-height: 17.5px;
   margin: 0;
   padding-top: 2px;
+}
+.report-doctor .detail-doctor .doctor-content .content-bottom .doc-type {
+  padding: 2px 6px;
+  font-size: 12px;
+  background-color: #5dd9be;
+  color: #FFFFFF;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  margin-right: 10px;
 }
 .report-doctor .report-doctor-detail {
   margin-top: 20px;
