@@ -7,7 +7,7 @@
 			 @doc_mineClick='doc_mineClick'></ren-dropdown-filter>
 		</view>
 
-		<view class="card-view">
+		<view class="card-view" >
 			<uni-card isShadow="true" v-for="item in patientList"  @click="enterGuide(item)">
 				<view class="card">
 					<view class="one">
@@ -140,7 +140,8 @@
 					}]
 				],
 				defaultIndex: [0, 0],
-				selectTime: "",
+				selectTime: "",//开始日期
+				selTimeEnd: "",//结束日期
 
 				perTagList: ['标签1', '标签2', '标签1', '标签2', '标签1', '标签2'], //病人的标签
 				showNoResult: false, //显示无结果
@@ -191,7 +192,8 @@
 
 			//选择测试日期
 			dateChange(d) {
-				this.selectTime = d + ' 00:00:00'
+				this.selectTime = d[0];
+				this.selTimeEnd = d[1];
 				this.DPageNumber = 1;
 				this.patientList = [];
 				this.getPatientsList()
@@ -210,6 +212,7 @@
 				getPatientsListByDoc({
 					doctorId: this.loginData.eyeDoctor.id,
 					testStartTime: this.selectTime,
+					testEndTime: this.selTimeEnd,
 					stateTag: this.stateTag,
 					pageNo: this.DPageNumber,
 					pageSize: '15'
@@ -253,6 +256,13 @@
 <style lang="scss">
 	.title_bar {
 		display: flex;
+		z-index: 9;
+		position: fixed;
+	}
+	.card-view{
+		position: absolute;
+		margin-top: 60px;
+		width: 100%;
 	}
 
 	.mine {

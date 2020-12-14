@@ -1,6 +1,9 @@
+
 <script>
+	import ServiceYinCom from 'components/serviceAndYinsi/index.vue'
 	import {mapMutations} from 'vuex'
 	export default {
+
 
 		onLaunch: function() {
 
@@ -38,6 +41,17 @@
 				uni.redirectTo({
 					url: '/pages/login/login'
 				});
+			}
+			
+			
+			try{
+				let showService = uni.getStorageSync('showService');
+				if(showService == null || showService == "" || showService == undefined){
+					
+				}
+				console.log('show======',showService)
+			}catch(e){
+				//TODO handle the exception
 			}
 
 

@@ -174,6 +174,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 var _index = __webpack_require__(/*! ../../../api/index.js */ 13);
 
 
@@ -251,6 +262,18 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
           _this.applyAddOrChange = 'add';
         }
       });
+    },
+    //进入服务条款
+    serviceClicked: function serviceClicked() {
+      uni.navigateTo({
+        url: "/pages/patient/minepage/service" });
+
+    },
+    //进入隐私政策
+    yinsiClicked: function yinsiClicked() {
+      uni.navigateTo({
+        url: "/pages/patient/minepage/yinsi" });
+
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

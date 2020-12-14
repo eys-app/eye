@@ -571,7 +571,7 @@
 	.doctor-add-report {
 		width: 80%;
 		height: 30px;
-		background-color: #09BB07;
+		background-color: #6A85F8;
 		color: #FFFFFF;
 		font-size: 14px;
 		font-weight: 600;

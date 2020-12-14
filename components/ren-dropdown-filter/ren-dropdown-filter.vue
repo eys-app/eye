@@ -7,12 +7,17 @@
 
 
 				<view class="date-wrapper">
-					<picker mode="date" @change="handleDate">
+					<view class="date c-flex-align" :style="{ height: height + 'rpx' }" @click="onShowDatePicker('rangetime')">
+						<view>{{ selDate }}</view>
+						<image src="https://i.loli.net/2020/07/15/xjVSvzWcH9NO7al.png" mode="" class="icon-triangle"></image>
+					</view>
+					<!-- <view @click="onShowDatePicker('rangetime')">{{selDate}}</view> -->
+					<!-- <picker mode="date" @change="handleDate">
 						<view class="date c-flex-align" :style="{ height: height + 'rpx' }" @click="dateClick">
 							<view>{{ selDate }}</view>
 							<image src="https://i.loli.net/2020/07/15/xjVSvzWcH9NO7al.png" mode="" class="icon-triangle"></image>
 						</view>
-					</picker>
+					</picker> -->
 				</view>
 
 				<view class="c-flex-align" :class="{ 'c-flex-center': index > 0, actNav: index === actNav }" v-for="(item, index) in navData"
@@ -33,12 +38,24 @@
 				</view>
 			</scroll-view>
 		</view>
+
+
+		<mx-date-picker :show="showPicker" type="range" :value="value" :show-tips="true"
+		 :begin-text="'开始'" :end-text="'结束'" format="yyyy-mm-dd 00:00:00"
+		 :show-seconds="true" @confirm="onSelected" @cancel="onSelected" />
+
+
+
 	</view>
 </template>
 
 <script>
 	// import { getCurDateTime } from '@/libs/utils.js';
+	 import MxDatePicker from "@/components/mx-datepicker/mx-datepicker.vue";
 	export default {
+		 components: {
+		            MxDatePicker
+		        },
 		props: {
 			height: {
 				type: Number,
@@ -80,7 +97,10 @@
 				showMask: false,
 				actNav: null,
 				selDate: '测评时间',
-				selIndex: [] //选中条件索引
+				selIndex: [], //选中条件索引
+
+				showPicker: false,
+				value: ''
 			};
 		},
 		created() {
@@ -92,6 +112,21 @@
 			// this.selDate = getCurDateTime().formatDate;
 		},
 		methods: {
+
+			onShowDatePicker(type) {
+				this.showPicker = true;
+				this.value = this[type];
+			},
+			onSelected(e) { //选择
+				this.showPicker = false;
+				if (e) {
+					this[this.type] = e.value;
+					let tempValue = e.value;
+					this.$emit('dateChange', tempValue);
+
+				}
+			},
+
 			keepStatus() {
 				this.navData.forEach(itemnavData => {
 					itemnavData.map(child => {
@@ -159,11 +194,11 @@
 		align-items: center;
 		justify-content: center;
 		width: 30px;
-		height: 30px!important;
+		height: 30px !important;
 		margin-right: 10px;
 		background-color: #FFFFFF;
-		
-		image{
+
+		image {
 			width: 100%;
 			height: 100%;
 		}
@@ -201,7 +236,7 @@
 			// position: relative;
 			.navs {
 				position: relative;
-				height: 110rpx;
+				// height: 110rpx;
 				// padding: 0 40rpx;
 				display: flex;
 				align-items: center;

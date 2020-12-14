@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8194,7 +8194,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8215,14 +8215,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8308,7 +8308,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"eyeSystemApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9069,7 +9069,7 @@ function (err, config) {
 
 /***/ }),
 
-/***/ 224:
+/***/ 238:
 /*!***********************************************!*\
   !*** C:/work/code/eye/commen/weapp-qrcode.js ***!
   \***********************************************/
@@ -9503,7 +9503,7 @@ module.exports = QRCode;
 
 /***/ }),
 
-/***/ 283:
+/***/ 297:
 /*!******************************************************!*\
   !*** C:/work/code/eye/components/uni-icons/icons.js ***!
   \******************************************************/
@@ -9676,7 +9676,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 319:
+/***/ 333:
 /*!*************************************************************!*\
   !*** C:/work/code/eye/components/u-parse/libs/html2json.js ***!
   \*************************************************************/
@@ -9698,8 +9698,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 320));
-var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 321));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
+var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 334));
+var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 335));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
                                                                                                                                                                  * html2Json 改造来自: https://github.com/Jxck/html2json
                                                                                                                                                                  *
                                                                                                                                                                  *
@@ -9948,7 +9948,7 @@ html2json;exports.default = _default;
 
 /***/ }),
 
-/***/ 320:
+/***/ 334:
 /*!*************************************************************!*\
   !*** C:/work/code/eye/components/u-parse/libs/wxDiscode.js ***!
   \*************************************************************/
@@ -10153,7 +10153,7 @@ function urlToHttpUrl(url, domain) {
 
 /***/ }),
 
-/***/ 321:
+/***/ 335:
 /*!**************************************************************!*\
   !*** C:/work/code/eye/components/u-parse/libs/htmlparser.js ***!
   \**************************************************************/
@@ -10320,7 +10320,7 @@ HTMLParser;exports.default = _default;
 
 /***/ }),
 
-/***/ 348:
+/***/ 362:
 /*!******************************************************!*\
   !*** C:/work/code/eye/components/uni-popup/popup.js ***!
   \******************************************************/
@@ -10328,7 +10328,7 @@ HTMLParser;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 349));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 363));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -10355,7 +10355,7 @@ var config = {
 
 /***/ }),
 
-/***/ 349:
+/***/ 363:
 /*!********************************************************!*\
   !*** C:/work/code/eye/components/uni-popup/message.js ***!
   \********************************************************/

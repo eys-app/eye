@@ -99,6 +99,8 @@
   -webkit-border-radius: 20px;
           border-radius: 20px;
   margin-left: 10px;
+  background-color: #6A85F8;
+  color: #FFFFFF;
 }
 /* loadmore */
 .uni-loadmore {

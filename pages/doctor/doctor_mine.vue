@@ -2,27 +2,29 @@
 <template>
 	<view class="view-page">
 		<!-- 医生的个人中心 -->
-		<view class="back-ground">
+		<view class="back-ground" >
 
 
-			<image class="user-image" :src="loginData.eyeDoctor.photoUrl"></image>
+			<image class="user-image" :src="loginData.eyeDoctor.photoUrl" ></image>
 			<view class="user-message">
-				<view style="padding-top: 3px;line-height: 40px;">
-					<label style="font-size: 18px;">{{loginData.eyeDoctor.nickName}}</label>
-					<!-- <label v-if="loginData.eyeDoctor.qualificationCertification != undefined && loginData.eyeDoctor.qualificationCertification == 1"> -->
-					<image class="vip-doc" src="../../static/images/vip-doc.png"></image>
-					<!-- </label> -->
-
-
+				<view style="padding-top: 3px;line-height: 30px;">
+					<label class="doc-name" style="font-size: 18px;">{{loginData.eyeDoctor.nickName}}</label>
+					<!-- <image class="vip-doc" src="../../static/images/vip-doc.png"></image> -->
+				</view>
+				<view style="font-size: 14px;">
+					{{loginData.eyeDoctor.workAddr}}
 				</view>
 				<view>
 					<label class="doc-type" v-if="loginData.eyeDoctor.eyeDoctorWork != undefined">{{loginData.eyeDoctor.eyeDoctorWork.work}}</label>
-					{{loginData.eyeDoctor.workAddr}}
+					<label class="doc-type" v-if="loginData.eyeDoctor != undefined && loginData.eyeDoctor.qualificationCertification == 1 ">已认证</label>
+					
 				</view>
-
 			</view>
 
 		</view>
+		
+		<!-- <view class="msg-back"></view> -->
+		
 		<view class="item-content" @click="doctorCodePage">
 			<view style="width: 100px;float: left;margin-left: 20px;">我的二维码</view>
 			<view style="text-align: right;margin-right: 10px;">
@@ -72,10 +74,15 @@
 		height: 100%;
 		position: absolute;
 		background-color: #F0F0F0;
+		
+		.vip-doctor-backimg{
+			background-image: url(../../static/images/close.png);
+			background-size: 30%;
+		}
 
 		.back-ground {
 			width: 100%;
-			height: 220px;
+			height: 130px;
 			background-color: $backColor;
 
 			.clear-view {
@@ -83,26 +90,32 @@
 				height: 80px;
 			}
 
-			text-align: center;
+			// text-align: center;
 
 			.user-image {
 				width: 80px;
 				height: 80px;
-				margin-left: 20px;
+				margin-left: 50px;
 				margin-top: 20px;
-				border-radius: 50%;
+				border-radius: 10px;
 				border: 2px solid #F1F1F1;
+				float: left;
 			}
+			
+			
 
 			.user-message {
-				width: 100%;
+				float: left;
+				width: calc(100% - 150px);
 				height: 80px;
-				text-align: center;
 				color: #FFFFFF;
 				margin-top: 10px;
 				line-height: 30px;
+				margin-left: 10px;
 
-				.doc-name {}
+				.doc-name {
+					font-weight: 800;
+				}
 
 				.vip-doc {
 					width: 40px;
@@ -115,7 +128,6 @@
 					font-size: 12px;
 					background-color: #5dd9be;
 					color: #FFFFFF;
-					margin-left: 15px;
 					border-radius: 5px;
 					margin-right: 10px;
 				}
@@ -129,6 +141,16 @@
 			height: 40px;
 			line-height: 40px;
 			background-color: #FFFFFF;
+		}
+		
+		.msg-back{
+			width: 80%;
+			height: 100px;
+			background-color: #FFFFFF;
+			box-shadow: 0 0 10px #959bb3;
+			margin-left: 10%;
+			margin-top: -50px;
+			border-radius: 5px;
 		}
 
 	}

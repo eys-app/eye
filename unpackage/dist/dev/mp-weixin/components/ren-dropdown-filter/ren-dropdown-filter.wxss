@@ -98,7 +98,6 @@ page.data-v-c53c40ec {
 }
 .filter-wrapper .inner-wrapper .navs.data-v-c53c40ec {
   position: relative;
-  height: 110rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;

@@ -18,7 +18,7 @@
 
 
 		</view>
-		<button class="add-button" type="warn" @click="addUser">
+		<button class="add-button" type="default" @click="addUser">
 			<uni-icons type="plusempty" color="#ffffff" size="14"></uni-icons>新增问诊人
 		</button>
 	</view>
@@ -207,6 +207,8 @@
 			font-size: 14px;
 			border-radius: 20px;
 			margin-left: 10px;
+			background-color: #6A85F8;
+			color: #FFFFFF;
 		}
 	}
 

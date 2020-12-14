@@ -10,7 +10,7 @@
 						<view class="user-type">
 							<image src="../../static/images/vip-doc.png"></image>
 						</view>
-						
+
 					</view>
 					<view style="height: 40px;">
 						<label class="doc-type">{{loginData.eyeDoctor.eyeDoctorWork.work}}</label>
@@ -44,13 +44,12 @@
 			...mapState(['loginData'])
 		},
 		onLoad() {
-
-			uni.showModal({
-				showCancel: false,
-				title: '请截屏保存该页信息'
-			})
-
 			setTimeout(() => {
+				uni.showModal({
+					showCancel: false,
+					title: '请截屏保存该页信息'
+				})
+
 				let codeText = this.loginData.id
 				this.couponQrCode(codeText)
 			}, 100)
@@ -80,7 +79,7 @@
 
 		.title {
 			text-align: center;
-			font-size:24px;
+			font-size: 24px;
 			padding: 20px;
 			color: #F0F0F0;
 		}
@@ -123,17 +122,17 @@
 						margin-right: 15px;
 						border-radius: 5px;
 					}
-					
-					
-					
-					.user-type{
+
+
+
+					.user-type {
 						width: 40px;
 						height: 17px;
 						margin-top: 3px;
 						float: left;
 						margin-left: 20px;
-						
-						image{
+
+						image {
 							width: 40px;
 							height: 17px;
 						}

@@ -32,6 +32,17 @@
 				<view class="content-text-view">认证为医生</view>
 				<view class="right-text">›</view>
 			</view>
+			<!-- #ifdef APP-PLUS || H5 -->
+			<view class="content-item" @click="yinsiClicked">
+				<view class="content-text-view">隐私政策</view>
+				<view class="right-text">›</view>
+			</view>
+			<view class="content-item" @click="serviceClicked">
+				<view class="content-text-view">服务条款</view>
+				<view class="right-text">›</view>
+			</view>
+			<!-- #endif -->
+			
 			<view class="content-item" style="text-align: center;color: #6A85F8;font-weight: 800;" @click="logoutClicked">
 				退出登录
 			</view>
@@ -120,6 +131,18 @@
 					}
 				})
 			},
+			//进入服务条款
+			serviceClicked(){
+				uni.navigateTo({
+					url: "/pages/patient/minepage/service"
+				})
+			},
+			//进入隐私政策
+			yinsiClicked(){
+				uni.navigateTo({
+					url: "/pages/patient/minepage/yinsi"
+				})
+			}
 		}
 	}
 </script>
