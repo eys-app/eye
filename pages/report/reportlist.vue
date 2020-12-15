@@ -2,9 +2,46 @@
 	<view class="view-page">
 		<patient-model-view></patient-model-view>
 		<template v-for="(item, index) in reportList">
-			<view class="report-item" @click="nativagtoReportDetail(item)">
+			
+			
+			<view class="list-item-report" @click="nativagtoReportDetail(item)">
+				<view class="item-header">
+					<image src="../../static/images/report-list.png"></image>
+					<view class="pa-relation-header">
+						{{item.eyePatient.patientRelation}}
+					</view>
+					
+					{{item.eyePatient.name}}
+					<view class="item-status">
+						<label v-if="item.stateTag == 0" style="color: #6A85F8;">等待医生诊断</label>
+						<label v-if="item.stateTag == 1" style="color: #09BB07;">医生已诊断</label>
+						<label v-if="item.stateTag == 2">已阅</label>
+					</view>
+				</view>
+				
+				<view class="item-detail">
+					<label style="margin-right: 10px;">AI 评分: </label>
+					<label class="reslut-text">{{item.score}}</label>
+				</view>
+				<view class="item-detail">
+					<label style="margin-right: 10px;">AI 结果: </label>
+					<label class="reslut-text" v-if="item.eyeDiagnosisConfig.severity == '轻度'" style="color: #40b9bb;">{{item.eyeDiagnosisConfig.severity}}</label>
+					<label class="reslut-text" v-if="item.eyeDiagnosisConfig.severity == '中度'" style="color: #bb7724;">{{item.eyeDiagnosisConfig.severity}}</label>
+					<label class="reslut-text" v-if="item.eyeDiagnosisConfig.severity == '重度'" style="color: #bb104c;">{{item.eyeDiagnosisConfig.severity}}</label>
+				</view>
+				<view class="item-detail" style="margin-bottom: 10px;">
+					{{item.createDate}}
+				</view>
+				<view style="float: right;margin-right: 10px;font-size: 12px;margin-top: 16px;color: #9e9e9e;">
+					查看详情 >
+				</view>
+				
+				<view style="clear: both;"></view>
+				
+			</view>
+			
+			<!-- <view class="report-item" @click="nativagtoReportDetail(item)">
 				<view>
-					<!-- <label class="pa-name">{{item.eyePatient.name}}</label> -->
 					<label class="pa-name">{{item.eyePatient.name}}</label>
 					<label class="pa-relation">{{item.eyePatient.patientRelation}}</label>
 					<template v-if="item.stateTag == 0">
@@ -33,19 +70,8 @@
 
 					<label class="reslut-time">{{item.createDate}}</label>
 				</view>
-				<!-- <view class="detail-doctor">
-					<image src="../../static/image-doctor.jpg"></image>
-					<view class="doctor-content">
-						<view class="content-top">
-							<label class="top-name">李医生</label>
-							<label class="top-name">vip</label>
-							<label style="padding: 0 5px;">副主任医师</label>
-						</view>
-						<view class="content-bottom">北京积水潭医院回龙观院区</view>
-					</view>
-				</view> -->
 				<view style="clear: both;"></view>
-			</view>
+			</view> -->
 
 		</template>
 		<view class="load-more-text" v-if="showMore">{{loadMoreText}}</view>
@@ -114,12 +140,18 @@
 		methods: {
 			//获取报告列表数据
 			getListData(type) {
-				getSubmitQuestionList_interface({
+				
+				let params = {
 					userId: this.loginData.id,
-					patientId: this.activePatient.id,
+
 					pageNo: this.pageNo,
 					pageSize: '10'
-				}).then(res => {
+				}
+				if(this.activePatient != null){
+					params.patientId = this.activePatient.id;
+				}
+				
+				getSubmitQuestionList_interface(params).then(res => {
 					uni.stopPullDownRefresh()
 					if (res.status == "SUCCESS") {
 						if (type == 'refresh') {
@@ -165,6 +197,69 @@
 		width: 100%;
 		background-color: #F0F0F0;
 		overflow-x: hidden;
+		
+		
+		.list-item-report{
+			width: 100%;
+			background-color: #f9f9fb;
+			margin-top: 10px;
+			
+			.item-header{
+				width: 100%;
+				height: 40px;
+				background-color: #FFFFFF;
+				line-height: 40px;
+				font-weight: 600;
+				font-size: 14px;
+				
+				image{
+					width: 14px;
+					height: 14px;
+					margin: 13px;
+					float: left;
+				}
+				.pa-relation-header{
+					float: left;
+					background-color: #ddddde;
+					line-height: 20px;
+					margin-top: 10px;
+					color: #6A85F8;
+					padding: 1px 6px;
+					margin-right: 10px;
+					border-radius: 20px;
+				}
+				
+				.item-status{
+					float: right;
+					margin-right: 10px;
+					font-weight: 200;
+					font-size: 12px;
+				}
+			}
+			
+			.item-detail{
+				font-size: 12px;
+				color: #666666;
+				margin-left: 30px;
+				margin-top: 10px;
+				float: left;
+				width: calc((100% - 60px) / 2);
+				
+				.reslut-text{
+					font-size: 16px;
+					font-weight: 700;
+					
+				}
+			}
+			
+			
+		}
+		
+		
+		
+		
+		
+		
 
 		.load-more-text {
 			text-align: center;

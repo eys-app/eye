@@ -76,18 +76,33 @@
 		<uni-popup type="bottom" ref="popup">
 			<view class="addReportPopup">
 				<view class="title">诊断</view>
+				<view class="pop-content">
+					<view class="add-report-card">
+						<view class="card-header">
+							<label class="header-title">是否使用模板</label>
+							<label style="float: right;margin-right: 10px;margin-top: 8px;">
+								<switch :checked="useModel" @change="changeSwitchValue" style="transform:scale(0.7)"></switch>
+							</label>
+						</view>
+						<view class="model-card selected-card">
+							<view class="model-title">{{selectedModel.title}}</view>
+							<view class="model-content">{{selectedModel.proposal}}</view>
+						</view>
+						<view class="card-footer" @click="showModelPopup">点此选择模板</view>
+					</view>
 
-				<button class="model-button" type="default" @click="showModelPopup">使用模板</button>
 
-				<view class="model-card selected-card">
-					<view class="model-title">{{selectedModel.title}}</view>
-					<view class="model-content">{{selectedModel.proposal}}</view>
+
+
+					<template v-if="loginData.eyeDoctor.qualificationCertification == '1'">
+						<view class="add-report-card">
+							<view class="card-header">
+								<label class="header-title">输入诊断结果</label>
+							</view>
+							<textarea auto-height class="text-area" maxlength="-1" v-model="textValue" placeholder="请在此输入诊断结果"></textarea>
+						</view>
+					</template>
 				</view>
-				<template v-if="loginData.eyeDoctor.qualificationCertification == '1'">
-					<view class="text-title">请在下方输入框中输入诊断结果</view>
-					<textarea auto-height class="text-area" maxlength="-1" v-model="textValue"></textarea>
-					<view class="clear-view"></view>
-				</template>
 
 				<view class="sumit-report" @click="submitReportParams">提交</view>
 			</view>
@@ -96,6 +111,7 @@
 
 		<uni-popup type="center" ref="modelPopup">
 			<view class="model-popup">
+
 				<view class="popup-title">请选择以下模板</view>
 				<view class="content-card">
 					<radio-group @change="clickedModelIndex">
@@ -147,9 +163,12 @@
 				historyOption: '',
 				modelList: [],
 				currentindex: null,
-				selectedModel: {},
+				selectedModel: {
+					title: "这是模板标题",
+					proposal: '这是模板内容'
+				},
 				textValue: '',
-				
+				useModel: false
 			}
 		},
 		computed: {
@@ -221,15 +240,22 @@
 						this.modelList = res.data.list
 					}
 				})
-
-
-
-
 			},
-
+			//改变模板switch
+			changeSwitchValue() {
+				this.useModel = !this.useModel;
+			},
 			showModelPopup() {
-				this.$refs.modelPopup.open()
-				this.getReportModel()
+				if (this.useModel == true) {
+					this.$refs.modelPopup.open()
+					this.getReportModel()
+				} else {
+					uni.showToast({
+						icon: "none",
+						title: "您已关闭使用模板，请若要使用模板，请打开右上侧的模板开关"
+					})
+				}
+
 			},
 			clickedModelIndex(e) {
 				console.log(e)
@@ -238,37 +264,56 @@
 			},
 			submitReportParams() {
 
+				let params = {}
+				
 				if (this.loginData.eyeDoctor.qualificationCertification == '1') {
-					if (this.textValue.length == 0 || this.selectedModel == {} || this.selectedModel == null) {
-						uni.showToast({
-							title: "请选择模板或输入诊断结果",
-							icon: 'none'
-						})
-						return;
+
+					if (this.useModel == false) {
+						if (this.textValue.length == 0) {
+							uni.showToast({
+								title: "请输入诊断结果",
+								icon: 'none'
+							})
+							return;
+						}
 					}
+					if (this.useModel == true) {
+						if (this.textValue.length == 0 || this.selectedModel.id == undefined) {
+							uni.showToast({
+								title: "请选择模板或输入诊断结果",
+								icon: 'none'
+							})
+							return;
+						}
+					}
+					params.proposal = this.textValue;
+
 				}
-				
-				
+
 
 				if (this.loginData.eyeDoctor.qualificationCertification == '0') {
-					if (this.selectedModel == {} || this.selectedModel == null || Object.keys(this.selectedModel).length == 0) {
+					if (this.useModel == false) {
 						uni.showToast({
 							title: "请选择模板",
 							icon: 'none'
 						})
 						return;
 					}
-				}
+					if (this.useModel == true) {
+						if (this.selectedModel.id == undefined) {
+							uni.showToast({
+								title: "请选择模板",
+								icon: 'none'
+							})
+							return;
+						}
+					}
 
-
-
-				let params = {}
-				params.doctorId = this.loginData.eyeDoctor.id;
-				if (this.loginData.eyeDoctor.qualificationCertification == '1') {
-					params.proposal = this.textValue;
 				}
 				params.schemeId = this.selectedModel.id;
 				params.submitQuestionnaireId = this.testPaperId;
+				params.doctorId = this.loginData.eyeDoctor.id;
+
 
 				saveProposal_interface(params).then(res => {
 					if (res.status == 'SUCCESS') {
@@ -276,9 +321,7 @@
 							title: "诊断结果提交成功",
 							icon: "none"
 						})
-
 						this.$refs.popup.close()
-
 						this.getReportDetailData()
 					}
 				})
@@ -339,6 +382,8 @@
 			}
 		}
 
+
+
 		.socre-text {
 			margin: 10px 0;
 			font-size: 14px;
@@ -388,13 +433,14 @@
 					.top-vip {
 						float: left;
 						margin-left: 10px;
+
 						image {
 							width: 40px;
 							height: 17px;
 						}
 					}
 
-					
+
 
 				}
 
@@ -403,7 +449,7 @@
 					line-height: 17.5px;
 					margin: 0;
 					padding-top: 2px;
-					
+
 					.doc-type {
 						padding: 2px 6px;
 						font-size: 12px;
@@ -455,6 +501,48 @@
 		background-color: #FFFFFF;
 		min-height: 400px;
 
+		.pop-content {
+			padding-bottom: 60px;
+		}
+
+
+		.add-report-card {
+			width: 90%;
+			// height: 150px;
+			background-color: #FFFFFF;
+			box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+			margin-left: 5%;
+			margin-top: 20px;
+			border-radius: 5px;
+
+			.card-header {
+				height: 45px;
+				border-bottom: 1px solid #F2F2F2;
+
+				.header-title {
+					line-height: 45px;
+					margin-left: 20px;
+				}
+			}
+
+			.card-footer {
+				height: 45px;
+				text-align: center;
+				line-height: 45px;
+				color: #6A85F8;
+				border-top: 1px solid #F2F2F2;
+			}
+
+		}
+
+
+
+		.use-model {
+			width: 80%;
+			margin-left: 10%;
+			margin-top: 20px;
+		}
+
 		.model-button {
 			width: 50%;
 			height: 30px;
@@ -495,19 +583,11 @@
 		}
 
 		.text-area {
-			border: 1px solid #d1d1d1;
-			margin: 10px 20px;
-			width: calc(100% - 50px);
+			width: calc(100% - 10px);
 			min-height: 100px;
-			border-radius: 5px;
 			padding: 5px;
 		}
 
-		.clear-view {
-			width: 100%;
-			height: 70px;
-			background-color: #FFFFFF;
-		}
 
 	}
 
@@ -560,11 +640,7 @@
 	}
 
 	.model-card {
-		border-bottom: 1px solid #F2F2F2;
-
-
-
-
+		// border-bottom: 1px solid #F2F2F2;
 	}
 
 

@@ -54,7 +54,8 @@
 			"path": "pages/patient/tabbar/home",
 			"style": {
 				"navigationBarTitleText": "首页",
-				"navigationStyle":"custom"
+				"navigationStyle":"custom",
+				"enablePullDownRefresh": true
 			}
 		},
 
@@ -64,7 +65,8 @@
 			"path": "pages/patient/tabbar/home",
 			"style": {
 				"navigationBarTitleText": "首页",
-				"navigationStyle":"custom"
+				"navigationStyle":"custom",
+				"enablePullDownRefresh": true
 			}
 		},
 		// #endif

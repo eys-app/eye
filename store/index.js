@@ -31,7 +31,8 @@ const store = new Vuex.Store({
 		logoutFunction(state) {
 			state.loginData = null;
 			state.activePatient = null;
-			uni.clearStorage()
+			uni.removeStorage('loginData');
+			uni.removeStorage('activePatient');
 		},
 
 		loginFunction(state, provider) {

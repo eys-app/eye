@@ -1,6 +1,10 @@
 <template>
 
 	<view class="login-back">
+		<!-- #ifdef APP-PLUS || H5 -->
+		<service-and-yin-com></service-and-yin-com>
+		<!-- #endif -->
+		
 		
 		
 		<view class="system-title">
@@ -43,6 +47,7 @@
 </template>
 
 <script>
+	import ServiceAndYinCom from '../../components/serviceAndYinsi/index.vue'
 	import {
 		mapMutations
 	} from 'vuex'
@@ -55,6 +60,9 @@
 				phoneNum: '',
 				password: ''
 			}
+		},
+		components:{
+			ServiceAndYinCom
 		},
 		methods: {
 

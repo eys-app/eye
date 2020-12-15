@@ -24,6 +24,16 @@
 				<view class="cus-grid-item" @click="gridClicked('report')">
 					<image src="../../../static/images/home-img-3.svg"></image>
 					<label>诊断报告</label>
+					<template v-if="unreadcount > 0">
+						<template v-if="unreadcount < 100">
+							<label class="un-read-count">{{unreadcount}}</label>
+						</template>
+						<template v-else>
+							<label class="un-read-count">99.</label>
+						</template>
+
+					</template>
+
 				</view>
 			</view>
 
@@ -59,15 +69,23 @@
 	import {
 		getForumList_interface,
 		getAdvertisementList_interface,
-		getForumTagList_interface
+		getForumTagList_interface,
+		getSubmitQuestionList_interface
 	} from '../../../api/index.js'
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
 				idHeight: 0,
 				listData: [],
-				dataAdList: []
+				dataAdList: [],
+				unreadcount: 0, //未读的诊断报告列表
 			}
+		},
+		computed: {
+			...mapState(["loginData", "activePatient"])
 		},
 		mounted() {
 			const _this = this;
@@ -77,12 +95,21 @@
 				}).exec();
 			}, 100)
 
-
 			this.dataAdList = [];
 			this.gainAdList()
-			
 			this.gainDoctorClassTags()
+			this.getListData('refresh')
 
+
+		},
+		onPullDownRefresh() {
+			this.dataAdList = [];
+			this.gainAdList()
+			this.gainDoctorClassTags()
+			this.getListData('refresh')
+			setTimeout(()=>{
+				uni.stopPullDownRefresh()
+			},1500)
 		},
 		methods: {
 			gridClicked(type) {
@@ -97,7 +124,7 @@
 						url: '/pages/report/reportlist'
 					})
 				}
-				if(type == 'fuzhu'){
+				if (type == 'fuzhu') {
 					uni.navigateTo({
 						url: "/pages/usernumber/apply/applydoctor"
 					})
@@ -111,9 +138,9 @@
 
 			},
 			//获取小讲堂tag列表
-			gainDoctorClassTags(){
+			gainDoctorClassTags() {
 				getForumTagList_interface().then(res => {
-					if(res.status == 'SUCCESS'){
+					if (res.status == 'SUCCESS') {
 						this.gainDoctorClassList(res.data[0].id)
 					}
 				})
@@ -141,20 +168,49 @@
 			//获取广告信息
 			gainAdList() {
 				getAdvertisementList_interface({
-					pageNo: 1,
-					pageSize: 3
-				})
-				.then(res => {
-					if (res.status == 'SUCCESS') {
-						this.dataAdList = res.data.list
-					}
-				})
+						pageNo: 1,
+						pageSize: 3
+					})
+					.then(res => {
+						if (res.status == 'SUCCESS') {
+							this.dataAdList = res.data.list
+						}
+					})
 			},
-			adClicked(item){
+			adClicked(item) {
 				uni.navigateTo({
 					url: "/pages/patient/home/articledetail?item=" + encodeURIComponent(JSON.stringify(item))
 				})
-			}
+			},
+
+			//获取报告列表数据
+			getListData(type) {
+
+				let params = {
+					userId: this.loginData.id,
+					pageNo: 1,
+					pageSize: '10000'
+				}
+				if (this.activePatient != null) {
+					params.patientId = this.activePatient.id;
+				}
+				this.unreadcount = 0;
+				getSubmitQuestionList_interface(params).then(res => {
+					uni.stopPullDownRefresh()
+					if (res.status == "SUCCESS") {
+						let temparray = res.data.list;
+						for (var i = 0; i < temparray.length; i++) {
+							if (temparray[i].stateTag == '1') {
+								this.unreadcount += 1;
+							}
+						}
+					}
+
+					console.log('un read count ====', this.unreadcount)
+
+				})
+			},
+
 		}
 	}
 </script>
@@ -187,7 +243,7 @@
 				height: 100px;
 				display: flex;
 				justify-content: center;
-				
+
 				// border-top: 10px solid #F0F0F0;
 				border-bottom: 10px solid #F0F0F0;
 
@@ -209,6 +265,20 @@
 						font-size: 14px;
 						color: gray;
 						margin-top: 8px;
+					}
+
+					.un-read-count {
+						z-index: 9;
+						position: absolute;
+						width: 18px;
+						height: 18px;
+						background-color: #FF0000;
+						border-radius: 50%;
+						color: #FFFFFF;
+						line-height: 18px;
+						margin-left: 20px;
+						margin-top: -30px;
+						font-size: 12px;
 					}
 
 				}
